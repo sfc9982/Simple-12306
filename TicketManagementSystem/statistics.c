@@ -2,7 +2,7 @@
 
 typedef struct {
     int id;
-    char name[MAXTICKETSNAME];
+    char name[MAX_LABEL_LENGTH];
     int cnt;
     double earnings;
     UT_hash_handle hh;
@@ -35,7 +35,7 @@ void SoldStatisticsByDate(RecordsList head, SoldDate start, SoldDate end, int mi
             if (s)
             {
                 s->cnt += p->record.sold_quantity;
-                s->earnings += (p->record.selling_price - p->record.buying_price)
+                s->earnings += (p->record.station_dest - p->record.station_from)
                                * p->record.sold_quantity;
             } else
             {
@@ -43,7 +43,7 @@ void SoldStatisticsByDate(RecordsList head, SoldDate start, SoldDate end, int mi
                 s->id = p->record.id;
                 strcpy(s->name, p->record.name);
                 s->cnt = p->record.sold_quantity;
-                s->earnings = (p->record.selling_price - p->record.buying_price)
+                s->earnings = (p->record.station_dest - p->record.station_from)
                               * p->record.sold_quantity;
                 HASH_ADD_INT(goods, id, s);
             }

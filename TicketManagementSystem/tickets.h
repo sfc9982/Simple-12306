@@ -4,16 +4,16 @@
 #ifndef TICKETS_H
 #define TICKETS_H
 
-#define MAXTICKETSNAME 30
-#define MAXMANUFACTURERNAME 50
+#define MAX_LABEL_LENGTH 30
+#define MAX_TRAIN_TYPE_LENGTH 50
 #define MAX_STATION_NAME_LENGTH 100 // Unicode/UTF-8中一个中文字符占据3个字节，所以长度应为中文长度的三倍以上
 
 typedef struct {
     int id;
-    char name[MAXTICKETSNAME];
-    char buying_price[MAX_STATION_NAME_LENGTH];
-    char selling_price[MAX_STATION_NAME_LENGTH];
-    char manufacturer[MAXMANUFACTURERNAME];
+    char name[MAX_LABEL_LENGTH];
+    char station_from[MAX_STATION_NAME_LENGTH];
+    char station_dest[MAX_STATION_NAME_LENGTH];
+    char manufacturer[MAX_TRAIN_TYPE_LENGTH];
     int quantity;
 } Tickets;
 
@@ -35,9 +35,9 @@ typedef struct {
 
 typedef struct {
     int id;
-    char name[MAXTICKETSNAME];
-    char buying_price[MAX_STATION_NAME_LENGTH];
-    char selling_price[MAX_STATION_NAME_LENGTH];
+    char name[MAX_LABEL_LENGTH];
+    char station_from[MAX_STATION_NAME_LENGTH];
+    char station_dest[MAX_STATION_NAME_LENGTH];
     int sold_quantity;
     SoldDate date;
 } SoldTicketsRecord;

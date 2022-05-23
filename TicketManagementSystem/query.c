@@ -1,18 +1,18 @@
 #include "stdafx.h"
 
-//按照商品名前缀查询商品，输出商品基本信息
+// 按照车票名前缀查询车票，输出车票基本信息
 TicketsList QueryTicketsByName(TicketsList head, char *name)
 {
     return QueryTicketsByNameAndManufacturer(head, name, "");
 }
 
-//按照生产厂商前缀查询商品，输出商品基本信息
+// 按照车型前缀查询车票，输出车票基本信息
 TicketsList QueryTicketsByManufacturer(TicketsList head, char *manufacturer)
 {
     return QueryTicketsByNameAndManufacturer(head, "", manufacturer);
 }
 
-//按照商品名和生产厂商前缀查询商品，输出商品基本信息
+// 按照车票名和车型前缀查询车票，输出车票基本信息
 TicketsList QueryTicketsByNameAndManufacturer(TicketsList head, char *goods_name, char *manufacturer)
 {
     if (head->next == NULL)
@@ -23,8 +23,8 @@ TicketsList QueryTicketsByNameAndManufacturer(TicketsList head, char *goods_name
     TicketsList p = head->next;
     while (p)
     {
-        char goods_name_prefix[MAXTICKETSNAME] = {0};
-        char manufacturer_prefix[MAXMANUFACTURERNAME] = {0};
+        char goods_name_prefix[MAX_LABEL_LENGTH] = {0};
+        char manufacturer_prefix[MAX_TRAIN_TYPE_LENGTH] = {0};
         strncpy(goods_name_prefix, p->goods.name, strlen(goods_name));
         strncpy(manufacturer_prefix, p->goods.manufacturer, strlen(manufacturer));
         if (strcmp(goods_name_prefix, goods_name) == 0 && strcmp(manufacturer_prefix, manufacturer) == 0)
@@ -57,13 +57,13 @@ void QuerySoldRecordsByDate(RecordsList head, SoldDate start, SoldDate end)
         if (CompareDate(p->record.date, start) >= 0 && CompareDate(p->record.date, end) <= 0)
         {
             printf("%-5d %-12s %-20s %-20s %-6d %4d\\%02d\\%02d %02d:%02d:%02d\n", p->record.id, p->record.name,
-                   p->record.buying_price, p->record.selling_price, p->record.sold_quantity, p->record.date.year,
+                   p->record.station_from, p->record.station_dest, p->record.sold_quantity, p->record.date.year,
                    p->record.date.month, p->record.date.day, p->record.date.hour, p->record.date.min,
                    p->record.date.second);
         }
-
         p = p->next;
     }
-    printf("---------------------------------------------------------------------------------------\n");
-}
 
+    printf("---------------------------------------------------------------------------------------\n");
+
+}

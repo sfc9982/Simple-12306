@@ -79,9 +79,9 @@ void SoldTickets(TicketsList head)
                     SoldTicketsRecord record;
                     record.id = found_goods->goods.id;
                     strcpy(record.name, found_goods->goods.name);
-                    strcpy(record.selling_price, found_goods->goods.selling_price);
+                    strcpy(record.station_dest, found_goods->goods.station_dest);
                     record.sold_quantity = cnt;
-                    strcpy(record.buying_price, found_goods->goods.buying_price);
+                    strcpy(record.station_from, found_goods->goods.station_from);
                     record.date = GetNowDate();
 
                     AppendARecordToFile(record, records_fp);
@@ -182,8 +182,8 @@ void ShowQueriedTicketsListToSalesman(TicketsList queried_goods)
 
 void SalesmanLookUpTicketsByName(TicketsList head)
 {
-    char goods_name_prefix[MAXTICKETSNAME] = {0};
-    //char manufacturer_prefix[MAXMANUFACTURERNAME] = { 0 };
+    char goods_name_prefix[MAX_LABEL_LENGTH] = {0};
+    //char manufacturer_prefix[MAX_TRAIN_TYPE_LENGTH] = { 0 };
 
     printf("输入商品名称或名称前缀\n>> ");
     scanf("%s", goods_name_prefix);
@@ -196,7 +196,7 @@ void SalesmanLookUpTicketsByName(TicketsList head)
 
 void SalesmanLookUpTicketsByManufacturer(TicketsList head)
 {
-    char manufacturer_prefix[MAXMANUFACTURERNAME] = {0};
+    char manufacturer_prefix[MAX_TRAIN_TYPE_LENGTH] = {0};
 
     printf("输入商品生产商名称或生产商名称前缀\n>> ");
     scanf("%s", manufacturer_prefix);
@@ -209,8 +209,8 @@ void SalesmanLookUpTicketsByManufacturer(TicketsList head)
 
 void SalesmanLookUpTicketsByNameAndManufacturer(TicketsList head)
 {
-    char goods_name_prefix[MAXTICKETSNAME] = {0};
-    char manufacturer_prefix[MAXMANUFACTURERNAME] = {0};
+    char goods_name_prefix[MAX_LABEL_LENGTH] = {0};
+    char manufacturer_prefix[MAX_TRAIN_TYPE_LENGTH] = {0};
 
     printf("输入商品名称或名称前缀\n>> ");
     scanf("%s", goods_name_prefix);

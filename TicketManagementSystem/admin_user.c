@@ -241,9 +241,9 @@ void AddTicketsToStock(TicketsList head)
         printf("输入车次名称\n>> ");
         scanf("%s", train_add.name);
         printf("输入车次始发站\n>> ");
-        scanf("%s", train_add.buying_price);
+        scanf("%s", train_add.station_from);
         printf("输入车次终点站\n>> ");
-        scanf("%s", train_add.selling_price);
+        scanf("%s", train_add.station_dest);
         printf("输入车型\n>> ");
         scanf("%s", train_add.manufacturer);
         printf("输入车次座位数量\n>> ");
@@ -330,8 +330,8 @@ void ShowQueriedTicketsListToAdmin(TicketsList queried_goods)
 
 void LookUpTicketsByName(TicketsList head)
 {
-    char goods_name_prefix[MAXTICKETSNAME] = {0};
-    //char manufacturer_prefix[MAXMANUFACTURERNAME] = { 0 };
+    char goods_name_prefix[MAX_LABEL_LENGTH] = {0};
+    //char manufacturer_prefix[MAX_TRAIN_TYPE_LENGTH] = { 0 };
 
     printf("输入车次名称或名称前缀\n>> ");
     scanf("%s", goods_name_prefix);
@@ -344,7 +344,7 @@ void LookUpTicketsByName(TicketsList head)
 
 void LookUpTicketsByManufacturer(TicketsList head)
 {
-    char manufacturer_prefix[MAXMANUFACTURERNAME] = {0};
+    char manufacturer_prefix[MAX_TRAIN_TYPE_LENGTH] = {0};
 
     printf("输入车次生产商名称或生产商名称前缀\n>> ");
     scanf("%s", manufacturer_prefix);
@@ -357,8 +357,8 @@ void LookUpTicketsByManufacturer(TicketsList head)
 
 void LookUpTicketsByNameAndManufacturer(TicketsList head)
 {
-    char goods_name_prefix[MAXTICKETSNAME] = {0};
-    char manufacturer_prefix[MAXMANUFACTURERNAME] = {0};
+    char goods_name_prefix[MAX_LABEL_LENGTH] = {0};
+    char manufacturer_prefix[MAX_TRAIN_TYPE_LENGTH] = {0};
 
     printf("输入车次名称或名称前缀\n>> ");
     scanf("%s", goods_name_prefix);
