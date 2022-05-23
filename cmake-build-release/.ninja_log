@@ -1,0 +1,23 @@
+# ninja log v5
+11	411	6749810063017149	CMakeFiles/Simple_12306.dir/TicketManagementSystem/query.c.obj	4b68bf814ad137a5
+40	495	6749810064039072	CMakeFiles/Simple_12306.dir/TicketManagementSystem/manage_tickets.c.obj	77679439dc3c47c6
+0	593	6749810065039820	CMakeFiles/Simple_12306.dir/TicketManagementSystem/admin_user.c.obj	2a0c0c98a1ce4aac
+4	158	6749812166367220	CMakeFiles/Simple_12306.dir/TicketManagementSystem/stdafx.c.obj	4f8e3ded7f25e661
+3	202	6749811088495259	CMakeFiles/Simple_12306.dir/TicketManagementSystem/TicketsManagementSystem.c.obj	b6ae0161e229c048
+24	443	6749810063515402	CMakeFiles/Simple_12306.dir/TicketManagementSystem/manage_records.c.obj	15464208b5e30c2b
+81	538	6749810064486266	CMakeFiles/Simple_12306.dir/TicketManagementSystem/statistics.c.obj	94428aaee29a3a79
+55	539	6749810064491325	CMakeFiles/Simple_12306.dir/TicketManagementSystem/salesman.c.obj	d2bd9f701e639a13
+159	523	6749812169878761	Simple_12306.exe	1f182f9ab339cd8b
+3	331	6749816156691961	CMakeFiles/Simple_12306.dir/TicketManagementSystem/TicketsManagementSystem.c.obj	b6ae0161e229c048
+3	373	6749816526140774	Simple_12306.exe	1f182f9ab339cd8b
+20	279	6749826060279566	CMakeFiles/Simple_12306.dir/TicketManagementSystem/query.c.obj	4b68bf814ad137a5
+12	286	6749826060348841	CMakeFiles/Simple_12306.dir/TicketManagementSystem/manage_records.c.obj	15464208b5e30c2b
+66	292	6749826060419309	CMakeFiles/Simple_12306.dir/TicketManagementSystem/stdafx.c.obj	4f8e3ded7f25e661
+28	324	6749826060777617	CMakeFiles/Simple_12306.dir/TicketManagementSystem/manage_tickets.c.obj	77679439dc3c47c6
+46	326	6749826060787612	CMakeFiles/Simple_12306.dir/TicketManagementSystem/TicketsManagementSystem.c.obj	b6ae0161e229c048
+37	343	6749826060969095	CMakeFiles/Simple_12306.dir/TicketManagementSystem/salesman.c.obj	d2bd9f701e639a13
+55	371	6749826061238370	CMakeFiles/Simple_12306.dir/TicketManagementSystem/statistics.c.obj	94428aaee29a3a79
+3	418	6749826061706378	CMakeFiles/Simple_12306.dir/TicketManagementSystem/admin_user.c.obj	2a0c0c98a1ce4aac
+419	756	6749826065025994	Simple_12306.exe	1f182f9ab339cd8b
+3	218	6749826331339089	CMakeFiles/Simple_12306.dir/TicketManagementSystem/TicketsManagementSystem.c.obj	b6ae0161e229c048
+219	544	6749826334525218	Simple_12306.exe	1f182f9ab339cd8b

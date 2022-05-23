@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/TicketManagementSystem/TicketsManagementSystem.c" charset="GB18030" />
+    <file url="file://$PROJECT_DIR$/TicketManagementSystem/admin_user.c" charset="GB18030" />
+    <file url="file://$PROJECT_DIR$/TicketManagementSystem/manage_records.c" charset="GB18030" />
+    <file url="file://$PROJECT_DIR$/TicketManagementSystem/manage_tickets.c" charset="GB18030" />
+    <file url="file://$PROJECT_DIR$/TicketManagementSystem/query.c" charset="GB18030" />
+    <file url="file://$PROJECT_DIR$/TicketManagementSystem/salesman.c" charset="GB18030" />
+    <file url="file://$PROJECT_DIR$/TicketManagementSystem/statistics.c" charset="GB18030" />
+    <file url="file://$PROJECT_DIR$/TicketManagementSystem/stdafx.c" charset="GB18030" />
+    <file url="file://$PROJECT_DIR$/TicketManagementSystem/stdafx.h" charset="GB18030" />
+    <file url="file://$PROJECT_DIR$/TicketManagementSystem/targetver.h" charset="GB18030" />
+    <file url="file://$PROJECT_DIR$/TicketManagementSystem/tickets.h" charset="GB18030" />
+    <file url="file://$PROJECT_DIR$/TicketManagementSystem/uthash.h" charset="GB18030" />
+  </component>
+</project>
