@@ -9,7 +9,8 @@ typedef struct {
 
 } CountStatistics;
 
-//比较两个日期大小，a与b相等返回0，a<b返回-1，a>b返回1
+// 比较两个日期大小，a与b相等返回0，a<b返回-1，a>b返回1
+
 int CompareDate(SoldDate a, SoldDate b)
 {
     int t1 = a.year * 10000 + a.month * 100 + a.day;

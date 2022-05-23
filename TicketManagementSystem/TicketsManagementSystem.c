@@ -1,8 +1,5 @@
 #include "stdafx.h"
 
-#define MAX_PASSWORD_LENGTH 64
-#define MAX_USERNAME_LENGTH 32
-
 int main()
 {
     DisplayInit();
@@ -46,14 +43,14 @@ void LogIn()
     if (op == 1)
         AdminLogIn();
     else if (op == 2)
-        SalesmanLogIn();
+        UserLogIn();
     else if (op == -1)
         printf("Error: Input Error!\n");
     else
         DisplayExit();
 }
 
-int getpasswd(char *passwd, int size)
+int getPassword(char *passwd, int size)
 {
     int c;
     int n = 0;
@@ -63,8 +60,9 @@ int getpasswd(char *passwd, int size)
     do
     {
         c = getch();
-        if (c != '\n' | c != '\r')
+        if (c != '\n' && c != '\r')
         {
+            putchar('*');
             passwd[n++] = (char) c;
         }
     } while (c != '\n' && c != '\r' && n < (size - 1)); // 不是所有平台行尾都是CRLF， size-1为'\0'预留位置，防止内存溢出
@@ -85,7 +83,7 @@ void AdminLogIn()
     scanf("%s", account);
 
     printf("密码\n>> ");
-    getpasswd(password, MAX_PASSWORD_LENGTH); // 无回显输入密码，防止敏感信息泄露
+    getPassword(password, MAX_PASSWORD_LENGTH); // 无回显输入密码，防止敏感信息泄露
 
     if (IsAdminAccount(account, password))
     {
@@ -99,7 +97,7 @@ void AdminLogIn()
     }
 }
 
-void SalesmanLogIn()
+void UserLogIn()
 {
     char account[MAX_USERNAME_LENGTH];
     char *password = (char *) calloc(MAX_PASSWORD_LENGTH, sizeof(char));
@@ -112,7 +110,7 @@ void SalesmanLogIn()
     scanf("%s", account);
 
     printf("密码\n>> ");
-    getpasswd(password, MAX_PASSWORD_LENGTH);
+    getPassword(password, MAX_PASSWORD_LENGTH);
 
     if (IsSalesmanAccount(account, password))
     {

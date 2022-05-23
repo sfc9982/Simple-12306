@@ -4,7 +4,7 @@
 //判断是否为管理员账户，无法打开文件返回-1，是返回1，否返回0
 int IsAdminAccount(char *account, char *password)
 {
-    FILE *fp = fopen("Data\\user.dat", "rb");
+    FILE *fp = fopen("D:\\Code\\Simple-12306\\TicketManagementSystem\\Data\\user.dat", "rb");
 
     if (fp == NULL)
         return -1;
@@ -20,7 +20,10 @@ int IsAdminAccount(char *account, char *password)
         fread(user + i, sizeof(UserAccount), 1, fp);
         if (strcmp(account, user[i].account) == 0 && strcmp(password, user[i].password) == 0
             && user[i].permission_level == 1)
+        {
+            puts("Login Success!");
             return 1;
+        }
     }
 
     free(user);
@@ -32,7 +35,7 @@ int IsAdminAccount(char *account, char *password)
 //增加账户信息，无法打开返回-1，成功返回1，账户已存在返回0（更改密码）
 int AddAccount(UserAccount *newInfo)
 {
-    FILE *fp = fopen("Data\\user.dat", "rb+");
+    FILE *fp = fopen("D:\\Code\\Simple-12306\\TicketManagementSystem\\Data\\user.dat", "rb+");
 
     if (fp == NULL)
         return -1;
@@ -70,7 +73,7 @@ int AddAccount(UserAccount *newInfo)
 //更该所有用户的密码，文件无法打开返回-1，删除成功返回1，失败返回0
 int DeleteAccount(char *account)
 {
-    FILE *fp = fopen("Data\\user.dat", "rb+");
+    FILE *fp = fopen("D:\\Code\\Simple-12306\\TicketManagementSystem\\Data\\user.dat", "rb+");
 
     if (fp == NULL)
         return -1;
@@ -94,7 +97,7 @@ int DeleteAccount(char *account)
 
     if (index != -1)
     {
-        fp = fopen("Data\\user.dat", "wb+");
+        fp = fopen("D:\\Code\\Simple-12306\\TicketManagementSystem\\Data\\user.dat", "wb+");
 
         for (int i = 0; i < size; i++)
         {
@@ -115,7 +118,7 @@ int DeleteAccount(char *account)
 //显示系统内所有账户信息，无法打开返回-1
 int DisplayAccountInfo()
 {
-    FILE *fp = fopen("Data\\user.dat", "rb");
+    FILE *fp = fopen("D:\\Code\\Simple-12306\\TicketManagementSystem\\Data\\user.dat", "rb");
 
     if (fp == NULL)
         return -1;
@@ -133,7 +136,7 @@ int DisplayAccountInfo()
         if (own[i].permission_level)
             printf("%-10s %-10s %-2s\n", own[i].account, own[i].password, "管理员");
         else
-            printf("%-10s %-10s %-2s\n", own[i].account, own[i].password, "售货员");
+            printf("%-10s %-10s %-2s\n", own[i].account, own[i].password, "用户");
     }
     printf("--------------------------------------\n");
 
@@ -619,8 +622,3 @@ void DaysSoldStatistics(RecordsList head)
     system("pause");
     SoldStatistics();
 }
-
-
-
-
-

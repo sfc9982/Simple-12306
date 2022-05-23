@@ -1,3 +1,6 @@
+#define MAX_PASSWORD_LENGTH 15
+#define MAX_USERNAME_LENGTH 15
+
 #ifndef GOODS_H
 #define GOODS_H
 

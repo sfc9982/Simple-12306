@@ -1,0 +1,10 @@
+# ninja log v5
+12	328	6749967168762788	CMakeFiles/Simple_12306.dir/TicketManagementSystem/query.c.obj	bb1ebdf5b30eee4a
+58	373	6749967169286519	CMakeFiles/Simple_12306.dir/TicketManagementSystem/stdafx.c.obj	93dc5d2d7ea22712
+43	382	6749967169387503	CMakeFiles/Simple_12306.dir/TicketManagementSystem/manage_records.c.obj	850c09a27f5f51f5
+1	384	6749967169387503	CMakeFiles/Simple_12306.dir/TicketManagementSystem/admin_user.c.obj	28b37e2ec3d7e952
+70	385	6749967169427530	CMakeFiles/Simple_12306.dir/TicketManagementSystem/TicketsManagementSystem.c.obj	7368853c69087c10
+22	389	6749967169467502	CMakeFiles/Simple_12306.dir/TicketManagementSystem/manage_tickets.c.obj	e918dfc9d3ba44d4
+31	397	6749967169543103	CMakeFiles/Simple_12306.dir/TicketManagementSystem/salesman.c.obj	5eb55c59608c43fe
+91	416	6749967169749628	CMakeFiles/Simple_12306.dir/TicketManagementSystem/statistics.c.obj	9e036b1a067c1317
+416	766	6749967173191383	Simple_12306.exe	90a80f0b3c807719

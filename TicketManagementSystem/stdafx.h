@@ -10,7 +10,10 @@
 #include <stdlib.h>
 #include <time.h>
 
-//SupermarketManagementSystem.c
+#define MAX_PASSWORD_LENGTH 15
+#define MAX_USERNAME_LENGTH 15
+
+//TicketsManagementSystem.c
 void DisplayInit();
 
 void DisplayExit();
@@ -19,10 +22,10 @@ void LogIn();
 
 void AdminLogIn();
 
-void SalesmanLogIn();
+void UserLogIn();
 
 
-//manage_goods.c
+//manage_tickets.c
 GoodsList InitGoodsList();
 
 void DeleteGoodsList(GoodsList head);
