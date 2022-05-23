@@ -279,7 +279,7 @@ void BatchedStock(TicketsList head)
 void LookOverStock(TicketsList head)
 {
     printf("-------------------------------------------------------\n");
-    printf("%-5s %-12s %-6s %-6s %-15s %-5s\n", "ID", "名称", "始发站", "终点站", "动车型号", "余量");
+    printf("%-5s %-12s %-15s %-15s %-15s %-5s\n", "ID", "名称", "始发站", "终点站", "动车型号", "余量");
     TraverseTicketsList(head, DisplayTicketsInfo);
     printf("-------------------------------------------------------\n");
     system("pause");

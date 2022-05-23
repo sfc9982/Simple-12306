@@ -79,9 +79,9 @@ void SoldTickets(TicketsList head)
                     SoldTicketsRecord record;
                     record.id = found_goods->goods.id;
                     strcpy(record.name, found_goods->goods.name);
-                    record.selling_price = found_goods->goods.selling_price;
+                    strcpy(record.selling_price, found_goods->goods.selling_price);
                     record.sold_quantity = cnt;
-                    record.buying_price = found_goods->goods.buying_price;
+                    strcpy(record.buying_price, found_goods->goods.buying_price);
                     record.date = GetNowDate();
 
                     AppendARecordToFile(record, records_fp);

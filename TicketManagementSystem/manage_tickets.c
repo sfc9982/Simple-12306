@@ -38,14 +38,14 @@ void TraverseTicketsList(TicketsList head, void(*Fun)(Tickets *))
 //输出一个商品的信息
 void DisplayTicketsInfo(Tickets *goods)
 {
-    printf("%-5d %-12s %-6.2f %-6.2f %-15s %-5d\n", goods->id, goods->name, goods->buying_price, goods->selling_price,
+    printf("%-5d %-12s %-15s %-15s %-15s %-5d\n", goods->id, goods->name, goods->buying_price, goods->selling_price,
            goods->manufacturer, goods->quantity);
 }
 
 //显示一个商品基本信息
 void DisplayBasicTicketsInfo(Tickets *goods)
 {
-    printf("%-5d %-12s %-6.2f %-15s %-5d\n", goods->id, goods->name, goods->selling_price, goods->manufacturer,
+    printf("%-5d %-12s %-15s %-15s %-5d\n", goods->id, goods->name, goods->selling_price, goods->manufacturer,
            goods->quantity);
 }
 
@@ -141,8 +141,8 @@ void ImportTicketsFromFile(TicketsList head, FILE *fp)
     Tickets goods;
     while (!feof(fp))
     {
-        fscanf(fp, "%d %s %lf %lf %s %d\n", &goods.id, goods.name, &goods.buying_price,
-               &goods.selling_price, goods.manufacturer, &goods.quantity);
+        fscanf(fp, "%d %s %s %s %s %d\n", &goods.id, goods.name, goods.buying_price,
+               goods.selling_price, goods.manufacturer, &goods.quantity);
         AddTicketsToList(head, goods);
     }
     fclose(fp);

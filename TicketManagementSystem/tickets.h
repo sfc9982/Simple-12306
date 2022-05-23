@@ -6,13 +6,13 @@
 
 #define MAXTICKETSNAME 30
 #define MAXMANUFACTURERNAME 50
-
+#define MAX_STATION_NAME_LENGTH 100 // Unicode/UTF-8中一个中文字符占据3个字节，所以长度应为中文长度的三倍以上
 
 typedef struct {
     int id;
     char name[MAXTICKETSNAME];
-    double buying_price;
-    double selling_price;
+    char buying_price[MAX_STATION_NAME_LENGTH];
+    char selling_price[MAX_STATION_NAME_LENGTH];
     char manufacturer[MAXMANUFACTURERNAME];
     int quantity;
 } Tickets;
@@ -36,8 +36,8 @@ typedef struct {
 typedef struct {
     int id;
     char name[MAXTICKETSNAME];
-    double buying_price;
-    double selling_price;
+    char buying_price[MAX_STATION_NAME_LENGTH];
+    char selling_price[MAX_STATION_NAME_LENGTH];
     int sold_quantity;
     SoldDate date;
 } SoldTicketsRecord;
