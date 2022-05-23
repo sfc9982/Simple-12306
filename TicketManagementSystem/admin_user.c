@@ -236,23 +236,23 @@ void AddTicketsToStock(TicketsList head)
         printf("添加完成\n");
     } else
     {
-        Tickets goods;
-        goods.id = atoi(id);
+        Tickets train_add;
+        train_add.id = atoi(id);
         printf("输入车次名称\n>> ");
-        scanf("%s", goods.name);
-        printf("输入车次进价\n>> ");
-        scanf("%lf", &goods.buying_price);
+        scanf("%s", train_add.name);
+        printf("输入车次始发站\n>> ");
+        scanf("%s", train_add.buying_price);
         printf("输入车次终点站\n>> ");
-        scanf("%lf", &goods.selling_price);
-        printf("输入车次生产商\n>> ");
-        scanf("%s", goods.manufacturer);
-        printf("输入车次数量\n>> ");
-        scanf("%d", &goods.quantity);
+        scanf("%s", train_add.selling_price);
+        printf("输入车型\n>> ");
+        scanf("%s", train_add.manufacturer);
+        printf("输入车次座位数量\n>> ");
+        scanf("%d", &train_add.quantity);
 
-        AddTicketsToList(head, goods);
+        AddTicketsToList(head, train_add);
         ExportTicketsToFile(head, OpenTicketsFile("w"));
         printf("添加完成\n");
-        DisplayTicketsInfo(&goods);
+        DisplayTicketsInfo(&train_add);
     }
 
     system("pause");
@@ -278,10 +278,10 @@ void BatchedStock(TicketsList head)
 
 void LookOverStock(TicketsList head)
 {
-    printf("-------------------------------------------------------\n");
-    printf("%-5s %-12s %-15s %-15s %-15s %-5s\n", "ID", "名称", "始发站", "终点站", "动车型号", "余量");
+    printf("---------------------------------------------------------------------------------\n");
+    printf("%-5s %-12s %-20s %-20s %-15s %-5s\n", "ID", "名称", "始发站", "终点站", "动车型号", "余量");
     TraverseTicketsList(head, DisplayTicketsInfo);
-    printf("-------------------------------------------------------\n");
+    printf("---------------------------------------------------------------------------------\n");
     system("pause");
     StockManagement();
 }
@@ -301,7 +301,7 @@ void LookUpTickets(TicketsList head)
     int op = -1;
 
     printf("1) 按车次名查询\n");
-    printf("2) 按生产厂家查询\n");
+    printf("2) 按动车车型查询\n");
     printf("3) 综合查询\n");
     printf("0) 返回上级\n");
 
@@ -322,10 +322,10 @@ void LookUpTickets(TicketsList head)
 
 void ShowQueriedTicketsListToAdmin(TicketsList queried_goods)
 {
-    printf("-------------------------------------------------------\n");
-    printf("%-5s %-12s %-6s %-6s %-15s %-5s\n", "ID", "名称", "始发站", "终点站", "动车型号", "余量");
+    printf("--------------------------------------------------------------------------------\n");
+    printf("%-5s %-12s %-20s %-20s %-15s %-5s\n", "ID", "名称", "始发站", "终点站", "动车型号", "座位余量");
     TraverseTicketsList(queried_goods, DisplayTicketsInfo);
-    printf("-------------------------------------------------------\n");
+    printf("--------------------------------------------------------------------------------\n");
 }
 
 void LookUpTicketsByName(TicketsList head)

@@ -2,7 +2,7 @@
 
 const char TICKETS_LIST_PATH[30] = "Data\\goods_list.txt";
 
-//初始化商品链表 创建带头结点的链表
+//初始化列车链表 创建带头结点的链表
 TicketsList InitTicketsList()
 {
     TicketsList head = (TicketsList) malloc(sizeof(struct TicketsListNode));
@@ -23,7 +23,7 @@ void DeleteTicketsList(TicketsList head)
     }
 }
 
-//遍历商品链表，进行某种操作
+//遍历列车链表，进行某种操作
 void TraverseTicketsList(TicketsList head, void(*Fun)(Tickets *))
 {
     TicketsList p = head->next;
@@ -35,22 +35,22 @@ void TraverseTicketsList(TicketsList head, void(*Fun)(Tickets *))
 }
 
 
-//输出一个商品的信息
+//输出一个列车的信息
 void DisplayTicketsInfo(Tickets *goods)
 {
-    printf("%-5d %-12s %-15s %-15s %-15s %-5d\n", goods->id, goods->name, goods->buying_price, goods->selling_price,
+    printf("%-5d %-12s %-20s %-20s %-15s %-5d\n", goods->id, goods->name, goods->buying_price, goods->selling_price,
            goods->manufacturer, goods->quantity);
 }
 
-//显示一个商品基本信息
+//显示一个列车基本信息
 void DisplayBasicTicketsInfo(Tickets *goods)
 {
-    printf("%-5d %-12s %-15s %-15s %-5d\n", goods->id, goods->name, goods->selling_price, goods->manufacturer,
+    printf("%-5d %-12s %-20s %-20s %-5d\n", goods->id, goods->name, goods->buying_price, goods->selling_price,
            goods->quantity);
 }
 
 
-//在商品链表中添加一条商品信息，原有此商品数量合并，返回1
+//在列车链表中添加一条列车信息，原有此列车数量合并，返回1
 //原没有，在链表末尾添加，返回0
 int AddTicketsToList(TicketsList head, Tickets goods)
 {
@@ -75,8 +75,8 @@ int AddTicketsToList(TicketsList head, Tickets goods)
 }
 
 
-//在商品链表中查找商品序号为id的商品，该商品数量减少quantity
-//成功返回1，商品数量不够返回0，无此id商品返回-1
+//在列车链表中查找列车序号为id的列车，该列车座位数量减少quantity
+//成功返回1，列车数量不够返回0，无此id列车返回-1
 int ReduceTicketsQuantity(TicketsList head, int id, int quantity)
 {
     TicketsList p = head->next;
@@ -95,8 +95,8 @@ int ReduceTicketsQuantity(TicketsList head, int id, int quantity)
 }
 
 
-//在商品链表中查找商品序号为id的商品，该商品数量增加quantity
-//成功返回1，无此id商品返回-1
+//在列车链表中查找列车序号为id的列车，该列车数量增加quantity
+//成功返回1，无此id列车返回-1
 int IncreaseTicketsQuantity(TicketsList head, int id, int quantity)
 {
     TicketsList p = head->next;
@@ -113,7 +113,7 @@ int IncreaseTicketsQuantity(TicketsList head, int id, int quantity)
 }
 
 
-//清除商品链表中为数量为0的商品
+//清除列车链表中为数量为0的列车
 void RemoveZeroQuantityTickets(TicketsList head)
 {
     TicketsList pre = head;
@@ -135,7 +135,7 @@ void RemoveZeroQuantityTickets(TicketsList head)
 }
 
 
-//从文件中导入商品数据
+//从文件中导入列车数据
 void ImportTicketsFromFile(TicketsList head, FILE *fp)
 {
     Tickets goods;
@@ -153,7 +153,7 @@ FILE *OpenTicketsFile(char *mod)
     return fopen(TICKETS_LIST_PATH, mod);
 }
 
-//将系统内商品数据导出到文件
+//将系统内列车数据导出到文件
 void ExportTicketsToFile(TicketsList head, FILE *fp)
 {
     Tickets goods;
@@ -161,7 +161,7 @@ void ExportTicketsToFile(TicketsList head, FILE *fp)
     while (p)
     {
         goods = p->goods;
-        fprintf(fp, "%d %s %.2lf %.2lf %s %d\n", goods.id, goods.name, goods.buying_price,
+        fprintf(fp, "%d %s %s %s %s %d\n", goods.id, goods.name, goods.buying_price,
                 goods.selling_price, goods.manufacturer, goods.quantity);
         p = p->next;
     }
@@ -169,7 +169,7 @@ void ExportTicketsToFile(TicketsList head, FILE *fp)
 }
 
 
-//有ID在商品链表中查找商品，查找到返回链表所在位置，否则返回NULL
+//有ID在列车链表中查找列车，查找到返回链表所在位置，否则返回NULL
 TicketsList FindTicketsByID(TicketsList head, int id)
 {
     if (id < 0) return NULL;

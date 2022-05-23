@@ -50,13 +50,13 @@ void QuerySoldRecordsByDate(RecordsList head, SoldDate start, SoldDate end)
     }
 
     RecordsList p = head->next;
-    printf("------------------------------------------------------------------\n");
-    printf("%-5s %-12s %-8s %-6s %5s %15s\n", "ID", "名称", "进价", "售价", "购买量", "购买时间");
+    printf("---------------------------------------------------------------------------------------\n");
+    printf("%-5s %-12s %-20s %-20s %5s %15s\n", "ID", "名称", "进价", "售价", "购买量", "购买时间");
     while (p)
     {
         if (CompareDate(p->record.date, start) >= 0 && CompareDate(p->record.date, end) <= 0)
         {
-            printf("%-5d %-12s %-8.2f %-8.2f %-6d %4d\\%02d\\%02d %02d:%02d:%02d\n", p->record.id, p->record.name,
+            printf("%-5d %-12s %-20s %-20s %-6d %4d\\%02d\\%02d %02d:%02d:%02d\n", p->record.id, p->record.name,
                    p->record.buying_price, p->record.selling_price, p->record.sold_quantity, p->record.date.year,
                    p->record.date.month, p->record.date.day, p->record.date.hour, p->record.date.min,
                    p->record.date.second);
@@ -64,6 +64,6 @@ void QuerySoldRecordsByDate(RecordsList head, SoldDate start, SoldDate end)
 
         p = p->next;
     }
-    printf("------------------------------------------------------------------\n");
+    printf("---------------------------------------------------------------------------------------\n");
 }
 

@@ -30,10 +30,10 @@ int IsSalesmanAccount(char *account, char *password)
 
 void DisplaySoldTickets(TicketsList head)
 {
-    printf("------------------------------------------------\n");
-    printf("%-5s %-12s %-6s %-15s %-5s\n", "ID", "名称", "售价", "生产厂商", "余量");
+    printf("--------------------------------------------------------------------------------\n");
+    printf("%-5s %-12s %-20s %-20s %-5s\n", "ID", "班次", "始发站", "终点站", "座位余量");
     TraverseTicketsList(head, DisplayBasicTicketsInfo);
-    printf("------------------------------------------------\n");
+    printf("--------------------------------------------------------------------------------\n");
 }
 
 
@@ -59,7 +59,7 @@ void SoldTickets(TicketsList head)
             scanf("%d", &cnt);
             if (cnt <= 0)
             {
-                printf("商品数量有误\n");
+                printf("车票数量有误\n");
                 system("pause");
                 continue;
             } else
@@ -70,7 +70,7 @@ void SoldTickets(TicketsList head)
                 {
                     if (!ReduceTicketsQuantity(head, id, cnt))
                     {
-                        printf("该商品库存不足\n");
+                        printf("该车次车票库存不足\n");
                         system("pause");;
                         continue;
                     }
@@ -115,8 +115,8 @@ void SalesmanInitMenu()
 
     int op = -1;
 
-    printf("1) 销售商品\n");
-    printf("2) 查询商品\n");
+    printf("1) 销售车票\n");
+    printf("2) 查询车票\n");
     printf("0) 退出登陆\n");
 
     printf(">> ");
@@ -153,8 +153,8 @@ void SalesmanLookUpTickets(TicketsList head)
 
     int op = -1;
 
-    printf("1) 按商品名查询\n");
-    printf("2) 按生产厂家查询\n");
+    printf("1) 按车次名查询\n");
+    printf("2) 按车型查询\n");
     printf("3) 综合查询\n");
     printf("0) 返回上级\n");
 

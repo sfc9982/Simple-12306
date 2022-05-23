@@ -64,7 +64,7 @@ FILE *OpenRecordsFile(char *mod)
 //向文件中新增加一条销售记录数据
 void AppendARecordToFile(SoldTicketsRecord record, FILE *fp)
 {
-    fprintf(fp, "%d %s %.2f %.2f %d %d-%d-%d-%d:%d:%d\n", record.id, record.name, record.buying_price,
+    fprintf(fp, "%d %s %s %s %d %d-%d-%d-%d:%d:%d\n", record.id, record.name, record.buying_price,
             record.selling_price, record.sold_quantity, record.date.year, record.date.month, record.date.day,
             record.date.hour, record.date.min, record.date.second);
 
@@ -78,8 +78,8 @@ void ImportRecordsFromFile(RecordsList head, FILE *fp)
     SoldTicketsRecord record;
     while (!feof(fp))
     {
-        fscanf(fp, "%d %s %lf %lf %d %d-%d-%d-%d:%d:%d\n", &record.id, record.name, &record.buying_price,
-               &record.selling_price, &record.sold_quantity, &record.date.year, &record.date.month, &record.date.day,
+        fscanf(fp, "%d %s %s %s %d %d-%d-%d-%d:%d:%d\n", &record.id, record.name, record.buying_price,
+               record.selling_price, &record.sold_quantity, &record.date.year, &record.date.month, &record.date.day,
                &record.date.hour, &record.date.min, &record.date.second);
         AddRecordToList(head, record);
     }
