@@ -1,35 +1,35 @@
 #include "stdafx.h"
 
 //按照商品名前缀查询商品，输出商品基本信息
-GoodsList QueryGoodsByName(GoodsList head, char *name)
+TicketsList QueryTicketsByName(TicketsList head, char *name)
 {
-    return QueryGoodsByNameAndManufacturer(head, name, "");
+    return QueryTicketsByNameAndManufacturer(head, name, "");
 }
 
 //按照生产厂商前缀查询商品，输出商品基本信息
-GoodsList QueryGoodsByManufacturer(GoodsList head, char *manufacturer)
+TicketsList QueryTicketsByManufacturer(TicketsList head, char *manufacturer)
 {
-    return QueryGoodsByNameAndManufacturer(head, "", manufacturer);
+    return QueryTicketsByNameAndManufacturer(head, "", manufacturer);
 }
 
 //按照商品名和生产厂商前缀查询商品，输出商品基本信息
-GoodsList QueryGoodsByNameAndManufacturer(GoodsList head, char *goods_name, char *manufacturer)
+TicketsList QueryTicketsByNameAndManufacturer(TicketsList head, char *goods_name, char *manufacturer)
 {
     if (head->next == NULL)
         return NULL;
 
 
-    GoodsList queried_goods = InitGoodsList();
-    GoodsList p = head->next;
+    TicketsList queried_goods = InitTicketsList();
+    TicketsList p = head->next;
     while (p)
     {
-        char goods_name_prefix[MAXGOODSNAME] = {0};
+        char goods_name_prefix[MAXTICKETSNAME] = {0};
         char manufacturer_prefix[MAXMANUFACTURERNAME] = {0};
         strncpy(goods_name_prefix, p->goods.name, strlen(goods_name));
         strncpy(manufacturer_prefix, p->goods.manufacturer, strlen(manufacturer));
         if (strcmp(goods_name_prefix, goods_name) == 0 && strcmp(manufacturer_prefix, manufacturer) == 0)
         {
-            GoodsList newNode = (GoodsList) malloc(sizeof(struct GoodsListNode));
+            TicketsList newNode = (TicketsList) malloc(sizeof(struct TicketsListNode));
             newNode->goods = p->goods;
             newNode->next = queried_goods->next;
             queried_goods->next = newNode;

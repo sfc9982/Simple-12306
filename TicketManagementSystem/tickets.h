@@ -1,26 +1,26 @@
 #define MAX_PASSWORD_LENGTH 15
 #define MAX_USERNAME_LENGTH 15
 
-#ifndef GOODS_H
-#define GOODS_H
+#ifndef TICKETS_H
+#define TICKETS_H
 
-#define MAXGOODSNAME 30
+#define MAXTICKETSNAME 30
 #define MAXMANUFACTURERNAME 50
 
 
 typedef struct {
     int id;
-    char name[MAXGOODSNAME];
+    char name[MAXTICKETSNAME];
     double buying_price;
     double selling_price;
     char manufacturer[MAXMANUFACTURERNAME];
     int quantity;
-} Goods;
+} Tickets;
 
-typedef struct GoodsListNode *GoodsList;
-struct GoodsListNode {
-    Goods goods;
-    GoodsList next;
+typedef struct TicketsListNode *TicketsList;
+struct TicketsListNode {
+    Tickets goods;
+    TicketsList next;
 };
 
 typedef struct {
@@ -35,16 +35,16 @@ typedef struct {
 
 typedef struct {
     int id;
-    char name[MAXGOODSNAME];
+    char name[MAXTICKETSNAME];
     double buying_price;
     double selling_price;
     int sold_quantity;
     SoldDate date;
-} SoldGoodsRecord;
+} SoldTicketsRecord;
 
 typedef struct RecordsListNode *RecordsList;
 struct RecordsListNode {
-    SoldGoodsRecord record;
+    SoldTicketsRecord record;
     RecordsList next;
 };
 
@@ -55,4 +55,4 @@ typedef struct {
 } UserAccount;
 
 
-#endif // !GOODS_H
+#endif // !TICKETS_H

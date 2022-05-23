@@ -26,31 +26,31 @@ void UserLogIn();
 
 
 //manage_tickets.c
-GoodsList InitGoodsList();
+TicketsList InitTicketsList();
 
-void DeleteGoodsList(GoodsList head);
+void DeleteTicketsList(TicketsList head);
 
-int AddGoodsToList(GoodsList head, Goods goods);
+int AddTicketsToList(TicketsList head, Tickets goods);
 
-void TraverseGoodsList(GoodsList head, void(*Fun)(Goods *));
+void TraverseTicketsList(TicketsList head, void(*Fun)(Tickets *));
 
-void DisplayGoodsInfo(Goods *goods);
+void DisplayTicketsInfo(Tickets *goods);
 
-void DisplayBasicGoodsInfo(Goods *goods);
+void DisplayBasicTicketsInfo(Tickets *goods);
 
-int IncreaseGoodsQuantity(GoodsList head, int id, int quantity);
+int IncreaseTicketsQuantity(TicketsList head, int id, int quantity);
 
-int ReduceGoodsQuantity(GoodsList head, int id, int quantity);
+int ReduceTicketsQuantity(TicketsList head, int id, int quantity);
 
-void ImportGoodsFromFile(GoodsList head, FILE *fp);
+void ImportTicketsFromFile(TicketsList head, FILE *fp);
 
-void ExportGoodsToFile(GoodsList head, FILE *fp);
+void ExportTicketsToFile(TicketsList head, FILE *fp);
 
-void RemoveZeroQuantityGoods(GoodsList head);
+void RemoveZeroQuantityTickets(TicketsList head);
 
-GoodsList FindGoodsByID(GoodsList head, int id);
+TicketsList FindTicketsByID(TicketsList head, int id);
 
-FILE *OpenGoodsFile(char *mod);
+FILE *OpenTicketsFile(char *mod);
 
 
 //manage_records.c
@@ -58,13 +58,13 @@ RecordsList InitRecordsList();
 
 void DeleteRecordsList(RecordsList head);
 
-void TraverseRecordsList(RecordsList head, void(*Fun)(SoldGoodsRecord *));
+void TraverseRecordsList(RecordsList head, void(*Fun)(SoldTicketsRecord *));
 
-void DisplayARecordInfo(SoldGoodsRecord *record);
+void DisplayARecordInfo(SoldTicketsRecord *record);
 
-void AppendARecordToFile(SoldGoodsRecord record, FILE *fp);
+void AppendARecordToFile(SoldTicketsRecord record, FILE *fp);
 
-void AddRecordToList(RecordsList head, SoldGoodsRecord record);
+void AddRecordToList(RecordsList head, SoldTicketsRecord record);
 
 void ImportRecordsFromFile(RecordsList head, FILE *fp);
 
@@ -86,23 +86,23 @@ void AdminInitMenu();
 
 void StockManagement();
 
-void AddGoodsToStock(GoodsList head);
+void AddTicketsToStock(TicketsList head);
 
-void BatchedStock(GoodsList head);
+void BatchedStock(TicketsList head);
 
-void LookOverStock(GoodsList head);
+void LookOverStock(TicketsList head);
 
-void LookUpGoods(GoodsList head);
+void LookUpTickets(TicketsList head);
 
-void ShowQueriedGoodsListToAdmin(GoodsList queried_goods);
+void ShowQueriedTicketsListToAdmin(TicketsList queried_goods);
 
-void LookUpGoodsByName(GoodsList head);
+void LookUpTicketsByName(TicketsList head);
 
-void LookUpGoodsByManufacturer(GoodsList head);
+void LookUpTicketsByManufacturer(TicketsList head);
 
-void LookUpGoodsByNameAndManufacturer(GoodsList head);
+void LookUpTicketsByNameAndManufacturer(TicketsList head);
 
-void ClearStock(GoodsList head);
+void ClearStock(TicketsList head);
 
 void UserManagement();
 
@@ -126,29 +126,29 @@ void DaysSoldStatistics(RecordsList head);
 //salesman.c
 int IsSalesmanAccount(char *account, char *password);
 
-void DisplaySoldGoods(GoodsList head);
+void DisplaySoldTickets(TicketsList head);
 
-void SoldGoods(GoodsList head);
+void SoldTickets(TicketsList head);
 
 void SalesmanInitMenu();
 
-void SalesmanLookUpGoods(GoodsList head);
+void SalesmanLookUpTickets(TicketsList head);
 
-void ShowQueriedGoodsListToSalesman(GoodsList queried_goods);
+void ShowQueriedTicketsListToSalesman(TicketsList queried_goods);
 
-void SalesmanLookUpGoodsByName(GoodsList head);
+void SalesmanLookUpTicketsByName(TicketsList head);
 
-void SalesmanLookUpGoodsByManufacturer(GoodsList head);
+void SalesmanLookUpTicketsByManufacturer(TicketsList head);
 
-void SalesmanLookUpGoodsByNameAndManufacturer(GoodsList head);
+void SalesmanLookUpTicketsByNameAndManufacturer(TicketsList head);
 
 
 //query.c
-GoodsList QueryGoodsByName(GoodsList head, char *name);
+TicketsList QueryTicketsByName(TicketsList head, char *name);
 
-GoodsList QueryGoodsByManufacturer(GoodsList head, char *manufacturer);
+TicketsList QueryTicketsByManufacturer(TicketsList head, char *manufacturer);
 
-GoodsList QueryGoodsByNameAndManufacturer(GoodsList head, char *goods_name, char *manufacturer);
+TicketsList QueryTicketsByNameAndManufacturer(TicketsList head, char *goods_name, char *manufacturer);
 
 void QuerySoldRecordsByDate(RecordsList head, SoldDate start, SoldDate end);
 

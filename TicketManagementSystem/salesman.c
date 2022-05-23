@@ -28,33 +28,33 @@ int IsSalesmanAccount(char *account, char *password)
     return 0;
 }
 
-void DisplaySoldGoods(GoodsList head)
+void DisplaySoldTickets(TicketsList head)
 {
     printf("------------------------------------------------\n");
     printf("%-5s %-12s %-6s %-15s %-5s\n", "ID", "名称", "售价", "生产厂商", "余量");
-    TraverseGoodsList(head, DisplayBasicGoodsInfo);
+    TraverseTicketsList(head, DisplayBasicTicketsInfo);
     printf("------------------------------------------------\n");
 }
 
 
 //购买商品，并更新商品，销售记录
-void SoldGoods(GoodsList head)
+void SoldTickets(TicketsList head)
 {
     int id, cnt;
-    GoodsList found_goods;
+    TicketsList found_goods;
     while (1)
     {
         system("cls");
-        DisplaySoldGoods(head);
+        DisplaySoldTickets(head);
         printf("\n输入待销售的商品ID (输入-1退出)\n>");
         scanf("%d", &id);
 
         if (id < 0) break;
 
-        found_goods = FindGoodsByID(head, id);
+        found_goods = FindTicketsByID(head, id);
         if (found_goods)
         {
-            DisplayBasicGoodsInfo(&found_goods->goods);
+            DisplayBasicTicketsInfo(&found_goods->goods);
             printf("输入销售数量\n>");
             scanf("%d", &cnt);
             if (cnt <= 0)
@@ -64,19 +64,19 @@ void SoldGoods(GoodsList head)
                 continue;
             } else
             {
-                FILE *goods_fp = OpenGoodsFile("w");
+                FILE *goods_fp = OpenTicketsFile("w");
                 FILE *records_fp = OpenRecordsFile("a");
                 if (goods_fp && records_fp)
                 {
-                    if (!ReduceGoodsQuantity(head, id, cnt))
+                    if (!ReduceTicketsQuantity(head, id, cnt))
                     {
                         printf("该商品库存不足\n");
                         system("pause");;
                         continue;
                     }
-                    ExportGoodsToFile(head, goods_fp);
+                    ExportTicketsToFile(head, goods_fp);
 
-                    SoldGoodsRecord record;
+                    SoldTicketsRecord record;
                     record.id = found_goods->goods.id;
                     strcpy(record.name, found_goods->goods.name);
                     record.selling_price = found_goods->goods.selling_price;
@@ -122,25 +122,25 @@ void SalesmanInitMenu()
     printf(">> ");
     scanf("%d", &op);
 
-    GoodsList head = InitGoodsList();
-    ImportGoodsFromFile(head, OpenGoodsFile("r"));
+    TicketsList head = InitTicketsList();
+    ImportTicketsFromFile(head, OpenTicketsFile("r"));
     if (op == 1)
     {
-        SoldGoods(head);
-        DeleteGoodsList(head);
+        SoldTickets(head);
+        DeleteTicketsList(head);
         SalesmanInitMenu();
     } else if (op == 2)
-        SalesmanLookUpGoods(head);
+        SalesmanLookUpTickets(head);
     else
     {
-        DeleteGoodsList(head);
+        DeleteTicketsList(head);
         LogIn();
     }
 
 }
 
 
-void SalesmanLookUpGoods(GoodsList head)
+void SalesmanLookUpTickets(TicketsList head)
 {
     system("cls");
 
@@ -161,65 +161,65 @@ void SalesmanLookUpGoods(GoodsList head)
     scanf("%d", &op);
 
     if (op == 1)
-        SalesmanLookUpGoodsByName(head);
+        SalesmanLookUpTicketsByName(head);
     else if (op == 2)
-        SalesmanLookUpGoodsByManufacturer(head);
+        SalesmanLookUpTicketsByManufacturer(head);
     else if (op == 3)
-        SalesmanLookUpGoodsByNameAndManufacturer(head);
+        SalesmanLookUpTicketsByNameAndManufacturer(head);
     else
     {
         SalesmanInitMenu();
     }
 }
 
-void ShowQueriedGoodsListToSalesman(GoodsList queried_goods)
+void ShowQueriedTicketsListToSalesman(TicketsList queried_goods)
 {
     printf("----------------------------------------------------\n");
     printf("%-5s %-12s %-6s %-15s %-5s\n", "ID", "名称", "售价", "生产厂商", "余量");
-    TraverseGoodsList(queried_goods, DisplayBasicGoodsInfo);
+    TraverseTicketsList(queried_goods, DisplayBasicTicketsInfo);
     printf("----------------------------------------------------\n");
 }
 
-void SalesmanLookUpGoodsByName(GoodsList head)
+void SalesmanLookUpTicketsByName(TicketsList head)
 {
-    char goods_name_prefix[MAXGOODSNAME] = {0};
+    char goods_name_prefix[MAXTICKETSNAME] = {0};
     //char manufacturer_prefix[MAXMANUFACTURERNAME] = { 0 };
 
     printf("输入商品名称或名称前缀\n>> ");
     scanf("%s", goods_name_prefix);
-    GoodsList queried_goods = QueryGoodsByName(head, goods_name_prefix);
-    ShowQueriedGoodsListToSalesman(queried_goods);
-    DeleteGoodsList(queried_goods);
+    TicketsList queried_goods = QueryTicketsByName(head, goods_name_prefix);
+    ShowQueriedTicketsListToSalesman(queried_goods);
+    DeleteTicketsList(queried_goods);
     system("pause");
-    SalesmanLookUpGoods(head);
+    SalesmanLookUpTickets(head);
 }
 
-void SalesmanLookUpGoodsByManufacturer(GoodsList head)
+void SalesmanLookUpTicketsByManufacturer(TicketsList head)
 {
     char manufacturer_prefix[MAXMANUFACTURERNAME] = {0};
 
     printf("输入商品生产商名称或生产商名称前缀\n>> ");
     scanf("%s", manufacturer_prefix);
-    GoodsList queried_goods = QueryGoodsByManufacturer(head, manufacturer_prefix);
-    ShowQueriedGoodsListToSalesman(queried_goods);
-    DeleteGoodsList(queried_goods);
+    TicketsList queried_goods = QueryTicketsByManufacturer(head, manufacturer_prefix);
+    ShowQueriedTicketsListToSalesman(queried_goods);
+    DeleteTicketsList(queried_goods);
     system("pause");
-    SalesmanLookUpGoods(head);
+    SalesmanLookUpTickets(head);
 }
 
-void SalesmanLookUpGoodsByNameAndManufacturer(GoodsList head)
+void SalesmanLookUpTicketsByNameAndManufacturer(TicketsList head)
 {
-    char goods_name_prefix[MAXGOODSNAME] = {0};
+    char goods_name_prefix[MAXTICKETSNAME] = {0};
     char manufacturer_prefix[MAXMANUFACTURERNAME] = {0};
 
     printf("输入商品名称或名称前缀\n>> ");
     scanf("%s", goods_name_prefix);
     printf("输入商品生产商名称或生产商名称前缀\n>> ");
     scanf("%s", manufacturer_prefix);
-    GoodsList queried_goods = QueryGoodsByNameAndManufacturer(head, goods_name_prefix, manufacturer_prefix);
-    ShowQueriedGoodsListToSalesman(queried_goods);
-    DeleteGoodsList(queried_goods);
+    TicketsList queried_goods = QueryTicketsByNameAndManufacturer(head, goods_name_prefix, manufacturer_prefix);
+    ShowQueriedTicketsListToSalesman(queried_goods);
+    DeleteTicketsList(queried_goods);
     system("pause");
-    SalesmanLookUpGoods(head);
+    SalesmanLookUpTickets(head);
 }
 

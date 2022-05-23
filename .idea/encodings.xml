@@ -13,5 +13,6 @@
     <file url="file://$PROJECT_DIR$/TicketManagementSystem/targetver.h" charset="GB18030" />
     <file url="file://$PROJECT_DIR$/TicketManagementSystem/tickets.h" charset="GB18030" />
     <file url="file://$PROJECT_DIR$/TicketManagementSystem/uthash.h" charset="GB18030" />
+    <file url="file://$PROJECT_DIR$/cmake-build-release/Data/goods_list.txt" charset="GBK" />
   </component>
 </project>

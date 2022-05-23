@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-const char GOODS_SALES_RECORD_PATH[50] = "Data\\sold_goods_list.txt";
+const char TICKETS_SALES_RECORD_PATH[50] = "Data\\sold_goods_list.txt";
 
 //初始化销售记录裂变，创建带头结点的链表
 RecordsList InitRecordsList()
@@ -14,7 +14,7 @@ RecordsList InitRecordsList()
 
 void DeleteRecordsList(RecordsList head)
 {
-    GoodsList next;
+    TicketsList next;
 
     while (head)
     {
@@ -25,7 +25,7 @@ void DeleteRecordsList(RecordsList head)
 }
 
 //遍历销售记录链表，进行某种操作
-void TraverseRecordsList(RecordsList head, void(*Fun)(SoldGoodsRecord *))
+void TraverseRecordsList(RecordsList head, void(*Fun)(SoldTicketsRecord *))
 {
     RecordsList p = head->next;
     while (p)
@@ -36,7 +36,7 @@ void TraverseRecordsList(RecordsList head, void(*Fun)(SoldGoodsRecord *))
 }
 
 //输出一个销售记录的信息
-void DisplayARecordInfo(SoldGoodsRecord *record)
+void DisplayARecordInfo(SoldTicketsRecord *record)
 {
     printf("%d %s %.2f %.2f %d %d-%d-%d-%d:%d:%d\n", record->id, record->name, record->buying_price,
            record->selling_price, record->sold_quantity, record->date.year, record->date.month, record->date.day,
@@ -44,7 +44,7 @@ void DisplayARecordInfo(SoldGoodsRecord *record)
 }
 
 //在销售记录链表尾部增加一条销售记录信息
-void AddRecordToList(RecordsList head, SoldGoodsRecord record)
+void AddRecordToList(RecordsList head, SoldTicketsRecord record)
 {
     RecordsList newNode = (RecordsList) malloc(sizeof(struct RecordsListNode));
     newNode->record = record;
@@ -58,11 +58,11 @@ void AddRecordToList(RecordsList head, SoldGoodsRecord record)
 
 FILE *OpenRecordsFile(char *mod)
 {
-    return fopen(GOODS_SALES_RECORD_PATH, mod);
+    return fopen(TICKETS_SALES_RECORD_PATH, mod);
 }
 
 //向文件中新增加一条销售记录数据
-void AppendARecordToFile(SoldGoodsRecord record, FILE *fp)
+void AppendARecordToFile(SoldTicketsRecord record, FILE *fp)
 {
     fprintf(fp, "%d %s %.2f %.2f %d %d-%d-%d-%d:%d:%d\n", record.id, record.name, record.buying_price,
             record.selling_price, record.sold_quantity, record.date.year, record.date.month, record.date.day,
@@ -75,7 +75,7 @@ void AppendARecordToFile(SoldGoodsRecord record, FILE *fp)
 //从文件中导入销售记录数据
 void ImportRecordsFromFile(RecordsList head, FILE *fp)
 {
-    SoldGoodsRecord record;
+    SoldTicketsRecord record;
     while (!feof(fp))
     {
         fscanf(fp, "%d %s %lf %lf %d %d-%d-%d-%d:%d:%d\n", &record.id, record.name, &record.buying_price,

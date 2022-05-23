@@ -62,7 +62,7 @@ int getPassword(char *passwd, int size)
         c = getch();
         if (c != '\n' && c != '\r')
         {
-            putchar('*');
+            putchar('*'); // 遮蔽回显
             passwd[n++] = (char) c;
         }
     } while (c != '\n' && c != '\r' && n < (size - 1)); // 不是所有平台行尾都是CRLF， size-1为'\0'预留位置，防止内存溢出

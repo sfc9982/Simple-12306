@@ -4,7 +4,7 @@
 //判断是否为管理员账户，无法打开文件返回-1，是返回1，否返回0
 int IsAdminAccount(char *account, char *password)
 {
-    FILE *fp = fopen("D:\\Code\\Simple-12306\\TicketManagementSystem\\Data\\user.dat", "rb");
+    FILE *fp = fopen("Data\\user.dat", "rb");
 
     if (fp == NULL)
         return -1;
@@ -35,7 +35,7 @@ int IsAdminAccount(char *account, char *password)
 //增加账户信息，无法打开返回-1，成功返回1，账户已存在返回0（更改密码）
 int AddAccount(UserAccount *newInfo)
 {
-    FILE *fp = fopen("D:\\Code\\Simple-12306\\TicketManagementSystem\\Data\\user.dat", "rb+");
+    FILE *fp = fopen("Data\\user.dat", "rb+");
 
     if (fp == NULL)
         return -1;
@@ -73,7 +73,7 @@ int AddAccount(UserAccount *newInfo)
 //更该所有用户的密码，文件无法打开返回-1，删除成功返回1，失败返回0
 int DeleteAccount(char *account)
 {
-    FILE *fp = fopen("D:\\Code\\Simple-12306\\TicketManagementSystem\\Data\\user.dat", "rb+");
+    FILE *fp = fopen("Data\\user.dat", "rb+");
 
     if (fp == NULL)
         return -1;
@@ -97,7 +97,7 @@ int DeleteAccount(char *account)
 
     if (index != -1)
     {
-        fp = fopen("D:\\Code\\Simple-12306\\TicketManagementSystem\\Data\\user.dat", "wb+");
+        fp = fopen("Data\\user.dat", "wb+");
 
         for (int i = 0; i < size; i++)
         {
@@ -118,7 +118,7 @@ int DeleteAccount(char *account)
 //显示系统内所有账户信息，无法打开返回-1
 int DisplayAccountInfo()
 {
-    FILE *fp = fopen("D:\\Code\\Simple-12306\\TicketManagementSystem\\Data\\user.dat", "rb");
+    FILE *fp = fopen("Data\\user.dat", "rb");
 
     if (fp == NULL)
         return -1;
@@ -189,29 +189,29 @@ void StockManagement()
     printf(">> ");
     scanf("%d", &op);
 
-    GoodsList head = InitGoodsList();
-    ImportGoodsFromFile(head, OpenGoodsFile("r"));
+    TicketsList head = InitTicketsList();
+    ImportTicketsFromFile(head, OpenTicketsFile("r"));
 
     if (op == 1)
-        AddGoodsToStock(head);
+        AddTicketsToStock(head);
     else if (op == 2)
         BatchedStock(head);
     else if (op == 3)
         LookOverStock(head);
     else if (op == 4)
-        LookUpGoods(head);
+        LookUpTickets(head);
     else if (op == 5)
         ClearStock(head);
     else
     {
-        DeleteGoodsList(head);
+        DeleteTicketsList(head);
         AdminInitMenu();
     }
 
 }
 
 
-void AddGoodsToStock(GoodsList head)
+void AddTicketsToStock(TicketsList head)
 {
     system("cls");
     char id[20];
@@ -219,24 +219,24 @@ void AddGoodsToStock(GoodsList head)
     printf("输入车次id\n>> ");
     scanf("%s", id);
 
-    GoodsList p = FindGoodsByID(head, atoi(id));
+    TicketsList p = FindTicketsByID(head, atoi(id));
     if (p)
     {
         printf("该车次已存在\n");
-        DisplayGoodsInfo(p);
+        DisplayTicketsInfo(p);
         printf("输入增添数量\n>> ");
         int add_cnt = 0;
         scanf("%d", &add_cnt);
         if (add_cnt < 0) add_cnt = 0;
         p->goods.quantity += add_cnt;
 
-        TraverseGoodsList(head, DisplayGoodsInfo);
+        TraverseTicketsList(head, DisplayTicketsInfo);
 
-        ExportGoodsToFile(head, OpenGoodsFile("w"));
+        ExportTicketsToFile(head, OpenTicketsFile("w"));
         printf("添加完成\n");
     } else
     {
-        Goods goods;
+        Tickets goods;
         goods.id = atoi(id);
         printf("输入车次名称\n>> ");
         scanf("%s", goods.name);
@@ -249,23 +249,23 @@ void AddGoodsToStock(GoodsList head)
         printf("输入车次数量\n>> ");
         scanf("%d", &goods.quantity);
 
-        AddGoodsToList(head, goods);
-        ExportGoodsToFile(head, OpenGoodsFile("w"));
+        AddTicketsToList(head, goods);
+        ExportTicketsToFile(head, OpenTicketsFile("w"));
         printf("添加完成\n");
-        DisplayGoodsInfo(&goods);
+        DisplayTicketsInfo(&goods);
     }
 
     system("pause");
     StockManagement();
 }
 
-void BatchedStock(GoodsList head)
+void BatchedStock(TicketsList head)
 {
     FILE *fp = fopen("ExternalData\\added_goods.txt", "r");
     if (fp)
     {
-        ImportGoodsFromFile(head, fp);
-        ExportGoodsToFile(head, OpenGoodsFile("w"));
+        ImportTicketsFromFile(head, fp);
+        ExportTicketsToFile(head, OpenTicketsFile("w"));
         fclose(fp);
         printf("导入成功\n");
     } else
@@ -276,18 +276,18 @@ void BatchedStock(GoodsList head)
     StockManagement();
 }
 
-void LookOverStock(GoodsList head)
+void LookOverStock(TicketsList head)
 {
     printf("-------------------------------------------------------\n");
     printf("%-5s %-12s %-6s %-6s %-15s %-5s\n", "ID", "名称", "始发站", "终点站", "动车型号", "余量");
-    TraverseGoodsList(head, DisplayGoodsInfo);
+    TraverseTicketsList(head, DisplayTicketsInfo);
     printf("-------------------------------------------------------\n");
     system("pause");
     StockManagement();
 }
 
 
-void LookUpGoods(GoodsList head)
+void LookUpTickets(TicketsList head)
 {
     system("cls");
 
@@ -308,11 +308,11 @@ void LookUpGoods(GoodsList head)
     scanf("%d", &op);
 
     if (op == 1)
-        LookUpGoodsByName(head);
+        LookUpTicketsByName(head);
     else if (op == 2)
-        LookUpGoodsByManufacturer(head);
+        LookUpTicketsByManufacturer(head);
     else if (op == 3)
-        LookUpGoodsByNameAndManufacturer(head);
+        LookUpTicketsByNameAndManufacturer(head);
     else
     {
         StockManagement();
@@ -320,59 +320,59 @@ void LookUpGoods(GoodsList head)
 }
 
 
-void ShowQueriedGoodsListToAdmin(GoodsList queried_goods)
+void ShowQueriedTicketsListToAdmin(TicketsList queried_goods)
 {
     printf("-------------------------------------------------------\n");
     printf("%-5s %-12s %-6s %-6s %-15s %-5s\n", "ID", "名称", "始发站", "终点站", "动车型号", "余量");
-    TraverseGoodsList(queried_goods, DisplayGoodsInfo);
+    TraverseTicketsList(queried_goods, DisplayTicketsInfo);
     printf("-------------------------------------------------------\n");
 }
 
-void LookUpGoodsByName(GoodsList head)
+void LookUpTicketsByName(TicketsList head)
 {
-    char goods_name_prefix[MAXGOODSNAME] = {0};
+    char goods_name_prefix[MAXTICKETSNAME] = {0};
     //char manufacturer_prefix[MAXMANUFACTURERNAME] = { 0 };
 
     printf("输入车次名称或名称前缀\n>> ");
     scanf("%s", goods_name_prefix);
-    GoodsList queried_goods = QueryGoodsByName(head, goods_name_prefix);
-    ShowQueriedGoodsListToAdmin(queried_goods);
-    DeleteGoodsList(queried_goods);
+    TicketsList queried_goods = QueryTicketsByName(head, goods_name_prefix);
+    ShowQueriedTicketsListToAdmin(queried_goods);
+    DeleteTicketsList(queried_goods);
     system("pause");
-    LookUpGoods(head);
+    LookUpTickets(head);
 }
 
-void LookUpGoodsByManufacturer(GoodsList head)
+void LookUpTicketsByManufacturer(TicketsList head)
 {
     char manufacturer_prefix[MAXMANUFACTURERNAME] = {0};
 
     printf("输入车次生产商名称或生产商名称前缀\n>> ");
     scanf("%s", manufacturer_prefix);
-    GoodsList queried_goods = QueryGoodsByManufacturer(head, manufacturer_prefix);
-    ShowQueriedGoodsListToAdmin(queried_goods);
-    DeleteGoodsList(queried_goods);
+    TicketsList queried_goods = QueryTicketsByManufacturer(head, manufacturer_prefix);
+    ShowQueriedTicketsListToAdmin(queried_goods);
+    DeleteTicketsList(queried_goods);
     system("pause");
-    LookUpGoods(head);
+    LookUpTickets(head);
 }
 
-void LookUpGoodsByNameAndManufacturer(GoodsList head)
+void LookUpTicketsByNameAndManufacturer(TicketsList head)
 {
-    char goods_name_prefix[MAXGOODSNAME] = {0};
+    char goods_name_prefix[MAXTICKETSNAME] = {0};
     char manufacturer_prefix[MAXMANUFACTURERNAME] = {0};
 
     printf("输入车次名称或名称前缀\n>> ");
     scanf("%s", goods_name_prefix);
     printf("输入车次生产商名称或生产商名称前缀\n>> ");
     scanf("%s", manufacturer_prefix);
-    GoodsList queried_goods = QueryGoodsByNameAndManufacturer(head, goods_name_prefix, manufacturer_prefix);
-    ShowQueriedGoodsListToAdmin(queried_goods);
-    DeleteGoodsList(queried_goods);
+    TicketsList queried_goods = QueryTicketsByNameAndManufacturer(head, goods_name_prefix, manufacturer_prefix);
+    ShowQueriedTicketsListToAdmin(queried_goods);
+    DeleteTicketsList(queried_goods);
     system("pause");
-    LookUpGoods(head);
+    LookUpTickets(head);
 }
 
 
-void ClearStock(GoodsList head)
+void ClearStock(TicketsList head)
 {
     char op[10];
     printf("是否删除记录内数量为0的车次 (Y 或 N)\n");
@@ -380,8 +380,8 @@ void ClearStock(GoodsList head)
 
     if (op[0] == 'Y' || op[0] == 'y')
     {
-        RemoveZeroQuantityGoods(head);
-        ExportGoodsToFile(head, OpenGoodsFile("w"));
+        RemoveZeroQuantityTickets(head);
+        ExportTicketsToFile(head, OpenTicketsFile("w"));
         printf("清理记录成功\n");
         system("pause");
     }
@@ -499,10 +499,10 @@ void DeleteUser()
 
 void SoldManagement()
 {
-    GoodsList head = InitGoodsList();
-    ImportGoodsFromFile(head, OpenGoodsFile("r"));
-    SoldGoods(head);
-    DeleteGoodsList(head);
+    TicketsList head = InitTicketsList();
+    ImportTicketsFromFile(head, OpenTicketsFile("r"));
+    SoldTickets(head);
+    DeleteTicketsList(head);
     AdminInitMenu();
 }
 

@@ -1,19 +1,19 @@
 #include "stdafx.h"
 
-const char GOODS_LIST_PATH[30] = "Data\\goods_list.txt";
+const char TICKETS_LIST_PATH[30] = "Data\\goods_list.txt";
 
 //初始化商品链表 创建带头结点的链表
-GoodsList InitGoodsList()
+TicketsList InitTicketsList()
 {
-    GoodsList head = (GoodsList) malloc(sizeof(struct GoodsListNode));
+    TicketsList head = (TicketsList) malloc(sizeof(struct TicketsListNode));
     head->next = NULL;
 
     return head;
 }
 
-void DeleteGoodsList(GoodsList head)
+void DeleteTicketsList(TicketsList head)
 {
-    GoodsList next;
+    TicketsList next;
 
     while (head)
     {
@@ -24,9 +24,9 @@ void DeleteGoodsList(GoodsList head)
 }
 
 //遍历商品链表，进行某种操作
-void TraverseGoodsList(GoodsList head, void(*Fun)(Goods *))
+void TraverseTicketsList(TicketsList head, void(*Fun)(Tickets *))
 {
-    GoodsList p = head->next;
+    TicketsList p = head->next;
     while (p)
     {
         Fun(&p->goods);
@@ -36,14 +36,14 @@ void TraverseGoodsList(GoodsList head, void(*Fun)(Goods *))
 
 
 //输出一个商品的信息
-void DisplayGoodsInfo(Goods *goods)
+void DisplayTicketsInfo(Tickets *goods)
 {
     printf("%-5d %-12s %-6.2f %-6.2f %-15s %-5d\n", goods->id, goods->name, goods->buying_price, goods->selling_price,
            goods->manufacturer, goods->quantity);
 }
 
 //显示一个商品基本信息
-void DisplayBasicGoodsInfo(Goods *goods)
+void DisplayBasicTicketsInfo(Tickets *goods)
 {
     printf("%-5d %-12s %-6.2f %-15s %-5d\n", goods->id, goods->name, goods->selling_price, goods->manufacturer,
            goods->quantity);
@@ -52,10 +52,10 @@ void DisplayBasicGoodsInfo(Goods *goods)
 
 //在商品链表中添加一条商品信息，原有此商品数量合并，返回1
 //原没有，在链表末尾添加，返回0
-int AddGoodsToList(GoodsList head, Goods goods)
+int AddTicketsToList(TicketsList head, Tickets goods)
 {
     int id = goods.id;
-    GoodsList p = head->next;
+    TicketsList p = head->next;
     while (p)
     {
         if (p->goods.id == id)
@@ -66,7 +66,7 @@ int AddGoodsToList(GoodsList head, Goods goods)
         p = p->next;
     }
 
-    GoodsList newNode = (GoodsList) malloc(sizeof(struct GoodsListNode));
+    TicketsList newNode = (TicketsList) malloc(sizeof(struct TicketsListNode));
     newNode->goods = goods;
     newNode->next = head->next;
     head->next = newNode;
@@ -77,9 +77,9 @@ int AddGoodsToList(GoodsList head, Goods goods)
 
 //在商品链表中查找商品序号为id的商品，该商品数量减少quantity
 //成功返回1，商品数量不够返回0，无此id商品返回-1
-int ReduceGoodsQuantity(GoodsList head, int id, int quantity)
+int ReduceTicketsQuantity(TicketsList head, int id, int quantity)
 {
-    GoodsList p = head->next;
+    TicketsList p = head->next;
     while (p)
     {
         if (p->goods.id == id)
@@ -97,9 +97,9 @@ int ReduceGoodsQuantity(GoodsList head, int id, int quantity)
 
 //在商品链表中查找商品序号为id的商品，该商品数量增加quantity
 //成功返回1，无此id商品返回-1
-int IncreaseGoodsQuantity(GoodsList head, int id, int quantity)
+int IncreaseTicketsQuantity(TicketsList head, int id, int quantity)
 {
-    GoodsList p = head->next;
+    TicketsList p = head->next;
     while (p)
     {
         if (p->goods.id == id)
@@ -114,15 +114,15 @@ int IncreaseGoodsQuantity(GoodsList head, int id, int quantity)
 
 
 //清除商品链表中为数量为0的商品
-void RemoveZeroQuantityGoods(GoodsList head)
+void RemoveZeroQuantityTickets(TicketsList head)
 {
-    GoodsList pre = head;
-    GoodsList p = head->next;
+    TicketsList pre = head;
+    TicketsList p = head->next;
     while (p)
     {
         if (p->goods.quantity == 0)
         {
-            GoodsList tmp = p;
+            TicketsList tmp = p;
             pre->next = tmp->next;
             free(tmp);
             p = pre->next;
@@ -136,28 +136,28 @@ void RemoveZeroQuantityGoods(GoodsList head)
 
 
 //从文件中导入商品数据
-void ImportGoodsFromFile(GoodsList head, FILE *fp)
+void ImportTicketsFromFile(TicketsList head, FILE *fp)
 {
-    Goods goods;
+    Tickets goods;
     while (!feof(fp))
     {
         fscanf(fp, "%d %s %lf %lf %s %d\n", &goods.id, goods.name, &goods.buying_price,
                &goods.selling_price, goods.manufacturer, &goods.quantity);
-        AddGoodsToList(head, goods);
+        AddTicketsToList(head, goods);
     }
     fclose(fp);
 }
 
-FILE *OpenGoodsFile(char *mod)
+FILE *OpenTicketsFile(char *mod)
 {
-    return fopen(GOODS_LIST_PATH, mod);
+    return fopen(TICKETS_LIST_PATH, mod);
 }
 
 //将系统内商品数据导出到文件
-void ExportGoodsToFile(GoodsList head, FILE *fp)
+void ExportTicketsToFile(TicketsList head, FILE *fp)
 {
-    Goods goods;
-    GoodsList p = head->next;
+    Tickets goods;
+    TicketsList p = head->next;
     while (p)
     {
         goods = p->goods;
@@ -170,11 +170,11 @@ void ExportGoodsToFile(GoodsList head, FILE *fp)
 
 
 //有ID在商品链表中查找商品，查找到返回链表所在位置，否则返回NULL
-GoodsList FindGoodsByID(GoodsList head, int id)
+TicketsList FindTicketsByID(TicketsList head, int id)
 {
     if (id < 0) return NULL;
 
-    GoodsList p = head->next;
+    TicketsList p = head->next;
     while (p)
     {
         if (p->goods.id == id)

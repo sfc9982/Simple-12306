@@ -2,7 +2,7 @@
 
 typedef struct {
     int id;
-    char name[MAXGOODSNAME];
+    char name[MAXTICKETSNAME];
     int cnt;
     double earnings;
     UT_hash_handle hh;
