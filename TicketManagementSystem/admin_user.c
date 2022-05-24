@@ -223,7 +223,7 @@ void AddTicketsToStock(TicketsList head)
     if (p)
     {
         printf("该车次已存在\n");
-        DisplayTicketsInfo(p);
+        DisplayTicketsInfo((Tickets *) p);
         printf("输入增添数量\n>> ");
         int add_cnt = 0;
         scanf("%d", &add_cnt);

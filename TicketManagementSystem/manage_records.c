@@ -14,7 +14,7 @@ RecordsList InitRecordsList()
 
 void DeleteRecordsList(RecordsList head)
 {
-    TicketsList next;
+    RecordsList next;
 
     while (head)
     {
