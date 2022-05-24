@@ -15,8 +15,8 @@ void DisplayInit()
 {
     system("cls");
     printf("--------------------------------------\n\n");
-    printf("           票务预订系统  V1.0           \n\n");
-    printf("        Author: sfc9982 (陈宇翱)       \n\n");
+    printf("           票务预订系统   V1.0          \n\n");
+    printf("            Author: sfc9982           \n\n");
     printf("--------------------------------------\n\n");
     getchar();
 }
