@@ -362,7 +362,7 @@ void LookUpTicketsByNameAndManufacturer(TicketsList head)
 
     printf("输入车次名称或名称前缀\n>> ");
     scanf("%s", goods_name_prefix);
-    printf("输入车次生产商名称或生产商名称前缀\n>> ");
+    printf("输入车次生产商名称或车型前缀\n>> ");
     scanf("%s", manufacturer_prefix);
     TicketsList queried_goods = QueryTicketsByNameAndManufacturer(head, goods_name_prefix, manufacturer_prefix);
     ShowQueriedTicketsListToAdmin(queried_goods);
@@ -434,7 +434,7 @@ void AddUser()
     char level[15] = {0};
     while (strcmp(level, "0") && strcmp(level, "1"))
     {
-        printf("用户权限(0-售货员  1-管理员)\n>> ");
+        printf("用户权限(0-用户  1-管理员)\n>> ");
         scanf("%s", level);
     }
 
@@ -449,7 +449,7 @@ void AddUser()
         if (ua.permission_level)
             printf("%-10s %-10s %-2s\n", ua.account, ua.password, "管理员");
         else
-            printf("%-10s %-10s %-2s\n", ua.account, ua.password, "售货员");
+            printf("%-10s %-10s %-2s\n", ua.account, ua.password, "用户");
         printf("--------------------------------------\n");
 
 
