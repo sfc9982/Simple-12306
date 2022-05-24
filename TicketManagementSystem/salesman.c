@@ -37,7 +37,7 @@ void DisplaySoldTickets(TicketsList head)
 }
 
 
-//购买商品，并更新商品，销售记录
+//购买车次，并更新车次，销售记录
 void SoldTickets(TicketsList head)
 {
     int id, cnt;
@@ -46,7 +46,7 @@ void SoldTickets(TicketsList head)
     {
         system("cls");
         DisplaySoldTickets(head);
-        printf("\n输入待销售的商品ID (输入-1退出)\n>");
+        printf("\n输入待销售的车次ID (输入-1退出)\n>");
         scanf("%d", &id);
 
         if (id < 0) break;
@@ -81,6 +81,7 @@ void SoldTickets(TicketsList head)
                     strcpy(record.name, found_goods->goods.name);
                     strcpy(record.station_dest, found_goods->goods.station_dest);
                     record.sold_quantity = cnt;
+                    record.price = 150; // TODO: Connect Price to Train Info
                     strcpy(record.station_from, found_goods->goods.station_from);
                     record.date = GetNowDate();
 
@@ -100,7 +101,7 @@ void SoldTickets(TicketsList head)
             }
         } else
         {
-            printf("无此商品\n");
+            printf("无此车次\n");
             system("pause");
             continue;
         }
@@ -115,8 +116,8 @@ void SalesmanInitMenu()
 
     int op = -1;
 
-    printf("1) 销售车票\n");
-    printf("2) 查询车票\n");
+    printf("1) 购买车票\n");
+    printf("2) 信息查询\n");
     printf("0) 退出登陆\n");
 
     printf(">> ");
@@ -174,10 +175,10 @@ void SalesmanLookUpTickets(TicketsList head)
 
 void ShowQueriedTicketsListToSalesman(TicketsList queried_goods)
 {
-    printf("----------------------------------------------------\n");
-    printf("%-5s %-12s %-6s %-15s %-5s\n", "ID", "名称", "售价", "生产厂商", "余量");
+    printf("---------------------------------------------------------------------------------\n");
+    printf("%-5s %-12s %-20s %-20s %-5s\n", "ID", "车次", "始发站", "终点站", "车票余量");
     TraverseTicketsList(queried_goods, DisplayBasicTicketsInfo);
-    printf("----------------------------------------------------\n");
+    printf("---------------------------------------------------------------------------------\n");
 }
 
 void SalesmanLookUpTicketsByName(TicketsList head)
@@ -185,7 +186,7 @@ void SalesmanLookUpTicketsByName(TicketsList head)
     char goods_name_prefix[MAX_LABEL_LENGTH] = {0};
     //char manufacturer_prefix[MAX_TRAIN_TYPE_LENGTH] = { 0 };
 
-    printf("输入商品名称或名称前缀\n>> ");
+    printf("输入车次名称或名称前缀\n>> ");
     scanf("%s", goods_name_prefix);
     TicketsList queried_goods = QueryTicketsByName(head, goods_name_prefix);
     ShowQueriedTicketsListToSalesman(queried_goods);
@@ -198,7 +199,7 @@ void SalesmanLookUpTicketsByManufacturer(TicketsList head)
 {
     char manufacturer_prefix[MAX_TRAIN_TYPE_LENGTH] = {0};
 
-    printf("输入商品生产商名称或生产商名称前缀\n>> ");
+    printf("输入车次车型或车型前缀\n>> ");
     scanf("%s", manufacturer_prefix);
     TicketsList queried_goods = QueryTicketsByManufacturer(head, manufacturer_prefix);
     ShowQueriedTicketsListToSalesman(queried_goods);
@@ -212,9 +213,9 @@ void SalesmanLookUpTicketsByNameAndManufacturer(TicketsList head)
     char goods_name_prefix[MAX_LABEL_LENGTH] = {0};
     char manufacturer_prefix[MAX_TRAIN_TYPE_LENGTH] = {0};
 
-    printf("输入商品名称或名称前缀\n>> ");
+    printf("输入车次名称或名称前缀\n>> ");
     scanf("%s", goods_name_prefix);
-    printf("输入商品生产商名称或生产商名称前缀\n>> ");
+    printf("输入车次车型或车型前缀\n>> ");
     scanf("%s", manufacturer_prefix);
     TicketsList queried_goods = QueryTicketsByNameAndManufacturer(head, goods_name_prefix, manufacturer_prefix);
     ShowQueriedTicketsListToSalesman(queried_goods);

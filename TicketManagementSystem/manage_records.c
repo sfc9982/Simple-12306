@@ -2,7 +2,7 @@
 
 const char TICKETS_SALES_RECORD_PATH[50] = "Data\\sold_goods_list.txt";
 
-//初始化销售记录裂变，创建带头结点的链表
+// 初始化销售记录裂变，创建带头结点的链表
 RecordsList InitRecordsList()
 {
     RecordsList head = (RecordsList) malloc(sizeof(struct RecordsListNode));
@@ -24,7 +24,7 @@ void DeleteRecordsList(RecordsList head)
     }
 }
 
-//遍历销售记录链表，进行某种操作
+// 遍历销售记录链表，进行某种操作
 void TraverseRecordsList(RecordsList head, void(*Fun)(SoldTicketsRecord *))
 {
     RecordsList p = head->next;
@@ -35,15 +35,15 @@ void TraverseRecordsList(RecordsList head, void(*Fun)(SoldTicketsRecord *))
     }
 }
 
-//输出一个销售记录的信息
+// 输出一个销售记录的信息
 void DisplayARecordInfo(SoldTicketsRecord *record)
 {
-    printf("%d %s %.2f %.2f %d %d-%d-%d-%d:%d:%d\n", record->id, record->name, record->station_from,
+    printf("%d %s %s %s %d %d-%d-%d-%d:%d:%d\n", record->id, record->name, record->station_from,
            record->station_dest, record->sold_quantity, record->date.year, record->date.month, record->date.day,
            record->date.hour, record->date.min, record->date.second);
 }
 
-//在销售记录链表尾部增加一条销售记录信息
+// 在销售记录链表尾部增加一条销售记录信息
 void AddRecordToList(RecordsList head, SoldTicketsRecord record)
 {
     RecordsList newNode = (RecordsList) malloc(sizeof(struct RecordsListNode));
@@ -61,25 +61,27 @@ FILE *OpenRecordsFile(char *mod)
     return fopen(TICKETS_SALES_RECORD_PATH, mod);
 }
 
-//向文件中新增加一条销售记录数据
+// 向文件中新增加一条销售记录数据
 void AppendARecordToFile(SoldTicketsRecord record, FILE *fp)
 {
-    fprintf(fp, "%d %s %s %s %d %d-%d-%d-%d:%d:%d\n", record.id, record.name, record.station_from,
-            record.station_dest, record.sold_quantity, record.date.year, record.date.month, record.date.day,
+    fprintf(fp, "%d %s %s %s %d %.2lf %d-%d-%d-%d:%d:%d\n", record.id, record.name, record.station_from,
+            record.station_dest, record.sold_quantity, record.price, record.date.year, record.date.month,
+            record.date.day,
             record.date.hour, record.date.min, record.date.second);
 
     fclose(fp);
 
 }
 
-//从文件中导入销售记录数据
+// 从文件中导入销售记录数据
 void ImportRecordsFromFile(RecordsList head, FILE *fp)
 {
     SoldTicketsRecord record;
     while (!feof(fp))
     {
-        fscanf(fp, "%d %s %s %s %d %d-%d-%d-%d:%d:%d\n", &record.id, record.name, record.station_from,
-               record.station_dest, &record.sold_quantity, &record.date.year, &record.date.month, &record.date.day,
+        fscanf(fp, "%d %s %s %s %d %lf %d-%d-%d-%d:%d:%d\n", &record.id, record.name, record.station_from,
+               record.station_dest, &record.sold_quantity, &record.price, &record.date.year, &record.date.month,
+               &record.date.day,
                &record.date.hour, &record.date.min, &record.date.second);
         AddRecordToList(head, record);
     }
@@ -87,7 +89,7 @@ void ImportRecordsFromFile(RecordsList head, FILE *fp)
     fclose(fp);
 }
 
-//获取销售时间
+// 获取销售时间
 SoldDate GetNowDate()
 {
     SoldDate date;

@@ -14,6 +14,7 @@ typedef struct {
     char station_from[MAX_STATION_NAME_LENGTH];
     char station_dest[MAX_STATION_NAME_LENGTH];
     char manufacturer[MAX_TRAIN_TYPE_LENGTH];
+    double price;
     int quantity;
 } Tickets;
 
@@ -38,6 +39,7 @@ typedef struct {
     char name[MAX_LABEL_LENGTH];
     char station_from[MAX_STATION_NAME_LENGTH];
     char station_dest[MAX_STATION_NAME_LENGTH];
+    double price;
     int sold_quantity;
     SoldDate date;
 } SoldTicketsRecord;

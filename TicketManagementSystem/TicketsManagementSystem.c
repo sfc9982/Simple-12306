@@ -55,8 +55,6 @@ int getPassword(char *passwd, int size)
     int c;
     int n = 0;
 
-//    printf("Please Input password:");
-
     do
     {
         c = getch();

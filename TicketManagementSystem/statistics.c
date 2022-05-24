@@ -31,21 +31,19 @@ void SoldStatisticsByDate(RecordsList head, SoldDate start, SoldDate end, int mi
     {
         if (CompareDate(p->record.date, start) >= 0 && CompareDate(p->record.date, end) <= 0)
         {
-            HASH_FIND_INT(goods, &p->record.id, s);
+            HASH_FIND_INT(goods, &p->record.id, s); // 引用了第三方库，hash判重
             if (s)
             {
                 s->cnt += p->record.sold_quantity;
-                s->earnings += (p->record.station_dest - p->record.station_from)
-                               * p->record.sold_quantity;
+                s->earnings += p->record.price * p->record.sold_quantity;
             } else
             {
                 s = (CountStatistics *) malloc(sizeof(CountStatistics));
                 s->id = p->record.id;
                 strcpy(s->name, p->record.name);
                 s->cnt = p->record.sold_quantity;
-                s->earnings = (p->record.station_dest - p->record.station_from)
-                              * p->record.sold_quantity;
-                HASH_ADD_INT(goods, id, s);
+                s->earnings = p->record.price * p->record.sold_quantity;
+                HASH_ADD_INT(goods, id, s); // 加入散列表
             }
         }
 
