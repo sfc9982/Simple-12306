@@ -130,6 +130,7 @@ int DisplayAccountInfo()
     UserAccount *own = (UserAccount *) malloc(size * sizeof(UserAccount));
     printf("--------------------------------------\n");
     printf("%-10s %-10s  %-2s\n", "账号", "密码", "权限");
+    printf("--------------------------------------\n");
     for (int i = 0; i < size; i++)
     {
         fread(own + i, sizeof(UserAccount), 1, fp);
@@ -228,7 +229,7 @@ void AddTicketsToStock(TicketsList head)
         int add_cnt = 0;
         scanf("%d", &add_cnt);
         if (add_cnt < 0) add_cnt = 0;
-        p->goods.quantity += add_cnt;
+        p->tickets.quantity += add_cnt;
 
         TraverseTicketsList(head, DisplayTicketsInfo);
 
@@ -261,7 +262,7 @@ void AddTicketsToStock(TicketsList head)
 
 void BatchedStock(TicketsList head)
 {
-    FILE *fp = fopen("ExternalData\\added_goods.txt", "r");
+    FILE *fp = fopen("ExternalData\\added_tickets.txt", "r");
     if (fp)
     {
         ImportTicketsFromFile(head, fp);
@@ -278,10 +279,11 @@ void BatchedStock(TicketsList head)
 
 void LookOverStock(TicketsList head)
 {
-    printf("---------------------------------------------------------------------------------\n");
-    printf("%-5s %-12s %-20s %-20s %-15s %-5s\n", "ID", "名称", "始发站", "终点站", "动车型号", "余量");
+    printf("-----------------------------------------------------------------------------------------\n");
+    printf("%-5s %-12s %-20s %-20s %-12s %-10s %-5s\n", "ID", "名称", "始发站", "终点站", "动车型号", "票价", "余量");
+    printf("-----------------------------------------------------------------------------------------\n");
     TraverseTicketsList(head, DisplayTicketsInfo);
-    printf("---------------------------------------------------------------------------------\n");
+    printf("-----------------------------------------------------------------------------------------\n");
     system("pause");
     StockManagement();
 }
@@ -320,24 +322,25 @@ void LookUpTickets(TicketsList head)
 }
 
 
-void ShowQueriedTicketsListToAdmin(TicketsList queried_goods)
+void ShowQueriedTicketsListToAdmin(TicketsList queried_tickets)
 {
     printf("--------------------------------------------------------------------------------\n");
     printf("%-5s %-12s %-20s %-20s %-15s %-5s\n", "ID", "名称", "始发站", "终点站", "动车型号", "座位余量");
-    TraverseTicketsList(queried_goods, DisplayTicketsInfo);
+    printf("--------------------------------------------------------------------------------\n");
+    TraverseTicketsList(queried_tickets, DisplayTicketsInfo);
     printf("--------------------------------------------------------------------------------\n");
 }
 
 void LookUpTicketsByName(TicketsList head)
 {
-    char goods_name_prefix[MAX_LABEL_LENGTH] = {0};
+    char tickets_name_prefix[MAX_LABEL_LENGTH] = {0};
     //char manufacturer_prefix[MAX_TRAIN_TYPE_LENGTH] = { 0 };
 
     printf("输入车次名称或名称前缀\n>> ");
-    scanf("%s", goods_name_prefix);
-    TicketsList queried_goods = QueryTicketsByName(head, goods_name_prefix);
-    ShowQueriedTicketsListToAdmin(queried_goods);
-    DeleteTicketsList(queried_goods);
+    scanf("%s", tickets_name_prefix);
+    TicketsList queried_tickets = QueryTicketsByName(head, tickets_name_prefix);
+    ShowQueriedTicketsListToAdmin(queried_tickets);
+    DeleteTicketsList(queried_tickets);
     system("pause");
     LookUpTickets(head);
 }
@@ -348,25 +351,25 @@ void LookUpTicketsByManufacturer(TicketsList head)
 
     printf("输入车次生产商名称或生产商名称前缀\n>> ");
     scanf("%s", manufacturer_prefix);
-    TicketsList queried_goods = QueryTicketsByManufacturer(head, manufacturer_prefix);
-    ShowQueriedTicketsListToAdmin(queried_goods);
-    DeleteTicketsList(queried_goods);
+    TicketsList queried_tickets = QueryTicketsByManufacturer(head, manufacturer_prefix);
+    ShowQueriedTicketsListToAdmin(queried_tickets);
+    DeleteTicketsList(queried_tickets);
     system("pause");
     LookUpTickets(head);
 }
 
 void LookUpTicketsByNameAndManufacturer(TicketsList head)
 {
-    char goods_name_prefix[MAX_LABEL_LENGTH] = {0};
+    char tickets_name_prefix[MAX_LABEL_LENGTH] = {0};
     char manufacturer_prefix[MAX_TRAIN_TYPE_LENGTH] = {0};
 
     printf("输入车次名称或名称前缀\n>> ");
-    scanf("%s", goods_name_prefix);
+    scanf("%s", tickets_name_prefix);
     printf("输入车次生产商名称或车型前缀\n>> ");
     scanf("%s", manufacturer_prefix);
-    TicketsList queried_goods = QueryTicketsByNameAndManufacturer(head, goods_name_prefix, manufacturer_prefix);
-    ShowQueriedTicketsListToAdmin(queried_goods);
-    DeleteTicketsList(queried_goods);
+    TicketsList queried_tickets = QueryTicketsByNameAndManufacturer(head, tickets_name_prefix, manufacturer_prefix);
+    ShowQueriedTicketsListToAdmin(queried_tickets);
+    DeleteTicketsList(queried_tickets);
     system("pause");
     LookUpTickets(head);
 }
@@ -446,6 +449,7 @@ void AddUser()
         printf("\n添加用户成功\n");
         printf("--------------------------------------\n");
         printf("%-10s %-10s  %-2s\n", "账号", "密码", "权限");
+        printf("--------------------------------------\n");
         if (ua.permission_level)
             printf("%-10s %-10s %-2s\n", ua.account, ua.password, "管理员");
         else

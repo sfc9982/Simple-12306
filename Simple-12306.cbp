@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Simple-12306" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Simple-12306" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Simple-12306" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="TicketManagementSystem/TicketsManagementSystem.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="TicketManagementSystem/admin_user.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="TicketManagementSystem/manage_records.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="TicketManagementSystem/manage_tickets.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="TicketManagementSystem/query.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="TicketManagementSystem/salesman.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="TicketManagementSystem/statistics.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="TicketManagementSystem/stdafx.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="TicketManagementSystem/stdafx.h" />
+		<Unit filename="TicketManagementSystem/targetver.h" />
+		<Unit filename="TicketManagementSystem/tickets.h" />
+		<Unit filename="TicketManagementSystem/uthash.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

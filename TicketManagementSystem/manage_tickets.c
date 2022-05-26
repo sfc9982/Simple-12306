@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-const char TICKETS_LIST_PATH[30] = "Data\\goods_list.txt";
+const char TICKETS_LIST_PATH[30] = "Data\\tickets_list.txt";
 
 // 初始化列车链表 创建带头结点的链表
 TicketsList InitTicketsList()
@@ -24,50 +24,52 @@ void DeleteTicketsList(TicketsList head)
 }
 
 //遍历列车链表，进行某种操作
-void TraverseTicketsList(TicketsList head, void(*Fun)(Tickets *))
+void TraverseTicketsList(TicketsList head, void(*Func)(Tickets *))
 {
     TicketsList p = head->next;
     while (p)
     {
-        Fun(&p->goods);
+        Func(&p->tickets);
         p = p->next;
     }
 }
 
 
 // 输出一个列车的信息
-void DisplayTicketsInfo(Tickets *goods)
+void DisplayTicketsInfo(Tickets *tickets)
 {
-    printf("%-5d %-12s %-20s %-20s %-15s %-5d\n", goods->id, goods->name, goods->station_from, goods->station_dest,
-           goods->manufacturer, goods->quantity);
+    printf("%-5d %-12s %-20s %-20s %-12s %-10.2lf %-5d\n", tickets->id, tickets->name, tickets->station_from,
+           tickets->station_dest,
+           tickets->manufacturer, tickets->price, tickets->quantity);
 }
 
 // 显示一个列车基本信息
-void DisplayBasicTicketsInfo(Tickets *goods)
+void DisplayBasicTicketsInfo(Tickets *tickets)
 {
-    printf("%-5d %-12s %-20s %-20s %-5d\n", goods->id, goods->name, goods->station_from, goods->station_dest,
-           goods->quantity);
+    printf("%-5d %-12s %-20s %-20s %-10.2lf %-5d\n", tickets->id, tickets->name, tickets->station_from,
+           tickets->station_dest,
+           tickets->price, tickets->quantity);
 }
 
 
 // 在列车链表中添加一条列车信息，原有此列车数量合并，返回1
 // 原没有，在链表末尾添加，返回0
-int AddTicketsToList(TicketsList head, Tickets goods)
+int AddTicketsToList(TicketsList head, Tickets tickets)
 {
-    int id = goods.id;
+    int id = tickets.id;
     TicketsList p = head->next;
     while (p)
     {
-        if (p->goods.id == id)
+        if (p->tickets.id == id)
         {
-            p->goods.quantity += goods.quantity;
+            p->tickets.quantity += tickets.quantity;
             return 1;
         }
         p = p->next;
     }
 
     TicketsList newNode = (TicketsList) malloc(sizeof(struct TicketsListNode));
-    newNode->goods = goods;
+    newNode->tickets = tickets;
     newNode->next = head->next;
     head->next = newNode;
 
@@ -82,11 +84,11 @@ int ReduceTicketsQuantity(TicketsList head, int id, int quantity)
     TicketsList p = head->next;
     while (p)
     {
-        if (p->goods.id == id)
+        if (p->tickets.id == id)
         {
-            if (p->goods.quantity < quantity)
+            if (p->tickets.quantity < quantity)
                 return 0;
-            p->goods.quantity -= quantity;
+            p->tickets.quantity -= quantity;
             return 1;
         }
         p = p->next;
@@ -102,9 +104,9 @@ int IncreaseTicketsQuantity(TicketsList head, int id, int quantity)
     TicketsList p = head->next;
     while (p)
     {
-        if (p->goods.id == id)
+        if (p->tickets.id == id)
         {
-            p->goods.quantity += quantity;
+            p->tickets.quantity += quantity;
             return 1;
         }
         p = p->next;
@@ -120,7 +122,7 @@ void RemoveZeroQuantityTickets(TicketsList head)
     TicketsList p = head->next;
     while (p)
     {
-        if (p->goods.quantity == 0)
+        if (p->tickets.quantity == 0)
         {
             TicketsList tmp = p;
             pre->next = tmp->next;
@@ -138,12 +140,12 @@ void RemoveZeroQuantityTickets(TicketsList head)
 // 从文件中导入列车数据
 void ImportTicketsFromFile(TicketsList head, FILE *fp)
 {
-    Tickets goods;
+    Tickets tickets;
     while (!feof(fp))
     {
-        fscanf(fp, "%d %s %s %s %s %d\n", &goods.id, goods.name, goods.station_from,
-               goods.station_dest, goods.manufacturer, &goods.quantity);
-        AddTicketsToList(head, goods);
+        fscanf(fp, "%d %s %s %s %s %lf %d\n", &tickets.id, tickets.name, tickets.station_from,
+               tickets.station_dest, tickets.manufacturer, &tickets.price, &tickets.quantity);
+        AddTicketsToList(head, tickets);
     }
     fclose(fp);
 }
@@ -156,13 +158,13 @@ FILE *OpenTicketsFile(char *mod)
 // 将系统内列车数据导出到文件
 void ExportTicketsToFile(TicketsList head, FILE *fp)
 {
-    Tickets goods;
+    Tickets train;
     TicketsList p = head->next;
     while (p)
     {
-        goods = p->goods;
-        fprintf(fp, "%d %s %s %s %s %d\n", goods.id, goods.name, goods.station_from,
-                goods.station_dest, goods.manufacturer, goods.quantity);
+        train = p->tickets;
+        fprintf(fp, "%d %s %s %s %s %.2lf %d\n", train.id, train.name, train.station_from,
+                train.station_dest, train.manufacturer, train.price, train.quantity);
         p = p->next;
     }
     fclose(fp);
@@ -178,7 +180,7 @@ TicketsList FindTicketsByID(TicketsList head, int id)
     TicketsList p = head->next;
     while (p)
     {
-        if (p->goods.id == id)
+        if (p->tickets.id == id)
             return p;
         p = p->next;
     }

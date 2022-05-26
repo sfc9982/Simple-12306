@@ -20,7 +20,7 @@ typedef struct {
 
 typedef struct TicketsListNode *TicketsList;
 struct TicketsListNode {
-    Tickets goods;
+    Tickets tickets;
     TicketsList next;
 };
 

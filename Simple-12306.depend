@@ -1,0 +1,44 @@
+# depslib dependency file v1.0
+1653477114 source:c:\users\administrator\desktop\simple-12306\simple-12306\ticketmanagementsystem\admin_user.c
+	"stdafx.h"
+
+1653464398 c:\users\administrator\desktop\simple-12306\simple-12306\ticketmanagementsystem\stdafx.h
+	"tickets.h"
+	"uthash.h"
+	<conio.h>
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<time.h>
+
+1653463392 c:\users\administrator\desktop\simple-12306\simple-12306\ticketmanagementsystem\tickets.h
+
+1653294677 c:\users\administrator\desktop\simple-12306\simple-12306\ticketmanagementsystem\uthash.h
+	<string.h>
+	<stddef.h>
+	<stdlib.h>
+	<stdint.h>
+	<stdint.h>
+	<stdint.h>
+
+1653472732 source:c:\users\administrator\desktop\simple-12306\simple-12306\ticketmanagementsystem\manage_records.c
+	"stdafx.h"
+
+1653477094 source:c:\users\administrator\desktop\simple-12306\simple-12306\ticketmanagementsystem\manage_tickets.c
+	"stdafx.h"
+
+1653545499 source:c:\users\administrator\desktop\simple-12306\simple-12306\ticketmanagementsystem\query.c
+	"stdafx.h"
+
+1653477084 source:c:\users\administrator\desktop\simple-12306\simple-12306\ticketmanagementsystem\salesman.c
+	"stdafx.h"
+
+1653463392 source:c:\users\administrator\desktop\simple-12306\simple-12306\ticketmanagementsystem\statistics.c
+	"stdafx.h"
+
+1653277950 source:c:\users\administrator\desktop\simple-12306\simple-12306\ticketmanagementsystem\stdafx.c
+	"stdafx.h"
+
+1653464590 source:c:\users\administrator\desktop\simple-12306\simple-12306\ticketmanagementsystem\ticketsmanagementsystem.c
+	"stdafx.h"
+

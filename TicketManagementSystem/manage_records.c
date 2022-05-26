@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-const char TICKETS_SALES_RECORD_PATH[50] = "Data\\sold_goods_list.txt";
+const char TICKETS_SALES_RECORD_PATH[50] = "Data\\sold_tickets_list.txt";
 
 // 初始化销售记录裂变，创建带头结点的链表
 RecordsList InitRecordsList()
@@ -25,12 +25,12 @@ void DeleteRecordsList(RecordsList head)
 }
 
 // 遍历销售记录链表，进行某种操作
-void TraverseRecordsList(RecordsList head, void(*Fun)(SoldTicketsRecord *))
+void TraverseRecordsList(RecordsList head, void(*Func)(SoldTicketsRecord *))
 {
     RecordsList p = head->next;
     while (p)
     {
-        Fun(&p->record);
+        Func(&p->record);
         p = p->next;
     }
 }
@@ -51,7 +51,8 @@ void AddRecordToList(RecordsList head, SoldTicketsRecord record)
     newNode->next = NULL;
 
     RecordsList p = head;
-    while (p->next) p = p->next;
+    while (p->next)
+        p = p->next;
 
     p->next = newNode;
 }
@@ -90,7 +91,7 @@ void ImportRecordsFromFile(RecordsList head, FILE *fp)
 }
 
 // 获取销售时间
-SoldDate GetNowDate()
+SoldDate GetCurTime()
 {
     SoldDate date;
     time_t now;

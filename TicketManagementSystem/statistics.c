@@ -24,14 +24,14 @@ int CompareDate(SoldDate a, SoldDate b)
 
 void SoldStatisticsByDate(RecordsList head, SoldDate start, SoldDate end, int min_sold_cnt, int min_earnings)
 {
-    CountStatistics *s, *goods = NULL;
+    CountStatistics *s, *tickets = NULL;
     RecordsList p = head->next;
 
     while (p)
     {
         if (CompareDate(p->record.date, start) >= 0 && CompareDate(p->record.date, end) <= 0)
         {
-            HASH_FIND_INT(goods, &p->record.id, s); // 引用了第三方库，hash判重
+            HASH_FIND_INT(tickets, &p->record.id, s); // 引用了第三方库，hash判重
             if (s)
             {
                 s->cnt += p->record.sold_quantity;
@@ -43,7 +43,7 @@ void SoldStatisticsByDate(RecordsList head, SoldDate start, SoldDate end, int mi
                 strcpy(s->name, p->record.name);
                 s->cnt = p->record.sold_quantity;
                 s->earnings = p->record.price * p->record.sold_quantity;
-                HASH_ADD_INT(goods, id, s); // 加入散列表
+                HASH_ADD_INT(tickets, id, s); // 加入散列表
             }
         }
 
@@ -51,20 +51,20 @@ void SoldStatisticsByDate(RecordsList head, SoldDate start, SoldDate end, int mi
     }
 
     double total_earnings = 0;
-    int total_goods_cnt = 0;
+    int total_tickets_cnt = 0;
 
     printf("----------------------------------------\n");
     printf("%-5s %-12s %-6s %-6s\n", "ID", "名称", "销量", "收入");
-    for (s = goods; s != NULL; s = (CountStatistics *) (s->hh.next))
+    for (s = tickets; s != NULL; s = (CountStatistics *) (s->hh.next))
     {
         if (s->cnt >= min_sold_cnt && s->earnings >= min_earnings)
         {
             total_earnings += s->earnings;
-            total_goods_cnt++;
+            total_tickets_cnt++;
             printf("%-5d %-12s %-6d %-6.2f\n", s->id, s->name, s->cnt, s->earnings);
         }
     }
 
-    printf("\n总商品数:%d  总收入:%.2f元\n", total_goods_cnt, total_earnings);
+    printf("\n总商品数:%d  总收入:%.2f元\n", total_tickets_cnt, total_earnings);
     printf("----------------------------------------\n");
 }

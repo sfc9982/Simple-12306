@@ -30,13 +30,13 @@ TicketsList InitTicketsList();
 
 void DeleteTicketsList(TicketsList head);
 
-int AddTicketsToList(TicketsList head, Tickets goods);
+int AddTicketsToList(TicketsList head, Tickets tickets);
 
 void TraverseTicketsList(TicketsList head, void(*Fun)(Tickets *));
 
-void DisplayTicketsInfo(Tickets *goods);
+void DisplayTicketsInfo(Tickets *tickets);
 
-void DisplayBasicTicketsInfo(Tickets *goods);
+void DisplayBasicTicketsInfo(Tickets *tickets);
 
 int IncreaseTicketsQuantity(TicketsList head, int id, int quantity);
 
@@ -68,7 +68,7 @@ void AddRecordToList(RecordsList head, SoldTicketsRecord record);
 
 void ImportRecordsFromFile(RecordsList head, FILE *fp);
 
-SoldDate GetNowDate();
+SoldDate GetCurTime();
 
 FILE *OpenRecordsFile(char *mod);
 
@@ -94,7 +94,7 @@ void LookOverStock(TicketsList head);
 
 void LookUpTickets(TicketsList head);
 
-void ShowQueriedTicketsListToAdmin(TicketsList queried_goods);
+void ShowQueriedTicketsListToAdmin(TicketsList queried_tickets);
 
 void LookUpTicketsByName(TicketsList head);
 
@@ -134,7 +134,7 @@ void SalesmanInitMenu();
 
 void SalesmanLookUpTickets(TicketsList head);
 
-void ShowQueriedTicketsListToSalesman(TicketsList queried_goods);
+void ShowQueriedTicketsListToSalesman(TicketsList queried_tickets);
 
 void SalesmanLookUpTicketsByName(TicketsList head);
 
@@ -148,7 +148,7 @@ TicketsList QueryTicketsByName(TicketsList head, char *name);
 
 TicketsList QueryTicketsByManufacturer(TicketsList head, char *manufacturer);
 
-TicketsList QueryTicketsByNameAndManufacturer(TicketsList head, char *goods_name, char *manufacturer);
+TicketsList QueryTicketsByNameAndManufacturer(TicketsList head, char *tickets_name, char *manufacturer);
 
 void QuerySoldRecordsByDate(RecordsList head, SoldDate start, SoldDate end);
 

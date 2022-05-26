@@ -13,31 +13,31 @@ TicketsList QueryTicketsByManufacturer(TicketsList head, char *manufacturer)
 }
 
 // 按照车票名和车型前缀查询车票，输出车票基本信息
-TicketsList QueryTicketsByNameAndManufacturer(TicketsList head, char *goods_name, char *manufacturer)
+TicketsList QueryTicketsByNameAndManufacturer(TicketsList head, char *tickets_name, char *manufacturer)
 {
     if (head->next == NULL)
         return NULL;
 
 
-    TicketsList queried_goods = InitTicketsList();
+    TicketsList queried_tickets = InitTicketsList();
     TicketsList p = head->next;
     while (p)
     {
-        char goods_name_prefix[MAX_LABEL_LENGTH] = {0};
-        char manufacturer_prefix[MAX_TRAIN_TYPE_LENGTH] = {0};
-        strncpy(goods_name_prefix, p->goods.name, strlen(goods_name));
-        strncpy(manufacturer_prefix, p->goods.manufacturer, strlen(manufacturer));
-        if (strcmp(goods_name_prefix, goods_name) == 0 && strcmp(manufacturer_prefix, manufacturer) == 0)
+        char tickets_name_prefix[MAX_LABEL_LENGTH] = {'\0'};
+        char manufacturer_prefix[MAX_TRAIN_TYPE_LENGTH] = {'\0'};
+        strncpy(tickets_name_prefix, p->tickets.name, strlen(tickets_name));
+        strncpy(manufacturer_prefix, p->tickets.manufacturer, strlen(manufacturer));
+        if (strcmp(tickets_name_prefix, tickets_name) == 0 && strcmp(manufacturer_prefix, manufacturer) == 0)
         {
             TicketsList newNode = (TicketsList) malloc(sizeof(struct TicketsListNode));
-            newNode->goods = p->goods;
-            newNode->next = queried_goods->next;
-            queried_goods->next = newNode;
+            newNode->tickets = p->tickets;
+            newNode->next = queried_tickets->next;
+            queried_tickets->next = newNode;
         }
         p = p->next;
     }
 
-    return queried_goods;
+    return queried_tickets;
 }
 
 
@@ -50,8 +50,10 @@ void QuerySoldRecordsByDate(RecordsList head, SoldDate start, SoldDate end)
     }
 
     RecordsList p = head->next;
-    printf("---------------------------------------------------------------------------------------\n");
+    printf("-----------------------------------------------------------------------------------------------\n");
     printf("%-5s %-12s %-20s %-20s %3s %5s %15s\n", "ID", "名称", "始发站", "终点站", "票价", "购买量", "购买时间");
+    printf("-----------------------------------------------------------------------------------------------\n");
+
     while (p)
     {
         if (CompareDate(p->record.date, start) >= 0 && CompareDate(p->record.date, end) <= 0)
@@ -65,6 +67,6 @@ void QuerySoldRecordsByDate(RecordsList head, SoldDate start, SoldDate end)
         p = p->next;
     }
 
-    printf("---------------------------------------------------------------------------------------\n");
+    printf("-----------------------------------------------------------------------------------------------\n");
 
 }

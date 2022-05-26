@@ -34,20 +34,26 @@ void LogIn()
 {
     system("cls");
     int op = -1;
-    printf("1) 管理员登陆   \n");
-    printf("2) 用户登陆    \n");
-    printf("0) 退出        \n");
+    printf("1) 管理员登陆\n");
+    printf("2) 用户登陆\n");
+    printf("0) 退出\n");
     printf(">> ");
 
     scanf("%d", &op);
-    if (op == 1)
-        AdminLogIn();
-    else if (op == 2)
-        UserLogIn();
-    else if (op == -1)
-        printf("Error: Input Error!\n");
-    else
-        DisplayExit();
+    switch (op)
+    {
+        case 1:
+            AdminLogIn();
+            break;
+        case 2:
+            UserLogIn();
+            break;
+        case -1:
+            printf("Error: Input Error!\n");
+            break;
+        default:
+            DisplayExit();
+    }
 }
 
 int getPassword(char *passwd, int size)
@@ -85,7 +91,8 @@ void AdminLogIn()
 
     if (IsAdminAccount(account, password))
     {
-        free(password); // 及时释放内存，防止敏感数据泄漏，并减少内存碎片产生
+        strset(password, 0x0);
+        free(password); // 清洗后及时释放内存，防止敏感数据泄漏，并减少内存碎片产生
         AdminInitMenu();
     } else
     {
@@ -112,6 +119,7 @@ void UserLogIn()
 
     if (IsSalesmanAccount(account, password))
     {
+        strset(password, 0x0);
         free(password);
         SalesmanInitMenu();
     } else

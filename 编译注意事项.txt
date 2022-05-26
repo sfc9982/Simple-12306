@@ -1,0 +1,2 @@
+1. Code::Blocks中添加 .\TicketManagementSystem\ 下的所有C源文件和头文件
+2. 在Code::Blocks菜单栏中Settings -> Compiler 中，勾选 Have gcc follow the 1999 ISO C language standard（-std=c99），开启C99标准支持
