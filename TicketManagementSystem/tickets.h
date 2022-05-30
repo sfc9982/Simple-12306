@@ -51,8 +51,8 @@ struct RecordsListNode {
 };
 
 typedef struct {
-    char account[15];
-    char password[15];
+    char account[MAX_USERNAME_LENGTH];
+    char password[MAX_PASSWORD_LENGTH];
     int permission_level;
 } UserAccount;
 

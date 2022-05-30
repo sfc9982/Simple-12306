@@ -8,3 +8,12 @@
 91	437	6751677922114243	CMakeFiles/Simple_12306.dir/TicketManagementSystem/statistics.c.obj	94428aaee29a3a79
 22	260	6752494633030358	CMakeFiles/Simple_12306.dir/TicketManagementSystem/salesman.c.obj	d2bd9f701e639a13
 243	619	6753380138070646	Simple_12306.exe	1f182f9ab339cd8b
+24	1107	6755994430288749	CMakeFiles/Simple_12306.dir/TicketManagementSystem/manage_records.c.obj	15464208b5e30c2b
+14	1109	6755994430288749	CMakeFiles/Simple_12306.dir/TicketManagementSystem/query.c.obj	4b68bf814ad137a5
+69	1110	6755994430298691	CMakeFiles/Simple_12306.dir/TicketManagementSystem/TicketsManagementSystem.c.obj	b6ae0161e229c048
+33	1111	6755994430328683	CMakeFiles/Simple_12306.dir/TicketManagementSystem/manage_tickets.c.obj	77679439dc3c47c6
+51	1113	6755994430338683	CMakeFiles/Simple_12306.dir/TicketManagementSystem/salesman.c.obj	d2bd9f701e639a13
+42	1115	6755994430358686	CMakeFiles/Simple_12306.dir/TicketManagementSystem/stdafx.c.obj	4f8e3ded7f25e661
+2	1117	6755994430398691	CMakeFiles/Simple_12306.dir/TicketManagementSystem/admin_user.c.obj	2a0c0c98a1ce4aac
+60	1118	6755994430408695	CMakeFiles/Simple_12306.dir/TicketManagementSystem/statistics.c.obj	94428aaee29a3a79
+1119	1731	6755994436462598	Simple_12306.exe	1f182f9ab339cd8b
