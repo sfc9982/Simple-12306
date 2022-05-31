@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+#define VER "Beta 3.2"
+
 int main()
 {
     DisplayInit();
@@ -15,7 +17,7 @@ void DisplayInit()
 {
     system("cls");
     printf("--------------------------------------\n\n");
-    printf("           票务预订系统   V1.0          \n\n");
+    printf("        票务预订系统     " VER "        \n\n");
     printf("            Author: sfc9982           \n\n");
     printf("--------------------------------------\n\n");
     getchar();
@@ -66,9 +68,20 @@ int getPassword(char *passwd, int size)
         c = getch();
         if (c != '\n' && c != '\r')
         {
-            putchar('*'); // 遮蔽回显
-            passwd[n++] = (char) c;
+            if (c == '\b' && n >= 0)
+            {
+                if (n == 0)
+                    continue;
+                printf("\b \b"); // 退格功能，两个\b负责删除当前和前一个字符
+                n--;
+
+            } else
+            {
+                passwd[n++] = (char) c;
+                putchar('*'); // 遮蔽回显
+            }
         }
+
     } while (c != '\n' && c != '\r' && n < (size - 1)); // 不是所有平台行尾都是CRLF， size-1为'\0'预留位置，防止内存溢出
     passwd[n] = '\0';
     return n;

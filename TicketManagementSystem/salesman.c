@@ -181,7 +181,8 @@ void SalesmanLookUpTickets(TicketsList head)
 void ShowQueriedTicketsListToSalesman(TicketsList queried_tickets)
 {
     printf("---------------------------------------------------------------------------------\n");
-    printf("%-5s %-12s %-20s %-20s %-5s\n", "ID", "车次", "始发站", "终点站", "车票余量");
+    printf("%-5s %-14s %-23s %-18s %-11s %s\n", "ID", "车次", "始发站", "终点站", "票价", "车票余量");
+    printf("---------------------------------------------------------------------------------\n");
     TraverseTicketsList(queried_tickets, DisplayBasicTicketsInfo);
     printf("---------------------------------------------------------------------------------\n");
 }

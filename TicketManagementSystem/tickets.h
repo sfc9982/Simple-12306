@@ -6,7 +6,7 @@
 
 #define MAX_LABEL_LENGTH 30
 #define MAX_TRAIN_TYPE_LENGTH 50
-#define MAX_STATION_NAME_LENGTH 100 // Unicode/UTF-8中一个中文字符占据3个字节，所以长度应为中文长度的三倍以上
+#define MAX_STATION_NAME_LENGTH 100 // Unicode,UTF-8中一个中文字符占据3个字节，所以长度应为中文长度的三倍以上
 
 typedef struct {
     int id;

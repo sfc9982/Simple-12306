@@ -19,7 +19,7 @@ void DeleteRecordsList(RecordsList head)
     while (head)
     {
         next = head->next;
-        free(head);
+        free(head); // 生命周期末释放内存
         head = next;
     }
 }
