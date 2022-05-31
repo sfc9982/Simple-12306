@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/TicketManagementSystem/Data/sold_tickets_list.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/TicketManagementSystem/Data/tickets_list.txt" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/TicketManagementSystem/ExternalData/added_tickets.txt" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/TicketManagementSystem/admin_user.c" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/TicketManagementSystem/manage_tickets.c" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/TicketManagementSystem/query.c" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/TicketManagementSystem/statistics.c" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/TicketManagementSystem/stdafx.c" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/TicketManagementSystem/targetver.h" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/TicketManagementSystem/tickets.h" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/cmake-build-release/Data/sold_tickets_list.txt" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/cmake-build-release/Data/tickets_list.txt" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/cmake-build-release/ExternalData/added_goods.txt" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

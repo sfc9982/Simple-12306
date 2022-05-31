@@ -18,6 +18,7 @@ typedef struct {
     int quantity;
 } Tickets;
 
+
 typedef struct TicketsListNode *TicketsList;
 struct TicketsListNode {
     Tickets tickets;

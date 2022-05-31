@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include "stdafx.h"
 
 
@@ -21,7 +22,7 @@ int IsAdminAccount(char *account, char *password)
         if (strcmp(account, user[i].account) == 0 && strcmp(password, user[i].password) == 0
             && user[i].permission_level == 1)
         {
-            puts("Login Success!");
+            puts("登录成功！");
             return 1;
         }
     }
@@ -129,7 +130,7 @@ int DisplayAccountInfo()
 
     UserAccount *own = (UserAccount *) malloc(size * sizeof(UserAccount));
     printf("--------------------------------------\n");
-    printf("%-10s %-10s  %-2s\n", "账号", "密码", "权限");
+    printf("%-12s %-12s %-2s\n", "账号", "密码", "权限");
     printf("--------------------------------------\n");
     for (int i = 0; i < size; i++)
     {
@@ -424,6 +425,47 @@ void LookOverUser()
     UserManagement();
 }
 
+int createPassword(char *passwd, int size)
+{
+    int c;
+    int n = 0;
+    clock_t start_t, finish_t;
+    int bFirst = 1;
+    do
+    {
+        c = getch();
+        if (c != '\n' && c != '\r')
+        {
+            if (c == '\b')
+            {
+                if (n < 0)
+                    continue;
+                printf("\b \b"); // 退格功能，两个\b负责删除当前和前一个字符
+                n--;
+
+            } else
+            {
+                passwd[n++] = (char) c;
+                if (n >= 1)
+                {
+                    if (bFirst)
+                    {
+                        bFirst = 0;
+                        printf("%c", c);
+                    } else
+                    {
+                        printf("\b \b*%c", c);
+                    }
+                } // 助记
+                else
+                    putchar('*'); // 遮蔽回显
+            }
+        }
+
+    } while (c != '\n' && c != '\r' && n < (size - 1)); // 不是所有平台行尾都是CRLF， size-1为'\0'预留位置，防止内存溢出
+    passwd[n] = '\0';
+    return n;
+}
 
 void AddUser()
 {
@@ -432,8 +474,7 @@ void AddUser()
     printf("账号\n>> ");
     scanf("%s", ua.account);
     printf("密码\n>> ");
-    scanf("%s", ua.password);
-
+    createPassword(ua.password, MAX_PASSWORD_LENGTH);
     char level[15] = {0};
     while (strcmp(level, "0") && strcmp(level, "1"))
     {
@@ -448,7 +489,7 @@ void AddUser()
     {
         printf("\n添加用户成功\n");
         printf("--------------------------------------\n");
-        printf("%-10s %-10s  %-2s\n", "账号", "密码", "权限");
+        printf("%-12s %-12s  %-2s\n", "账号", "密码", "权限");
         printf("--------------------------------------\n");
         if (ua.permission_level)
             printf("%-10s %-10s %-2s\n", ua.account, ua.password, "管理员");
