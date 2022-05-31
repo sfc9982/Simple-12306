@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-//ÅÐ¶ÏÊÇ·ñÎªÏúÊÛÔ±ÕË»§£¬ÎÞ·¨´ò¿ªÎÄ¼þ·µ»Ø-1£¬ÊÇ·µ»Ø1£¬·ñ·µ»Ø0
+//åˆ¤æ–­æ˜¯å¦ä¸ºé”€å”®å‘˜è´¦æˆ·ï¼Œæ— æ³•æ‰“å¼€æ–‡ä»¶è¿”å›ž-1ï¼Œæ˜¯è¿”å›ž1ï¼Œå¦è¿”å›ž0
 int IsSalesmanAccount(char *account, char *password)
 {
     FILE *fp = fopen("Data\\user.dat", "rb");
@@ -31,14 +31,14 @@ int IsSalesmanAccount(char *account, char *password)
 void DisplaySoldTickets(TicketsList head)
 {
     printf("--------------------------------------------------------------------------------\n");
-    printf("%-5s %-12s %-20s %-20s %-10s %-5s\n", "ID", "°à´Î", "Ê¼·¢Õ¾", "ÖÕµãÕ¾", "Æ±¼Û", "×ùÎ»ÓàÁ¿");
+    printf("%-5s %-12s %-20s %-20s %-10s %-5s\n", "ID", "ç­æ¬¡", "å§‹å‘ç«™", "ç»ˆç‚¹ç«™", "ç¥¨ä»·", "åº§ä½ä½™é‡");
     printf("--------------------------------------------------------------------------------\n");
     TraverseTicketsList(head, DisplayBasicTicketsInfo);
     printf("--------------------------------------------------------------------------------\n");
 }
 
 
-//¹ºÂò³µ´Î£¬²¢¸üÐÂ³µ´Î£¬ÏúÊÛ¼ÇÂ¼
+//è´­ä¹°è½¦æ¬¡ï¼Œå¹¶æ›´æ–°è½¦æ¬¡ï¼Œé”€å”®è®°å½•
 void SoldTickets(TicketsList head)
 {
     int id, cnt;
@@ -47,21 +47,21 @@ void SoldTickets(TicketsList head)
     {
         system("cls");
         DisplaySoldTickets(head);
-        printf("\nÊäÈë´ýÏúÊÛµÄ³µ´ÎID (ÊäÈë-1ÍË³ö)\n>");
+        printf("\nè¾“å…¥å¾…é”€å”®çš„è½¦æ¬¡ID (è¾“å…¥-1é€€å‡º)\n>");
         scanf("%d", &id);
 
         if (id < 0) break;
 
-        // found_ticketsÎª·ûºÏÌõ¼þ³µÆ±¹¹³ÉµÄÁ´±í
+        // found_ticketsä¸ºç¬¦åˆæ¡ä»¶è½¦ç¥¨æž„æˆçš„é“¾è¡¨
         found_tickets = FindTicketsByID(head, id);
         if (found_tickets)
         {
             DisplayBasicTicketsInfo(&found_tickets->tickets);
-            printf("ÊäÈëÏúÊÛÊýÁ¿\n>");
+            printf("è¾“å…¥é”€å”®æ•°é‡\n>");
             scanf("%d", &cnt);
             if (cnt <= 0)
             {
-                printf("³µÆ±ÊýÁ¿ÓÐÎó\n");
+                printf("è½¦ç¥¨æ•°é‡æœ‰è¯¯\n");
                 system("pause");
                 continue;
             } else
@@ -72,7 +72,7 @@ void SoldTickets(TicketsList head)
                 {
                     if (!ReduceTicketsQuantity(head, id, cnt))
                     {
-                        printf("¸Ã³µ´Î³µÆ±¿â´æ²»×ã\n");
+                        printf("è¯¥è½¦æ¬¡è½¦ç¥¨åº“å­˜ä¸è¶³\n");
                         system("pause");;
                         continue;
                     }
@@ -89,7 +89,7 @@ void SoldTickets(TicketsList head)
                     record.date = GetCurTime();
 
                     AppendARecordToFile(record, records_fp);
-                    printf("ÏúÊÛ³É¹¦\n");
+                    printf("é”€å”®æˆåŠŸ\n");
                     system("pause");
                     continue;
                 } else
@@ -98,7 +98,7 @@ void SoldTickets(TicketsList head)
                         fclose(tickets_fp);
                     if (records_fp)
                         fclose(records_fp);
-                    printf("Á¬½ÓÏµÍ³Êý¾ÝÊ§°Ü\n");
+                    printf("è¿žæŽ¥ç³»ç»Ÿæ•°æ®å¤±è´¥\n");
                     system("pause");
                     break;
                 }
@@ -106,7 +106,7 @@ void SoldTickets(TicketsList head)
             }
         } else
         {
-            printf("ÎÞ´Ë³µ´Î\n");
+            printf("æ— æ­¤è½¦æ¬¡\n");
             system("pause");
             continue;
         }
@@ -121,9 +121,9 @@ void SalesmanInitMenu()
 
     int op = -1;
 
-    printf("1) ¹ºÂò³µÆ±\n");
-    printf("2) ÐÅÏ¢²éÑ¯\n");
-    printf("0) ÍË³öµÇÂ½\n");
+    printf("1) è´­ä¹°è½¦ç¥¨\n");
+    printf("2) ä¿¡æ¯æŸ¥è¯¢\n");
+    printf("0) é€€å‡ºç™»é™†\n");
 
     printf(">> ");
     scanf("%d", &op);
@@ -152,17 +152,17 @@ void SalesmanLookUpTickets(TicketsList head)
 
     if (head->next == NULL)
     {
-        printf("¿â´æÎª¿Õ\n");
+        printf("åº“å­˜ä¸ºç©º\n");
         system("pause");
         SalesmanInitMenu();
     }
 
     int op = -1;
 
-    printf("1) °´³µ´ÎÃû²éÑ¯\n");
-    printf("2) °´³µÐÍ²éÑ¯\n");
-    printf("3) ×ÛºÏ²éÑ¯\n");
-    printf("0) ·µ»ØÉÏ¼¶\n");
+    printf("1) æŒ‰è½¦æ¬¡åæŸ¥è¯¢\n");
+    printf("2) æŒ‰è½¦åž‹æŸ¥è¯¢\n");
+    printf("3) ç»¼åˆæŸ¥è¯¢\n");
+    printf("0) è¿”å›žä¸Šçº§\n");
 
     scanf("%d", &op);
 
@@ -181,7 +181,7 @@ void SalesmanLookUpTickets(TicketsList head)
 void ShowQueriedTicketsListToSalesman(TicketsList queried_tickets)
 {
     printf("---------------------------------------------------------------------------------\n");
-    printf("%-5s %-12s %-20s %-20s %-5s\n", "ID", "³µ´Î", "Ê¼·¢Õ¾", "ÖÕµãÕ¾", "³µÆ±ÓàÁ¿");
+    printf("%-5s %-12s %-20s %-20s %-5s\n", "ID", "è½¦æ¬¡", "å§‹å‘ç«™", "ç»ˆç‚¹ç«™", "è½¦ç¥¨ä½™é‡");
     TraverseTicketsList(queried_tickets, DisplayBasicTicketsInfo);
     printf("---------------------------------------------------------------------------------\n");
 }
@@ -191,7 +191,7 @@ void SalesmanLookUpTicketsByName(TicketsList head)
     char tickets_name_prefix[MAX_LABEL_LENGTH] = {0};
     //char manufacturer_prefix[MAX_TRAIN_TYPE_LENGTH] = { 0 };
 
-    printf("ÊäÈë³µ´ÎÃû³Æ»òÃû³ÆÇ°×º\n>> ");
+    printf("è¾“å…¥è½¦æ¬¡åç§°æˆ–åç§°å‰ç¼€\n>> ");
     scanf("%s", tickets_name_prefix);
     TicketsList queried_tickets = QueryTicketsByName(head, tickets_name_prefix);
     ShowQueriedTicketsListToSalesman(queried_tickets);
@@ -204,7 +204,7 @@ void SalesmanLookUpTicketsByManufacturer(TicketsList head)
 {
     char manufacturer_prefix[MAX_TRAIN_TYPE_LENGTH] = {0};
 
-    printf("ÊäÈë³µ´Î³µÐÍ»ò³µÐÍÇ°×º\n>> ");
+    printf("è¾“å…¥è½¦æ¬¡è½¦åž‹æˆ–è½¦åž‹å‰ç¼€\n>> ");
     scanf("%s", manufacturer_prefix);
     TicketsList queried_tickets = QueryTicketsByManufacturer(head, manufacturer_prefix);
     ShowQueriedTicketsListToSalesman(queried_tickets);
@@ -218,9 +218,9 @@ void SalesmanLookUpTicketsByNameAndManufacturer(TicketsList head)
     char tickets_name_prefix[MAX_LABEL_LENGTH] = {0};
     char manufacturer_prefix[MAX_TRAIN_TYPE_LENGTH] = {0};
 
-    printf("ÊäÈë³µ´ÎÃû³Æ»òÃû³ÆÇ°×º\n>> ");
+    printf("è¾“å…¥è½¦æ¬¡åç§°æˆ–åç§°å‰ç¼€\n>> ");
     scanf("%s", tickets_name_prefix);
-    printf("ÊäÈë³µ´Î³µÐÍ»ò³µÐÍÇ°×º\n>> ");
+    printf("è¾“å…¥è½¦æ¬¡è½¦åž‹æˆ–è½¦åž‹å‰ç¼€\n>> ");
     scanf("%s", manufacturer_prefix);
     TicketsList queried_tickets = QueryTicketsByNameAndManufacturer(head, tickets_name_prefix, manufacturer_prefix);
     ShowQueriedTicketsListToSalesman(queried_tickets);

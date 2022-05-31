@@ -6,7 +6,7 @@
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Release-d0094a50bb2071803777.json",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.22"
@@ -19,7 +19,7 @@
 					]
 				}
 			],
-			"name" : "Release",
+			"name" : "Debug",
 			"projects" : 
 			[
 				{
@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Simple_12306::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Simple_12306-Release-249854e39be522c2f74e.json",
+					"jsonFile" : "target-Simple_12306-Debug-1868ca109270699194a6.json",
 					"name" : "Simple_12306",
 					"projectIndex" : 0
 				}
@@ -49,7 +49,7 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "D:/Code/Simple-12306/cmake-build-release",
+		"build" : "D:/Code/Simple-12306/cmake-build-debug",
 		"source" : "D:/Code/Simple-12306"
 	},
 	"version" : 

@@ -9,7 +9,7 @@ typedef struct {
 
 } CountStatistics;
 
-// ±È½ÏÁ½¸öÈÕÆÚ´óĞ¡£¬aÓëbÏàµÈ·µ»Ø0£¬a<b·µ»Ø-1£¬a>b·µ»Ø1
+// æ¯”è¾ƒä¸¤ä¸ªæ—¥æœŸå¤§å°ï¼Œaä¸bç›¸ç­‰è¿”å›0ï¼Œa<bè¿”å›-1ï¼Œa>bè¿”å›1
 
 int CompareDate(SoldDate a, SoldDate b)
 {
@@ -31,7 +31,7 @@ void SoldStatisticsByDate(RecordsList head, SoldDate start, SoldDate end, int mi
     {
         if (CompareDate(p->record.date, start) >= 0 && CompareDate(p->record.date, end) <= 0)
         {
-            HASH_FIND_INT(tickets, &p->record.id, s); // ÒıÓÃÁËµÚÈı·½¿â£¬hashÅĞÖØ
+            HASH_FIND_INT(tickets, &p->record.id, s); // å¼•ç”¨äº†ç¬¬ä¸‰æ–¹åº“ï¼Œhashåˆ¤é‡
             if (s)
             {
                 s->cnt += p->record.sold_quantity;
@@ -43,7 +43,7 @@ void SoldStatisticsByDate(RecordsList head, SoldDate start, SoldDate end, int mi
                 strcpy(s->name, p->record.name);
                 s->cnt = p->record.sold_quantity;
                 s->earnings = p->record.price * p->record.sold_quantity;
-                HASH_ADD_INT(tickets, id, s); // ¼ÓÈëÉ¢ÁĞ±í
+                HASH_ADD_INT(tickets, id, s); // åŠ å…¥æ•£åˆ—è¡¨
             }
         }
 
@@ -54,7 +54,7 @@ void SoldStatisticsByDate(RecordsList head, SoldDate start, SoldDate end, int mi
     int total_tickets_cnt = 0;
 
     printf("----------------------------------------\n");
-    printf("%-5s %-12s %-6s %-6s\n", "ID", "Ãû³Æ", "ÏúÁ¿", "ÊÕÈë");
+    printf("%-5s %-12s %-6s %-6s\n", "ID", "åç§°", "é”€é‡", "æ”¶å…¥");
     for (s = tickets; s != NULL; s = (CountStatistics *) (s->hh.next))
     {
         if (s->cnt >= min_sold_cnt && s->earnings >= min_earnings)
@@ -65,6 +65,6 @@ void SoldStatisticsByDate(RecordsList head, SoldDate start, SoldDate end, int mi
         }
     }
 
-    printf("\n×ÜÉÌÆ·Êı:%d  ×ÜÊÕÈë:%.2fÔª\n", total_tickets_cnt, total_earnings);
+    printf("\næ€»å•†å“æ•°:%d  æ€»æ”¶å…¥:%.2få…ƒ\n", total_tickets_cnt, total_earnings);
     printf("----------------------------------------\n");
 }

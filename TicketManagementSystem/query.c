@@ -1,18 +1,18 @@
 #include "stdafx.h"
 
-// °´ÕÕ³µÆ±ÃûÇ°×º²éÑ¯³µÆ±£¬Êä³ö³µÆ±»ù±¾ĞÅÏ¢
+// æŒ‰ç…§è½¦ç¥¨åå‰ç¼€æŸ¥è¯¢è½¦ç¥¨ï¼Œè¾“å‡ºè½¦ç¥¨åŸºæœ¬ä¿¡æ¯
 TicketsList QueryTicketsByName(TicketsList head, char *name)
 {
     return QueryTicketsByNameAndManufacturer(head, name, "");
 }
 
-// °´ÕÕ³µĞÍÇ°×º²éÑ¯³µÆ±£¬Êä³ö³µÆ±»ù±¾ĞÅÏ¢
+// æŒ‰ç…§è½¦å‹å‰ç¼€æŸ¥è¯¢è½¦ç¥¨ï¼Œè¾“å‡ºè½¦ç¥¨åŸºæœ¬ä¿¡æ¯
 TicketsList QueryTicketsByManufacturer(TicketsList head, char *manufacturer)
 {
     return QueryTicketsByNameAndManufacturer(head, "", manufacturer);
 }
 
-// °´ÕÕ³µÆ±ÃûºÍ³µĞÍÇ°×º²éÑ¯³µÆ±£¬Êä³ö³µÆ±»ù±¾ĞÅÏ¢
+// æŒ‰ç…§è½¦ç¥¨åå’Œè½¦å‹å‰ç¼€æŸ¥è¯¢è½¦ç¥¨ï¼Œè¾“å‡ºè½¦ç¥¨åŸºæœ¬ä¿¡æ¯
 TicketsList QueryTicketsByNameAndManufacturer(TicketsList head, char *tickets_name, char *manufacturer)
 {
     if (head->next == NULL)
@@ -45,13 +45,13 @@ void QuerySoldRecordsByDate(RecordsList head, SoldDate start, SoldDate end)
 {
     if (head->next == NULL)
     {
-        printf("ÏúÊÛ¼ÇÂ¼Îª¿Õ\n");
+        printf("é”€å”®è®°å½•ä¸ºç©º\n");
         return;
     }
 
     RecordsList p = head->next;
     printf("-----------------------------------------------------------------------------------------------\n");
-    printf("%-5s %-12s %-20s %-20s %3s %5s %15s\n", "ID", "Ãû³Æ", "Ê¼·¢Õ¾", "ÖÕµãÕ¾", "Æ±¼Û", "¹ºÂòÁ¿", "¹ºÂòÊ±¼ä");
+    printf("%-5s %-12s %-20s %-20s %3s %5s %15s\n", "ID", "åç§°", "å§‹å‘ç«™", "ç»ˆç‚¹ç«™", "ç¥¨ä»·", "è´­ä¹°é‡", "è´­ä¹°æ—¶é—´");
     printf("-----------------------------------------------------------------------------------------------\n");
 
     while (p)

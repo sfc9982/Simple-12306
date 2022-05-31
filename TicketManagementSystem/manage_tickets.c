@@ -2,7 +2,7 @@
 
 const char TICKETS_LIST_PATH[30] = "Data\\tickets_list.txt";
 
-// ³õÊ¼»¯ÁĞ³µÁ´±í ´´½¨´øÍ·½áµãµÄÁ´±í
+// åˆå§‹åŒ–åˆ—è½¦é“¾è¡¨ åˆ›å»ºå¸¦å¤´ç»“ç‚¹çš„é“¾è¡¨
 TicketsList InitTicketsList()
 {
     TicketsList head = (TicketsList) malloc(sizeof(struct TicketsListNode));
@@ -23,7 +23,7 @@ void DeleteTicketsList(TicketsList head)
     }
 }
 
-//±éÀúÁĞ³µÁ´±í£¬½øĞĞÄ³ÖÖ²Ù×÷
+//éå†åˆ—è½¦é“¾è¡¨ï¼Œè¿›è¡ŒæŸç§æ“ä½œ
 void TraverseTicketsList(TicketsList head, void(*Func)(Tickets *))
 {
     TicketsList p = head->next;
@@ -35,15 +35,15 @@ void TraverseTicketsList(TicketsList head, void(*Func)(Tickets *))
 }
 
 
-// Êä³öÒ»¸öÁĞ³µµÄĞÅÏ¢
+// è¾“å‡ºä¸€ä¸ªåˆ—è½¦çš„ä¿¡æ¯
 void DisplayTicketsInfo(Tickets *tickets)
 {
-    printf("%-5d %-12s %-20s %-20s %-12s %-10.2lf %-5d\n", tickets->id, tickets->name, tickets->station_from,
-           tickets->station_dest,
-           tickets->manufacturer, tickets->price, tickets->quantity);
+    printf("%-5d %-12s %-20Ls\t%-20Ls\t%-12Ls\t%-10.2lf %-5d\n", tickets->id, tickets->name, tickets->station_from,
+           tickets->station_dest, tickets->manufacturer,
+           tickets->price, tickets->quantity);
 }
 
-// ÏÔÊ¾Ò»¸öÁĞ³µ»ù±¾ĞÅÏ¢
+// æ˜¾ç¤ºä¸€ä¸ªåˆ—è½¦åŸºæœ¬ä¿¡æ¯
 void DisplayBasicTicketsInfo(Tickets *tickets)
 {
     printf("%-5d %-12s %-20s %-20s %-10.2lf %-5d\n", tickets->id, tickets->name, tickets->station_from,
@@ -52,8 +52,8 @@ void DisplayBasicTicketsInfo(Tickets *tickets)
 }
 
 
-// ÔÚÁĞ³µÁ´±íÖĞÌí¼ÓÒ»ÌõÁĞ³µĞÅÏ¢£¬Ô­ÓĞ´ËÁĞ³µÊıÁ¿ºÏ²¢£¬·µ»Ø1
-// Ô­Ã»ÓĞ£¬ÔÚÁ´±íÄ©Î²Ìí¼Ó£¬·µ»Ø0
+// åœ¨åˆ—è½¦é“¾è¡¨ä¸­æ·»åŠ ä¸€æ¡åˆ—è½¦ä¿¡æ¯ï¼ŒåŸæœ‰æ­¤åˆ—è½¦æ•°é‡åˆå¹¶ï¼Œè¿”å›1
+// åŸæ²¡æœ‰ï¼Œåœ¨é“¾è¡¨æœ«å°¾æ·»åŠ ï¼Œè¿”å›0
 int AddTicketsToList(TicketsList head, Tickets tickets)
 {
     int id = tickets.id;
@@ -77,8 +77,8 @@ int AddTicketsToList(TicketsList head, Tickets tickets)
 }
 
 
-// ÔÚÁĞ³µÁ´±íÖĞ²éÕÒÁĞ³µĞòºÅÎªidµÄÁĞ³µ£¬¸ÃÁĞ³µ×ùÎ»ÊıÁ¿¼õÉÙquantity
-// ³É¹¦·µ»Ø1£¬ÁĞ³µÊıÁ¿²»¹»·µ»Ø0£¬ÎŞ´ËidÁĞ³µ·µ»Ø-1
+// åœ¨åˆ—è½¦é“¾è¡¨ä¸­æŸ¥æ‰¾åˆ—è½¦åºå·ä¸ºidçš„åˆ—è½¦ï¼Œè¯¥åˆ—è½¦åº§ä½æ•°é‡å‡å°‘quantity
+// æˆåŠŸè¿”å›1ï¼Œåˆ—è½¦æ•°é‡ä¸å¤Ÿè¿”å›0ï¼Œæ— æ­¤idåˆ—è½¦è¿”å›-1
 int ReduceTicketsQuantity(TicketsList head, int id, int quantity)
 {
     TicketsList p = head->next;
@@ -97,8 +97,8 @@ int ReduceTicketsQuantity(TicketsList head, int id, int quantity)
 }
 
 
-// ÔÚÁĞ³µÁ´±íÖĞ²éÕÒÁĞ³µĞòºÅÎªidµÄÁĞ³µ£¬¸ÃÁĞ³µÊıÁ¿Ôö¼Óquantity
-// ³É¹¦·µ»Ø1£¬ÎŞ´ËidÁĞ³µ·µ»Ø-1
+// åœ¨åˆ—è½¦é“¾è¡¨ä¸­æŸ¥æ‰¾åˆ—è½¦åºå·ä¸ºidçš„åˆ—è½¦ï¼Œè¯¥åˆ—è½¦æ•°é‡å¢åŠ quantity
+// æˆåŠŸè¿”å›1ï¼Œæ— æ­¤idåˆ—è½¦è¿”å›-1
 int IncreaseTicketsQuantity(TicketsList head, int id, int quantity)
 {
     TicketsList p = head->next;
@@ -115,7 +115,7 @@ int IncreaseTicketsQuantity(TicketsList head, int id, int quantity)
 }
 
 
-// Çå³ıÁĞ³µÁ´±íÖĞÎªÊıÁ¿Îª0µÄÁĞ³µ
+// æ¸…é™¤åˆ—è½¦é“¾è¡¨ä¸­ä¸ºæ•°é‡ä¸º0çš„åˆ—è½¦
 void RemoveZeroQuantityTickets(TicketsList head)
 {
     TicketsList pre = head;
@@ -137,7 +137,7 @@ void RemoveZeroQuantityTickets(TicketsList head)
 }
 
 
-// ´ÓÎÄ¼şÖĞµ¼ÈëÁĞ³µÊı¾İ
+// ä»æ–‡ä»¶ä¸­å¯¼å…¥åˆ—è½¦æ•°æ®
 void ImportTicketsFromFile(TicketsList head, FILE *fp)
 {
     Tickets tickets;
@@ -145,6 +145,10 @@ void ImportTicketsFromFile(TicketsList head, FILE *fp)
     {
         fscanf(fp, "%d %s %s %s %s %lf %d\n", &tickets.id, tickets.name, tickets.station_from,
                tickets.station_dest, tickets.manufacturer, &tickets.price, &tickets.quantity);
+        if (strlen(tickets.station_from) <= 12)
+            strcat(tickets.station_from, "ã€€ã€€");
+        if (strlen(tickets.station_dest) <= 12)
+            strcat(tickets.station_dest, "ã€€ã€€");
         AddTicketsToList(head, tickets);
     }
     fclose(fp);
@@ -155,7 +159,7 @@ FILE *OpenTicketsFile(char *mod)
     return fopen(TICKETS_LIST_PATH, mod);
 }
 
-// ½«ÏµÍ³ÄÚÁĞ³µÊı¾İµ¼³öµ½ÎÄ¼ş
+// å°†ç³»ç»Ÿå†…åˆ—è½¦æ•°æ®å¯¼å‡ºåˆ°æ–‡ä»¶
 void ExportTicketsToFile(TicketsList head, FILE *fp)
 {
     Tickets train;
@@ -171,7 +175,7 @@ void ExportTicketsToFile(TicketsList head, FILE *fp)
 }
 
 
-// ÓĞIDÔÚÁĞ³µÁ´±íÖĞ²éÕÒÁĞ³µ£¬²éÕÒµ½·µ»ØÁ´±íËùÔÚÎ»ÖÃ£¬·ñÔò·µ»ØNULL
+// æœ‰IDåœ¨åˆ—è½¦é“¾è¡¨ä¸­æŸ¥æ‰¾åˆ—è½¦ï¼ŒæŸ¥æ‰¾åˆ°è¿”å›é“¾è¡¨æ‰€åœ¨ä½ç½®ï¼Œå¦åˆ™è¿”å›NULL
 TicketsList FindTicketsByID(TicketsList head, int id)
 {
     if (id < 0)

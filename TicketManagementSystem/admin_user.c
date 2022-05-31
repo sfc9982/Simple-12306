@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
 
-//ÅĞ¶ÏÊÇ·ñÎª¹ÜÀíÔ±ÕË»§£¬ÎŞ·¨´ò¿ªÎÄ¼ş·µ»Ø-1£¬ÊÇ·µ»Ø1£¬·ñ·µ»Ø0
+//åˆ¤æ–­æ˜¯å¦ä¸ºç®¡ç†å‘˜è´¦æˆ·ï¼Œæ— æ³•æ‰“å¼€æ–‡ä»¶è¿”å›-1ï¼Œæ˜¯è¿”å›1ï¼Œå¦è¿”å›0
 int IsAdminAccount(char *account, char *password)
 {
     FILE *fp = fopen("Data\\user.dat", "rb");
@@ -32,7 +32,7 @@ int IsAdminAccount(char *account, char *password)
     return 0;
 }
 
-//Ôö¼ÓÕË»§ĞÅÏ¢£¬ÎŞ·¨´ò¿ª·µ»Ø-1£¬³É¹¦·µ»Ø1£¬ÕË»§ÒÑ´æÔÚ·µ»Ø0£¨¸ü¸ÄÃÜÂë£©
+//å¢åŠ è´¦æˆ·ä¿¡æ¯ï¼Œæ— æ³•æ‰“å¼€è¿”å›-1ï¼ŒæˆåŠŸè¿”å›1ï¼Œè´¦æˆ·å·²å­˜åœ¨è¿”å›0ï¼ˆæ›´æ”¹å¯†ç ï¼‰
 int AddAccount(UserAccount *newInfo)
 {
     FILE *fp = fopen("Data\\user.dat", "rb+");
@@ -70,7 +70,7 @@ int AddAccount(UserAccount *newInfo)
 }
 
 
-//¸ü¸ÃËùÓĞÓÃ»§µÄÃÜÂë£¬ÎÄ¼şÎŞ·¨´ò¿ª·µ»Ø-1£¬É¾³ı³É¹¦·µ»Ø1£¬Ê§°Ü·µ»Ø0
+//æ›´è¯¥æ‰€æœ‰ç”¨æˆ·çš„å¯†ç ï¼Œæ–‡ä»¶æ— æ³•æ‰“å¼€è¿”å›-1ï¼Œåˆ é™¤æˆåŠŸè¿”å›1ï¼Œå¤±è´¥è¿”å›0
 int DeleteAccount(char *account)
 {
     FILE *fp = fopen("Data\\user.dat", "rb+");
@@ -115,7 +115,7 @@ int DeleteAccount(char *account)
 }
 
 
-//ÏÔÊ¾ÏµÍ³ÄÚËùÓĞÕË»§ĞÅÏ¢£¬ÎŞ·¨´ò¿ª·µ»Ø-1
+//æ˜¾ç¤ºç³»ç»Ÿå†…æ‰€æœ‰è´¦æˆ·ä¿¡æ¯ï¼Œæ— æ³•æ‰“å¼€è¿”å›-1
 int DisplayAccountInfo()
 {
     FILE *fp = fopen("Data\\user.dat", "rb");
@@ -129,15 +129,15 @@ int DisplayAccountInfo()
 
     UserAccount *own = (UserAccount *) malloc(size * sizeof(UserAccount));
     printf("--------------------------------------\n");
-    printf("%-10s %-10s  %-2s\n", "ÕËºÅ", "ÃÜÂë", "È¨ÏŞ");
+    printf("%-10s %-10s  %-2s\n", "è´¦å·", "å¯†ç ", "æƒé™");
     printf("--------------------------------------\n");
     for (int i = 0; i < size; i++)
     {
         fread(own + i, sizeof(UserAccount), 1, fp);
         if (own[i].permission_level)
-            printf("%-10s %-10s %-2s\n", own[i].account, own[i].password, "¹ÜÀíÔ±");
+            printf("%-10s %-10s %-2s\n", own[i].account, own[i].password, "ç®¡ç†å‘˜");
         else
-            printf("%-10s %-10s %-2s\n", own[i].account, own[i].password, "ÓÃ»§");
+            printf("%-10s %-10s %-2s\n", own[i].account, own[i].password, "ç”¨æˆ·");
     }
     printf("--------------------------------------\n");
 
@@ -153,11 +153,11 @@ void AdminInitMenu()
     system("cls");
     int op = -1;
 
-    printf("1) ¼ÇÂ¼¹ÜÀí\n");
-    printf("2) ÓÃ»§¹ÜÀí\n");
-    printf("3) ÏúÊÛ³µ´Î\n");
-    printf("4) ÏúÊÛÍ³¼Æ\n");
-    printf("0) ÍË³öµÇÂ½\n");
+    printf("1) è®°å½•ç®¡ç†\n");
+    printf("2) ç”¨æˆ·ç®¡ç†\n");
+    printf("3) é”€å”®è½¦æ¬¡\n");
+    printf("4) é”€å”®ç»Ÿè®¡\n");
+    printf("0) é€€å‡ºç™»é™†\n");
 
     printf(">> ");
     scanf("%d", &op);
@@ -180,12 +180,12 @@ void StockManagement()
     system("cls");
     int op = -1;
 
-    printf("1) Ìí¼Ó³µ´Î\n");
-    printf("2) ÅúÁ¿Ìí¼Ó\n");
-    printf("3) ²é¿´³µ´Î\n");
-    printf("4) ²éÑ¯Õ¾µã\n");
-    printf("5) ÇåÀí³µ´Î\n");
-    printf("0) ·µ»ØÉÏ¼¶\n");
+    printf("1) æ·»åŠ è½¦æ¬¡\n");
+    printf("2) æ‰¹é‡æ·»åŠ \n");
+    printf("3) æŸ¥çœ‹è½¦æ¬¡\n");
+    printf("4) æŸ¥è¯¢ç«™ç‚¹\n");
+    printf("5) æ¸…ç†è½¦æ¬¡\n");
+    printf("0) è¿”å›ä¸Šçº§\n");
 
     printf(">> ");
     scanf("%d", &op);
@@ -217,15 +217,15 @@ void AddTicketsToStock(TicketsList head)
     system("cls");
     char id[20];
 
-    printf("ÊäÈë³µ´Îid\n>> ");
+    printf("è¾“å…¥è½¦æ¬¡id\n>> ");
     scanf("%s", id);
 
     TicketsList p = FindTicketsByID(head, atoi(id));
     if (p)
     {
-        printf("¸Ã³µ´ÎÒÑ´æÔÚ\n");
+        printf("è¯¥è½¦æ¬¡å·²å­˜åœ¨\n");
         DisplayTicketsInfo((Tickets *) p);
-        printf("ÊäÈëÔöÌíÊıÁ¿\n>> ");
+        printf("è¾“å…¥å¢æ·»æ•°é‡\n>> ");
         int add_cnt = 0;
         scanf("%d", &add_cnt);
         if (add_cnt < 0) add_cnt = 0;
@@ -234,25 +234,25 @@ void AddTicketsToStock(TicketsList head)
         TraverseTicketsList(head, DisplayTicketsInfo);
 
         ExportTicketsToFile(head, OpenTicketsFile("w"));
-        printf("Ìí¼ÓÍê³É\n");
+        printf("æ·»åŠ å®Œæˆ\n");
     } else
     {
         Tickets train_add;
         train_add.id = atoi(id);
-        printf("ÊäÈë³µ´ÎÃû³Æ\n>> ");
+        printf("è¾“å…¥è½¦æ¬¡åç§°\n>> ");
         scanf("%s", train_add.name);
-        printf("ÊäÈë³µ´ÎÊ¼·¢Õ¾\n>> ");
+        printf("è¾“å…¥è½¦æ¬¡å§‹å‘ç«™\n>> ");
         scanf("%s", train_add.station_from);
-        printf("ÊäÈë³µ´ÎÖÕµãÕ¾\n>> ");
+        printf("è¾“å…¥è½¦æ¬¡ç»ˆç‚¹ç«™\n>> ");
         scanf("%s", train_add.station_dest);
-        printf("ÊäÈë³µĞÍ\n>> ");
+        printf("è¾“å…¥è½¦å‹\n>> ");
         scanf("%s", train_add.manufacturer);
-        printf("ÊäÈë³µ´Î×ùÎ»ÊıÁ¿\n>> ");
+        printf("è¾“å…¥è½¦æ¬¡åº§ä½æ•°é‡\n>> ");
         scanf("%d", &train_add.quantity);
 
         AddTicketsToList(head, train_add);
         ExportTicketsToFile(head, OpenTicketsFile("w"));
-        printf("Ìí¼ÓÍê³É\n");
+        printf("æ·»åŠ å®Œæˆ\n");
         DisplayTicketsInfo(&train_add);
     }
 
@@ -268,10 +268,10 @@ void BatchedStock(TicketsList head)
         ImportTicketsFromFile(head, fp);
         ExportTicketsToFile(head, OpenTicketsFile("w"));
         fclose(fp);
-        printf("µ¼Èë³É¹¦\n");
+        printf("å¯¼å…¥æˆåŠŸ\n");
     } else
     {
-        printf("´ò¿ª´ıµ¼ÈëÎÄ¼şÊ§°Ü\n");
+        printf("æ‰“å¼€å¾…å¯¼å…¥æ–‡ä»¶å¤±è´¥\n");
     }
     system("pause");
     StockManagement();
@@ -279,11 +279,11 @@ void BatchedStock(TicketsList head)
 
 void LookOverStock(TicketsList head)
 {
-    printf("-----------------------------------------------------------------------------------------\n");
-    printf("%-5s %-12s %-20s %-20s %-12s %-10s %-5s\n", "ID", "Ãû³Æ", "Ê¼·¢Õ¾", "ÖÕµãÕ¾", "¶¯³µĞÍºÅ", "Æ±¼Û", "ÓàÁ¿");
-    printf("-----------------------------------------------------------------------------------------\n");
+    printf("----------------------------------------------------------------------------------------------\n");
+    printf("%-5s %-14s %-23s %-18s %-19s %-11s %-5s\n", "ID", "åç§°", "å§‹å‘ç«™", "ç»ˆç‚¹ç«™", "åŠ¨è½¦å‹å·", "ç¥¨ä»·", "ä½™é‡");
+    printf("----------------------------------------------------------------------------------------------\n");
     TraverseTicketsList(head, DisplayTicketsInfo);
-    printf("-----------------------------------------------------------------------------------------\n");
+    printf("----------------------------------------------------------------------------------------------\n");
     system("pause");
     StockManagement();
 }
@@ -295,17 +295,17 @@ void LookUpTickets(TicketsList head)
 
     if (head->next == NULL)
     {
-        printf("¼ÇÂ¼Îª¿Õ\n");
+        printf("è®°å½•ä¸ºç©º\n");
         system("pause");
         StockManagement();
     }
 
     int op = -1;
 
-    printf("1) °´³µ´ÎÃû²éÑ¯\n");
-    printf("2) °´¶¯³µ³µĞÍ²éÑ¯\n");
-    printf("3) ×ÛºÏ²éÑ¯\n");
-    printf("0) ·µ»ØÉÏ¼¶\n");
+    printf("1) æŒ‰è½¦æ¬¡åæŸ¥è¯¢\n");
+    printf("2) æŒ‰åŠ¨è½¦è½¦å‹æŸ¥è¯¢\n");
+    printf("3) ç»¼åˆæŸ¥è¯¢\n");
+    printf("0) è¿”å›ä¸Šçº§\n");
 
     scanf("%d", &op);
 
@@ -325,7 +325,7 @@ void LookUpTickets(TicketsList head)
 void ShowQueriedTicketsListToAdmin(TicketsList queried_tickets)
 {
     printf("--------------------------------------------------------------------------------\n");
-    printf("%-5s %-12s %-20s %-20s %-15s %-5s\n", "ID", "Ãû³Æ", "Ê¼·¢Õ¾", "ÖÕµãÕ¾", "¶¯³µĞÍºÅ", "×ùÎ»ÓàÁ¿");
+    printf("%-5s %-12s %-20s %-20s %-15s %-5s\n", "ID", "åç§°", "å§‹å‘ç«™", "ç»ˆç‚¹ç«™", "åŠ¨è½¦å‹å·", "åº§ä½ä½™é‡");
     printf("--------------------------------------------------------------------------------\n");
     TraverseTicketsList(queried_tickets, DisplayTicketsInfo);
     printf("--------------------------------------------------------------------------------\n");
@@ -336,7 +336,7 @@ void LookUpTicketsByName(TicketsList head)
     char tickets_name_prefix[MAX_LABEL_LENGTH] = {0};
     //char manufacturer_prefix[MAX_TRAIN_TYPE_LENGTH] = { 0 };
 
-    printf("ÊäÈë³µ´ÎÃû³Æ»òÃû³ÆÇ°×º\n>> ");
+    printf("è¾“å…¥è½¦æ¬¡åç§°æˆ–åç§°å‰ç¼€\n>> ");
     scanf("%s", tickets_name_prefix);
     TicketsList queried_tickets = QueryTicketsByName(head, tickets_name_prefix);
     ShowQueriedTicketsListToAdmin(queried_tickets);
@@ -349,7 +349,7 @@ void LookUpTicketsByManufacturer(TicketsList head)
 {
     char manufacturer_prefix[MAX_TRAIN_TYPE_LENGTH] = {0};
 
-    printf("ÊäÈë³µ´ÎÉú²úÉÌÃû³Æ»òÉú²úÉÌÃû³ÆÇ°×º\n>> ");
+    printf("è¾“å…¥è½¦æ¬¡ç”Ÿäº§å•†åç§°æˆ–ç”Ÿäº§å•†åç§°å‰ç¼€\n>> ");
     scanf("%s", manufacturer_prefix);
     TicketsList queried_tickets = QueryTicketsByManufacturer(head, manufacturer_prefix);
     ShowQueriedTicketsListToAdmin(queried_tickets);
@@ -363,9 +363,9 @@ void LookUpTicketsByNameAndManufacturer(TicketsList head)
     char tickets_name_prefix[MAX_LABEL_LENGTH] = {0};
     char manufacturer_prefix[MAX_TRAIN_TYPE_LENGTH] = {0};
 
-    printf("ÊäÈë³µ´ÎÃû³Æ»òÃû³ÆÇ°×º\n>> ");
+    printf("è¾“å…¥è½¦æ¬¡åç§°æˆ–åç§°å‰ç¼€\n>> ");
     scanf("%s", tickets_name_prefix);
-    printf("ÊäÈë³µ´ÎÉú²úÉÌÃû³Æ»ò³µĞÍÇ°×º\n>> ");
+    printf("è¾“å…¥è½¦æ¬¡ç”Ÿäº§å•†åç§°æˆ–è½¦å‹å‰ç¼€\n>> ");
     scanf("%s", manufacturer_prefix);
     TicketsList queried_tickets = QueryTicketsByNameAndManufacturer(head, tickets_name_prefix, manufacturer_prefix);
     ShowQueriedTicketsListToAdmin(queried_tickets);
@@ -378,14 +378,14 @@ void LookUpTicketsByNameAndManufacturer(TicketsList head)
 void ClearStock(TicketsList head)
 {
     char op[10];
-    printf("ÊÇ·ñÉ¾³ı¼ÇÂ¼ÄÚÊıÁ¿Îª0µÄ³µ´Î (Y »ò N)\n");
+    printf("æ˜¯å¦åˆ é™¤è®°å½•å†…æ•°é‡ä¸º0çš„è½¦æ¬¡ (Y æˆ– N)\n");
     scanf("%s", op);
 
     if (op[0] == 'Y' || op[0] == 'y')
     {
         RemoveZeroQuantityTickets(head);
         ExportTicketsToFile(head, OpenTicketsFile("w"));
-        printf("ÇåÀí¼ÇÂ¼³É¹¦\n");
+        printf("æ¸…ç†è®°å½•æˆåŠŸ\n");
         system("pause");
     }
 
@@ -397,10 +397,10 @@ void UserManagement()
     system("cls");
     int op = -1;
 
-    printf("1) ä¯ÀÀÓÃ»§\n");
-    printf("2) Ìí¼ÓÓÃ»§\n");
-    printf("3) É¾³ıÓÃ»§\n");
-    printf("0) ·µ»ØÉÏ¼¶\n");
+    printf("1) æµè§ˆç”¨æˆ·\n");
+    printf("2) æ·»åŠ ç”¨æˆ·\n");
+    printf("3) åˆ é™¤ç”¨æˆ·\n");
+    printf("0) è¿”å›ä¸Šçº§\n");
 
     printf(">> ");
     scanf("%d", &op);
@@ -429,15 +429,15 @@ void AddUser()
 {
     system("cls");
     UserAccount ua;
-    printf("ÕËºÅ\n>> ");
+    printf("è´¦å·\n>> ");
     scanf("%s", ua.account);
-    printf("ÃÜÂë\n>> ");
+    printf("å¯†ç \n>> ");
     scanf("%s", ua.password);
 
     char level[15] = {0};
     while (strcmp(level, "0") && strcmp(level, "1"))
     {
-        printf("ÓÃ»§È¨ÏŞ(0-ÓÃ»§  1-¹ÜÀíÔ±)\n>> ");
+        printf("ç”¨æˆ·æƒé™(0-ç”¨æˆ·  1-ç®¡ç†å‘˜)\n>> ");
         scanf("%s", level);
     }
 
@@ -446,22 +446,22 @@ void AddUser()
 
     if (ret == 1)
     {
-        printf("\nÌí¼ÓÓÃ»§³É¹¦\n");
+        printf("\næ·»åŠ ç”¨æˆ·æˆåŠŸ\n");
         printf("--------------------------------------\n");
-        printf("%-10s %-10s  %-2s\n", "ÕËºÅ", "ÃÜÂë", "È¨ÏŞ");
+        printf("%-10s %-10s  %-2s\n", "è´¦å·", "å¯†ç ", "æƒé™");
         printf("--------------------------------------\n");
         if (ua.permission_level)
-            printf("%-10s %-10s %-2s\n", ua.account, ua.password, "¹ÜÀíÔ±");
+            printf("%-10s %-10s %-2s\n", ua.account, ua.password, "ç®¡ç†å‘˜");
         else
-            printf("%-10s %-10s %-2s\n", ua.account, ua.password, "ÓÃ»§");
+            printf("%-10s %-10s %-2s\n", ua.account, ua.password, "ç”¨æˆ·");
         printf("--------------------------------------\n");
 
 
     } else if (ret == 0)
     {
-        printf("¸ÃÓÃ»§ÒÑ´æÔÚ\n");
+        printf("è¯¥ç”¨æˆ·å·²å­˜åœ¨\n");
     } else
-        printf("Ìí¼ÓÊ§°Ü\n");
+        printf("æ·»åŠ å¤±è´¥\n");
 
     system("pause");
     UserManagement();
@@ -474,24 +474,24 @@ void DeleteUser()
     DisplayAccountInfo();
     char account[15];
 
-    printf("\nÊäÈë´ıÉ¾³ıÓÃ»§µÄÕËºÅ\n>> ");
+    printf("\nè¾“å…¥å¾…åˆ é™¤ç”¨æˆ·çš„è´¦å·\n>> ");
     scanf("%s", account);
 
     if (strcmp(account, "admin") == 0)
     {
-        printf("³¬¼¶ÓÃ»§, ²»ÄÜÉ¾³ı\n");
+        printf("è¶…çº§ç”¨æˆ·, ä¸èƒ½åˆ é™¤\n");
     } else
     {
         int ret = DeleteAccount(account);
         if (ret == 1)
         {
-            printf("É¾³ı³É¹¦\n");
+            printf("åˆ é™¤æˆåŠŸ\n");
         } else if (ret == -1)
         {
-            printf("ÎŞ·¨É¾³ı\n");
+            printf("æ— æ³•åˆ é™¤\n");
         } else
         {
-            printf("¸ÃÓÃ»§²»´æÔÚ\n");
+            printf("è¯¥ç”¨æˆ·ä¸å­˜åœ¨\n");
         }
     }
 
@@ -519,10 +519,10 @@ void SoldStatistics()
 
     int op = -1;
 
-    printf("1) µ¥Ìì¼ÇÂ¼\n");
-    printf("2) ¶àÌì¼ÇÂ¼\n");
-    printf("3) ¶àÌìÍ³¼Æ\n");
-    printf("0) ·µ»ØÉÏ¼¶\n");
+    printf("1) å•å¤©è®°å½•\n");
+    printf("2) å¤šå¤©è®°å½•\n");
+    printf("3) å¤šå¤©ç»Ÿè®¡\n");
+    printf("0) è¿”å›ä¸Šçº§\n");
 
     printf(">> ");
     scanf("%d", &op);
@@ -546,7 +546,7 @@ void SingleDaySoldRecords(RecordsList head)
 {
     int year, month, day;
 
-    printf("ÒÀ´ÎÊäÈëÄê ÔÂ ÈÕ\n>> ");
+    printf("ä¾æ¬¡è¾“å…¥å¹´ æœˆ æ—¥\n>> ");
 
     scanf("%d %d %d", &year, &month, &day);
 
@@ -558,7 +558,7 @@ void SingleDaySoldRecords(RecordsList head)
         QuerySoldRecordsByDate(head, start, end);
     } else
     {
-        printf("ÊäÈëÓĞÎó\n");
+        printf("è¾“å…¥æœ‰è¯¯\n");
     }
     system("pause");
     SoldStatistics();
@@ -570,10 +570,10 @@ void DaysSoldRecords(RecordsList head)
     int start_year, start_month, start_day;
     int end_year, end_month, end_day;
 
-    printf("ÊäÈë²éÑ¯¿ªÊ¼ÈÕÆÚ Äê ÔÂ ÈÕ\n>> ");
+    printf("è¾“å…¥æŸ¥è¯¢å¼€å§‹æ—¥æœŸ å¹´ æœˆ æ—¥\n>> ");
     scanf("%d %d %d", &start_year, &start_month, &start_day);
 
-    printf("ÊäÈë²éÑ¯½áÊøÈÕÆÚ Äê ÔÂ ÈÕ\n>> ");
+    printf("è¾“å…¥æŸ¥è¯¢ç»“æŸæ—¥æœŸ å¹´ æœˆ æ—¥\n>> ");
     scanf("%d %d %d", &end_year, &end_month, &end_day);
 
     if (start_year >= 1970 && end_year >= 1970 && start_year <= 9999 && end_year <= 9999 &&
@@ -586,7 +586,7 @@ void DaysSoldRecords(RecordsList head)
         QuerySoldRecordsByDate(head, start, end);
     } else
     {
-        printf("ÊäÈëÓĞÎó\n");
+        printf("è¾“å…¥æœ‰è¯¯\n");
     }
     system("pause");
     SoldStatistics();
@@ -599,16 +599,16 @@ void DaysSoldStatistics(RecordsList head)
     int end_year, end_month, end_day;
     int min_sold_cnt = 0, min_earnings = 0;
 
-    printf("ÊäÈë²éÑ¯¿ªÊ¼ÈÕÆÚ Äê ÔÂ ÈÕ\n>> ");
+    printf("è¾“å…¥æŸ¥è¯¢å¼€å§‹æ—¥æœŸ å¹´ æœˆ æ—¥\n>> ");
     scanf("%d %d %d", &start_year, &start_month, &start_day);
 
-    printf("ÊäÈë²éÑ¯½áÊøÈÕÆÚ Äê ÔÂ ÈÕ\n>> ");
+    printf("è¾“å…¥æŸ¥è¯¢ç»“æŸæ—¥æœŸ å¹´ æœˆ æ—¥\n>> ");
     scanf("%d %d %d", &end_year, &end_month, &end_day);
 
-    printf("ÊäÈë×îĞ¡ÏúÁ¿\n>> ");
+    printf("è¾“å…¥æœ€å°é”€é‡\n>> ");
     scanf("%d", &min_sold_cnt);
 
-    printf("ÊäÈë×îĞ¡ÏúÊÛ¶î\n>> ");
+    printf("è¾“å…¥æœ€å°é”€å”®é¢\n>> ");
     scanf("%d", &min_earnings);
 
     if (start_year >= 1970 && end_year >= 1970 && start_year <= 9999 && end_year <= 9999 &&
@@ -621,7 +621,7 @@ void DaysSoldStatistics(RecordsList head)
         SoldStatisticsByDate(head, start, end, min_sold_cnt, min_earnings);
     } else
     {
-        printf("ÊäÈëÓĞÎó\n");
+        printf("è¾“å…¥æœ‰è¯¯\n");
     }
     system("pause");
     SoldStatistics();

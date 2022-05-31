@@ -6,7 +6,7 @@
 
 #define MAX_LABEL_LENGTH 30
 #define MAX_TRAIN_TYPE_LENGTH 50
-#define MAX_STATION_NAME_LENGTH 100 // Unicode/UTF-8жпр╩╦Жжпндвж╥Шу╪╬щ3╦Жвж╫зё╛кЫртЁ╓╤хс╕н╙жпндЁ╓╤х╣дхЩ╠╤ртио
+#define MAX_STATION_NAME_LENGTH 100 // Unicode/UTF-8Д╦╜Д╦─Д╦╙Д╦╜Ф√┤Е╜≈Г╛╕Е█═Ф█╝3Д╦╙Е╜≈Х┼┌О╪▄Ф┴─Д╩╔И∙©Е╨╕Е╨■Д╦╨Д╦╜Ф√┤И∙©Е╨╕Г └Д╦┴Е─█Д╩╔Д╦┼
 
 typedef struct {
     int id;

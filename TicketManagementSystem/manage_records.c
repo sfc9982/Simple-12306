@@ -2,7 +2,7 @@
 
 const char TICKETS_SALES_RECORD_PATH[50] = "Data\\sold_tickets_list.txt";
 
-// ³õÊ¼»¯ÏúÊÛ¼ÇÂ¼ÁÑ±ä£¬´´½¨´øÍ·½áµãµÄÁ´±í
+// åˆå§‹åŒ–é”€å”®è®°å½•è£‚å˜ï¼Œåˆ›å»ºå¸¦å¤´ç»“ç‚¹çš„é“¾è¡¨
 RecordsList InitRecordsList()
 {
     RecordsList head = (RecordsList) malloc(sizeof(struct RecordsListNode));
@@ -24,7 +24,7 @@ void DeleteRecordsList(RecordsList head)
     }
 }
 
-// ±éÀúÏúÊÛ¼ÇÂ¼Á´±í£¬½øĞĞÄ³ÖÖ²Ù×÷
+// éå†é”€å”®è®°å½•é“¾è¡¨ï¼Œè¿›è¡ŒæŸç§æ“ä½œ
 void TraverseRecordsList(RecordsList head, void(*Func)(SoldTicketsRecord *))
 {
     RecordsList p = head->next;
@@ -35,7 +35,7 @@ void TraverseRecordsList(RecordsList head, void(*Func)(SoldTicketsRecord *))
     }
 }
 
-// Êä³öÒ»¸öÏúÊÛ¼ÇÂ¼µÄĞÅÏ¢
+// è¾“å‡ºä¸€ä¸ªé”€å”®è®°å½•çš„ä¿¡æ¯
 void DisplayARecordInfo(SoldTicketsRecord *record)
 {
     printf("%d %s %s %s %d %d-%d-%d-%d:%d:%d\n", record->id, record->name, record->station_from,
@@ -43,7 +43,7 @@ void DisplayARecordInfo(SoldTicketsRecord *record)
            record->date.hour, record->date.min, record->date.second);
 }
 
-// ÔÚÏúÊÛ¼ÇÂ¼Á´±íÎ²²¿Ôö¼ÓÒ»ÌõÏúÊÛ¼ÇÂ¼ĞÅÏ¢
+// åœ¨é”€å”®è®°å½•é“¾è¡¨å°¾éƒ¨å¢åŠ ä¸€æ¡é”€å”®è®°å½•ä¿¡æ¯
 void AddRecordToList(RecordsList head, SoldTicketsRecord record)
 {
     RecordsList newNode = (RecordsList) malloc(sizeof(struct RecordsListNode));
@@ -62,7 +62,7 @@ FILE *OpenRecordsFile(char *mod)
     return fopen(TICKETS_SALES_RECORD_PATH, mod);
 }
 
-// ÏòÎÄ¼şÖĞĞÂÔö¼ÓÒ»ÌõÏúÊÛ¼ÇÂ¼Êı¾İ
+// å‘æ–‡ä»¶ä¸­æ–°å¢åŠ ä¸€æ¡é”€å”®è®°å½•æ•°æ®
 void AppendARecordToFile(SoldTicketsRecord record, FILE *fp)
 {
     fprintf(fp, "%d %s %s %s %d %.2lf %d-%d-%d-%d:%d:%d\n", record.id, record.name, record.station_from,
@@ -74,7 +74,7 @@ void AppendARecordToFile(SoldTicketsRecord record, FILE *fp)
 
 }
 
-// ´ÓÎÄ¼şÖĞµ¼ÈëÏúÊÛ¼ÇÂ¼Êı¾İ
+// ä»æ–‡ä»¶ä¸­å¯¼å…¥é”€å”®è®°å½•æ•°æ®
 void ImportRecordsFromFile(RecordsList head, FILE *fp)
 {
     SoldTicketsRecord record;
@@ -90,7 +90,7 @@ void ImportRecordsFromFile(RecordsList head, FILE *fp)
     fclose(fp);
 }
 
-// »ñÈ¡ÏúÊÛÊ±¼ä
+// è·å–é”€å”®æ—¶é—´
 SoldDate GetCurTime()
 {
     SoldDate date;

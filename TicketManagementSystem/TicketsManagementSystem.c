@@ -15,7 +15,7 @@ void DisplayInit()
 {
     system("cls");
     printf("--------------------------------------\n\n");
-    printf("           Æ±ÎñÔ¤¶©ÏµÍ³   V1.0          \n\n");
+    printf("           ç¥¨åŠ¡é¢„è®¢ç³»ç»Ÿ   V1.0          \n\n");
     printf("            Author: sfc9982           \n\n");
     printf("--------------------------------------\n\n");
     getchar();
@@ -25,7 +25,7 @@ void DisplayExit()
 {
     system("cls");
     printf("--------------------------------------\n\n");
-    printf("               ÔÙ¼û£¡                  \n\n");
+    printf("               å†è§ï¼                  \n\n");
     printf("--------------------------------------\n\n");
     getchar();
 }
@@ -34,9 +34,9 @@ void LogIn()
 {
     system("cls");
     int op = -1;
-    printf("1) ¹ÜÀíÔ±µÇÂ½\n");
-    printf("2) ÓÃ»§µÇÂ½\n");
-    printf("0) ÍË³ö\n");
+    printf("1) ç®¡ç†å‘˜ç™»é™†\n");
+    printf("2) ç”¨æˆ·ç™»é™†\n");
+    printf("0) é€€å‡º\n");
     printf(">> ");
 
     scanf("%d", &op);
@@ -66,10 +66,10 @@ int getPassword(char *passwd, int size)
         c = getch();
         if (c != '\n' && c != '\r')
         {
-            putchar('*'); // ÕÚ±Î»ØÏÔ
+            putchar('*'); // é®è”½å›æ˜¾
             passwd[n++] = (char) c;
         }
-    } while (c != '\n' && c != '\r' && n < (size - 1)); // ²»ÊÇËùÓĞÆ½Ì¨ĞĞÎ²¶¼ÊÇCRLF£¬ size-1Îª'\0'Ô¤ÁôÎ»ÖÃ£¬·ÀÖ¹ÄÚ´æÒç³ö
+    } while (c != '\n' && c != '\r' && n < (size - 1)); // ä¸æ˜¯æ‰€æœ‰å¹³å°è¡Œå°¾éƒ½æ˜¯CRLFï¼Œ size-1ä¸º'\0'é¢„ç•™ä½ç½®ï¼Œé˜²æ­¢å†…å­˜æº¢å‡º
     passwd[n] = '\0';
     return n;
 }
@@ -79,24 +79,24 @@ void AdminLogIn()
     char account[MAX_USERNAME_LENGTH];
     char *password = (char *) calloc(MAX_PASSWORD_LENGTH, sizeof(char));
 
-    system("cls"); // ÇåÆÁ
+    system("cls"); // æ¸…å±
 
-    printf("¹ÜÀíÔ±µÇÂ½\n\n");
+    printf("ç®¡ç†å‘˜ç™»é™†\n\n");
 
-    printf("ÕËºÅ\n>> ");
+    printf("è´¦å·\n>> ");
     scanf("%s", account);
 
-    printf("ÃÜÂë\n>> ");
-    getPassword(password, MAX_PASSWORD_LENGTH); // ÎŞ»ØÏÔÊäÈëÃÜÂë£¬·ÀÖ¹Ãô¸ĞĞÅÏ¢Ğ¹Â¶
+    printf("å¯†ç \n>> ");
+    getPassword(password, MAX_PASSWORD_LENGTH); // æ— å›æ˜¾è¾“å…¥å¯†ç ï¼Œé˜²æ­¢æ•æ„Ÿä¿¡æ¯æ³„éœ²
 
     if (IsAdminAccount(account, password))
     {
         strset(password, 0x0);
-        free(password); // ÇåÏ´ºó¼°Ê±ÊÍ·ÅÄÚ´æ£¬·ÀÖ¹Ãô¸ĞÊı¾İĞ¹Â©£¬²¢¼õÉÙÄÚ´æËéÆ¬²úÉú
+        free(password); // æ¸…æ´—ååŠæ—¶é‡Šæ”¾å†…å­˜ï¼Œé˜²æ­¢æ•æ„Ÿæ•°æ®æ³„æ¼ï¼Œå¹¶å‡å°‘å†…å­˜ç¢ç‰‡äº§ç”Ÿ
         AdminInitMenu();
     } else
     {
-        printf("\nÕËºÅ»òÃÜÂë´íÎó\n");
+        printf("\nè´¦å·æˆ–å¯†ç é”™è¯¯\n");
         system("pause");
         LogIn();
     }
@@ -109,12 +109,12 @@ void UserLogIn()
 
     system("cls");
 
-    printf("ÓÃ»§µÇÂ½\n\n");
+    printf("ç”¨æˆ·ç™»é™†\n\n");
 
-    printf("ÕËºÅ\n>> ");
+    printf("è´¦å·\n>> ");
     scanf("%s", account);
 
-    printf("ÃÜÂë\n>> ");
+    printf("å¯†ç \n>> ");
     getPassword(password, MAX_PASSWORD_LENGTH);
 
     if (IsSalesmanAccount(account, password))
@@ -124,7 +124,7 @@ void UserLogIn()
         SalesmanInitMenu();
     } else
     {
-        printf("\nÕËºÅ»òÃÜÂë´íÎó\n");
+        printf("\nè´¦å·æˆ–å¯†ç é”™è¯¯\n");
         system("pause");
         LogIn();
     }

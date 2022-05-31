@@ -45,10 +45,10 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g"
+					"fragment" : "-O3 -DNDEBUG"
 				},
 				{
-					"fragment" : "-std=gnu11"
+					"fragment" : "-std=gnu2x"
 				}
 			],
 			"includes" : 
@@ -65,7 +65,7 @@
 				[
 					1
 				],
-				"standard" : "11"
+				"standard" : "23"
 			},
 			"sourceIndexes" : 
 			[
@@ -86,7 +86,7 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "-g",
+				"fragment" : "-O3 -DNDEBUG",
 				"role" : "flags"
 			},
 			{
