@@ -54,7 +54,7 @@ void SoldStatisticsByDate(RecordsList head, SoldDate start, SoldDate end, int mi
     int total_tickets_cnt = 0;
 
     printf("----------------------------------------\n");
-    printf("%-5s %-12s %-6s %-6s\n", "ID", "名称", "销量", "收入");
+    printf("%-5s %-12s %-10s %-6s\n", "ID", "名称", "销量", "收入");
     for (s = tickets; s != NULL; s = (CountStatistics *) (s->hh.next))
     {
         if (s->cnt >= min_sold_cnt && s->earnings >= min_earnings)

@@ -31,7 +31,7 @@ int IsSalesmanAccount(char *account, char *password)
 void DisplaySoldTickets(TicketsList head)
 {
     printf("--------------------------------------------------------------------------------\n");
-    printf("%-5s %-12s %-20s %-20s %-10s %-5s\n", "ID", "班次", "始发站", "终点站", "票价", "座位余量");
+    printf("%-5s %-14s %-23s %-18s %-11s %-5s\n", "ID", "班次", "始发站", "终点站", "票价", "座位余量");
     printf("--------------------------------------------------------------------------------\n");
     TraverseTicketsList(head, DisplayBasicTicketsInfo);
     printf("--------------------------------------------------------------------------------\n");

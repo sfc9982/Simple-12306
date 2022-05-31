@@ -46,7 +46,7 @@ void DisplayTicketsInfo(Tickets *tickets)
 // 显示一个列车基本信息
 void DisplayBasicTicketsInfo(Tickets *tickets)
 {
-    printf("%-5d %-12s %-20s %-20s %-10.2lf %-5d\n", tickets->id, tickets->name, tickets->station_from,
+    printf("%-5d %-12s %-20s\t%-20s\t%-10.2lf %-5d\n", tickets->id, tickets->name, tickets->station_from,
            tickets->station_dest,
            tickets->price, tickets->quantity);
 }

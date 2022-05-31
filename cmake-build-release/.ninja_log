@@ -40,3 +40,9 @@
 303	683	6756725803834529	Simple_12306.exe	1f182f9ab339cd8b
 4	360	6756725984113169	CMakeFiles/Simple_12306.dir/TicketManagementSystem/admin_user.c.obj	e5a348d3ba85a15a
 360	702	6756725987476536	Simple_12306.exe	1f182f9ab339cd8b
+2	217	6756733912466356	CMakeFiles/Simple_12306.dir/TicketManagementSystem/manage_tickets.c.obj	1f723d1892607e93
+218	534	6756733915547659	Simple_12306.exe	1f182f9ab339cd8b
+2	217	6756734886825152	CMakeFiles/Simple_12306.dir/TicketManagementSystem/salesman.c.obj	6e214019908bb674
+218	545	6756734890033124	Simple_12306.exe	1f182f9ab339cd8b
+2	223	6756735358214700	CMakeFiles/Simple_12306.dir/TicketManagementSystem/statistics.c.obj	972bde6f93042149
+224	567	6756735361555553	Simple_12306.exe	1f182f9ab339cd8b
