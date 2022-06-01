@@ -1,4 +1,3 @@
-#include <stdbool.h>
 #include "stdafx.h"
 
 
@@ -102,7 +101,8 @@ int DeleteAccount(char *account)
 
         for (int i = 0; i < size; i++)
         {
-            if (i == index) continue;
+            if (i == index)
+                continue;
             //printf("look: %s %s %d\n", user[i].account, user[i].password, user[i].permission_level);
             fwrite(user + i, sizeof(UserAccount), 1, fp);
         }
@@ -429,19 +429,35 @@ int createPassword(char *passwd, int size)
 {
     int c;
     int n = 0;
-    clock_t start_t, finish_t;
-    int bFirst = 1;
+    clock_t start_t;
+    bool bFirst = true;
+    const int TIMEOUT = 1;
     do
     {
+        start_t = clock();
+        while (true)
+        {
+            if (kbhit())
+            {
+                break;
+            }
+            if ((clock() - start_t) / CLOCKS_PER_SEC >= TIMEOUT && bFirst == false)
+            {
+                printf("\b*");
+                break;
+            }
+        }
         c = getch();
         if (c != '\n' && c != '\r')
         {
             if (c == '\b')
             {
-                if (n < 0)
+                if (n <= 0)
                     continue;
                 printf("\b \b"); // 退格功能，两个\b负责删除当前和前一个字符
                 n--;
+                if (n == 0)
+                    bFirst = 1;
 
             } else
             {
@@ -458,12 +474,15 @@ int createPassword(char *passwd, int size)
                     }
                 } // 助记
                 else
+                {
                     putchar('*'); // 遮蔽回显
+                }
             }
         }
 
     } while (c != '\n' && c != '\r' && n < (size - 1)); // 不是所有平台行尾都是CRLF， size-1为'\0'预留位置，防止内存溢出
     passwd[n] = '\0';
+    puts("\b*");
     return n;
 }
 
@@ -471,10 +490,30 @@ void AddUser()
 {
     system("cls");
     UserAccount ua;
+    char *password = (char *) calloc(MAX_PASSWORD_LENGTH, sizeof(char));
+    char *confirm_password = (char *) calloc(MAX_PASSWORD_LENGTH, sizeof(char));
     printf("账号\n>> ");
     scanf("%s", ua.account);
+
+    retry_passwd:
+
     printf("密码\n>> ");
-    createPassword(ua.password, MAX_PASSWORD_LENGTH);
+    createPassword(password, MAX_PASSWORD_LENGTH);
+    printf("确认密码\n>> ");
+    createPassword(confirm_password, MAX_PASSWORD_LENGTH);
+
+    if (strcmp(ua.password, confirm_password) != 0)
+    {
+        printf("两次输入的密码不一致，请重新输入\n");
+        system("pause");
+        system("cls");
+        goto retry_passwd;
+    } else
+    {
+        strcpy(ua.password, password);
+        free(password);
+        free(confirm_password);
+    }
     char level[15] = {0};
     while (strcmp(level, "0") && strcmp(level, "1"))
     {
@@ -502,7 +541,9 @@ void AddUser()
     {
         printf("该用户已存在\n");
     } else
+    {
         printf("添加失败\n");
+    }
 
     system("pause");
     UserManagement();

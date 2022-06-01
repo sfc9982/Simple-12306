@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-#define VER "Beta 3.2"
+#define VER "Beta 4.0"
 
 int main()
 {
@@ -50,11 +50,12 @@ void LogIn()
         case 2:
             UserLogIn();
             break;
-        case -1:
-            printf("Error: Input Error!\n");
+        case 0:
+            DisplayExit();
             break;
         default:
-            DisplayExit();
+            printf("Error: Input Error!\n");
+            break;
     }
 }
 
@@ -62,28 +63,60 @@ int getPassword(char *passwd, int size)
 {
     int c;
     int n = 0;
-
+    clock_t start_t;
+    bool bFirst = true;
+    const int TIMEOUT = 1;
     do
     {
+        start_t = clock();
+        while (true)
+        {
+            if (kbhit())
+            {
+                break;
+            }
+            if ((clock() - start_t) / CLOCKS_PER_SEC >= TIMEOUT && bFirst == false)
+            {
+                printf("\b*");
+                break;
+            }
+        }
         c = getch();
         if (c != '\n' && c != '\r')
         {
-            if (c == '\b' && n >= 0)
+            if (c == '\b')
             {
-                if (n == 0)
+                if (n <= 0)
                     continue;
                 printf("\b \b"); // 退格功能，两个\b负责删除当前和前一个字符
                 n--;
+                if (n == 0)
+                    bFirst = 1;
 
             } else
             {
                 passwd[n++] = (char) c;
-                putchar('*'); // 遮蔽回显
+                if (n >= 1)
+                {
+                    if (bFirst)
+                    {
+                        bFirst = 0;
+                        printf("%c", c);
+                    } else
+                    {
+                        printf("\b \b*%c", c);
+                    }
+                } // 助记
+                else
+                {
+                    putchar('*'); // 遮蔽回显
+                }
             }
         }
 
     } while (c != '\n' && c != '\r' && n < (size - 1)); // 不是所有平台行尾都是CRLF， size-1为'\0'预留位置，防止内存溢出
     passwd[n] = '\0';
+    puts("\b*");
     return n;
 }
 

@@ -4,14 +4,15 @@
 #include "tickets.h"
 #include "uthash.h"
 
+#include <stdbool.h>
 #include <conio.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
 
-#define MAX_PASSWORD_LENGTH 15
-#define MAX_USERNAME_LENGTH 15
+//#define MAX_PASSWORD_LENGTH 15
+//#define MAX_USERNAME_LENGTH 15
 
 //TicketsManagementSystem.c
 void DisplayInit();

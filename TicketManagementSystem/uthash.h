@@ -56,7 +56,7 @@ do {                                                                            
   *_da_dst = (char*)(src);                                                       \
 } while (0)
 #else
-#define DECLTYPE_ASSIGN(dst, src)                                                 \
+#define DECLTYPE_ASSIGN(dst, src)                                                \
 do {                                                                             \
   (dst) = DECLTYPE(dst)(src);                                                    \
 } while (0)
