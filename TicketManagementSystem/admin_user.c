@@ -441,7 +441,7 @@ int createPassword(char *passwd, int size)
             {
                 break;
             }
-            if ((clock() - start_t) / CLOCKS_PER_SEC >= TIMEOUT && bFirst == false)
+            if (bFirst == false && (clock() - start_t) / CLOCKS_PER_SEC >= TIMEOUT)
             {
                 printf("\b*");
                 break;
