@@ -88,7 +88,7 @@ int getPassword(char *passwd, int size)
             {
                 if (n <= 0)
                     continue;
-                printf("\b \b"); // 退格功能，两个\b负责删除当前和前一个字符
+                printf("\b \b");// 退格功能，两个\b负责删除当前和前一个字符
                 n--;
                 if (n == 0)
                     bFirst = 1;
@@ -106,15 +106,15 @@ int getPassword(char *passwd, int size)
                     {
                         printf("\b \b*%c", c);
                     }
-                } // 助记
+                }// 助记
                 else
                 {
-                    putchar('*'); // 遮蔽回显
+                    putchar('*');// 遮蔽回显
                 }
             }
         }
 
-    } while (c != '\n' && c != '\r' && n < (size - 1)); // 不是所有平台行尾都是CRLF， size-1为'\0'预留位置，防止内存溢出
+    } while (c != '\n' && c != '\r' && n < (size - 1));// 不是所有平台行尾都是CRLF， size-1为'\0'预留位置，防止内存溢出
     passwd[n] = '\0';
     puts("\b*");
     return n;
@@ -125,7 +125,7 @@ void AdminLogIn()
     char account[MAX_USERNAME_LENGTH];
     char *password = (char *) calloc(MAX_PASSWORD_LENGTH, sizeof(char));
 
-    system("cls"); // 清屏
+    system("cls");// 清屏
 
     printf("管理员登陆\n\n");
 
@@ -133,12 +133,12 @@ void AdminLogIn()
     scanf("%s", account);
 
     printf("密码\n>> ");
-    getPassword(password, MAX_PASSWORD_LENGTH); // 无回显输入密码，防止敏感信息泄露
+    getPassword(password, MAX_PASSWORD_LENGTH);// 无回显输入密码，防止敏感信息泄露
 
     if (IsAdminAccount(account, password))
     {
         strset(password, 0x0);
-        free(password); // 清洗后及时释放内存，防止敏感数据泄漏，并减少内存碎片产生
+        free(password);// 清洗后及时释放内存，防止敏感数据泄漏，并减少内存碎片产生
         AdminInitMenu();
     } else
     {

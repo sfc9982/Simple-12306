@@ -31,7 +31,7 @@ void SoldStatisticsByDate(RecordsList head, SoldDate start, SoldDate end, int mi
     {
         if (CompareDate(p->record.date, start) >= 0 && CompareDate(p->record.date, end) <= 0)
         {
-            HASH_FIND_INT(tickets, &p->record.id, s); // 引用了第三方库，hash判重
+            HASH_FIND_INT(tickets, &p->record.id, s);// 引用了第三方库，hash判重
             if (s)
             {
                 s->cnt += p->record.sold_quantity;
@@ -43,7 +43,7 @@ void SoldStatisticsByDate(RecordsList head, SoldDate start, SoldDate end, int mi
                 strcpy(s->name, p->record.name);
                 s->cnt = p->record.sold_quantity;
                 s->earnings = p->record.price * p->record.sold_quantity;
-                HASH_ADD_INT(tickets, id, s); // 加入散列表
+                HASH_ADD_INT(tickets, id, s);// 加入散列表
             }
         }
 

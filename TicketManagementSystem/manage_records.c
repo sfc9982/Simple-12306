@@ -19,13 +19,13 @@ void DeleteRecordsList(RecordsList head)
     while (head)
     {
         next = head->next;
-        free(head); // 生命周期末释放内存
+        free(head);// 生命周期末释放内存
         head = next;
     }
 }
 
 // 遍历销售记录链表，进行某种操作
-void TraverseRecordsList(RecordsList head, void(*Func)(SoldTicketsRecord *))
+void TraverseRecordsList(RecordsList head, void (*Func)(SoldTicketsRecord *))
 {
     RecordsList p = head->next;
     while (p)
@@ -71,7 +71,6 @@ void AppendARecordToFile(SoldTicketsRecord record, FILE *fp)
             record.date.hour, record.date.min, record.date.second);
 
     fclose(fp);
-
 }
 
 // 从文件中导入销售记录数据
@@ -108,5 +107,3 @@ SoldDate GetCurTime()
 
     return date;
 }
-
-

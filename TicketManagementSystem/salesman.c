@@ -17,8 +17,7 @@ int IsSalesmanAccount(char *account, char *password)
     for (int i = 0; i < size; i++)
     {
         fread(user + i, sizeof(UserAccount), 1, fp);
-        if (strcmp(account, user[i].account) == 0 && strcmp(password, user[i].password) == 0
-            && user[i].permission_level == 0)
+        if (strcmp(account, user[i].account) == 0 && strcmp(password, user[i].password) == 0 && user[i].permission_level == 0)
             return 1;
     }
 
@@ -73,7 +72,8 @@ void SoldTickets(TicketsList head)
                     if (!ReduceTicketsQuantity(head, id, cnt))
                     {
                         printf("该车次车票库存不足\n");
-                        system("pause");;
+                        system("pause");
+                        ;
                         continue;
                     }
                     ExportTicketsToFile(head, tickets_fp);
@@ -102,7 +102,6 @@ void SoldTickets(TicketsList head)
                     system("pause");
                     break;
                 }
-
             }
         } else
         {
@@ -111,7 +110,6 @@ void SoldTickets(TicketsList head)
             continue;
         }
     }
-
 }
 
 
@@ -142,7 +140,6 @@ void SalesmanInitMenu()
         DeleteTicketsList(head);
         LogIn();
     }
-
 }
 
 
@@ -229,4 +226,3 @@ void SalesmanLookUpTicketsByNameAndManufacturer(TicketsList head)
     system("pause");
     SalesmanLookUpTickets(head);
 }
-

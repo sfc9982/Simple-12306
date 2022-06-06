@@ -18,7 +18,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="caa2b54d-54b0-4702-a851-b5f44b7d5b1e" name="变更" comment="" />
+    <list default="true" id="caa2b54d-54b0-4702-a851-b5f44b7d5b1e" name="变更" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketManagementSystem/Data/sold_tickets_list.txt" beforeDir="false" afterPath="$PROJECT_DIR$/TicketManagementSystem/Data/sold_tickets_list.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketManagementSystem/Data/tickets_list.txt" beforeDir="false" afterPath="$PROJECT_DIR$/TicketManagementSystem/Data/tickets_list.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketManagementSystem/Data/user.dat" beforeDir="false" afterPath="$PROJECT_DIR$/TicketManagementSystem/Data/user.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketManagementSystem/admin_user.c" beforeDir="false" afterPath="$PROJECT_DIR$/TicketManagementSystem/admin_user.c" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,9 +32,11 @@
   </component>
   <component name="ClangdSettings">
     <option name="clangTidyViaClangd" value="false" />
-    <option name="formatViaClangd" value="false" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Release" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="true" />
   </component>
@@ -47,38 +55,51 @@
     <option name="minorVersion" value="1.1" />
   </component>
   <component name="ProjectId" id="29Y6U9zN942Hszqv1F2o7vKFLbI" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;idea.background.frame&quot;: &quot;D:\\Desktop\\Buran\\jb.jpg,30,scale,center&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Code/Simple-12306/CMakeLists.txt&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "cf.advertisement.text.overridden": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "idea.background.frame": "D:\\Desktop\\Buran\\jb.jpg,30,scale,center",
+    "last_opened_file_path": "D:/Code/Simple-12306/CMakeLists.txt",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "structure.view.defaults.are.configured": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Simple_12306" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="true" WORKING_DIR="file://$PROJECT_DIR$/TicketManagementSystem" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Simple_12306" TARGET_NAME="Simple_12306" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Simple_12306" RUN_TARGET_NAME="Simple_12306">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <created>1654504366984</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1654504366984</updated>
+      <workItem from="1654504370443" duration="16000" />
+      <workItem from="1654504399565" duration="34000" />
+      <workItem from="1654504454104" duration="70000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
     <settings-migrated>true</settings-migrated>

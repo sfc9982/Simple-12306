@@ -68,5 +68,4 @@ void QuerySoldRecordsByDate(RecordsList head, SoldDate start, SoldDate end)
     }
 
     printf("-----------------------------------------------------------------------------------------------\n");
-
 }

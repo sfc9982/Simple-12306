@@ -24,7 +24,7 @@ void DeleteTicketsList(TicketsList head)
 }
 
 //遍历列车链表，进行某种操作
-void TraverseTicketsList(TicketsList head, void(*Func)(Tickets *))
+void TraverseTicketsList(TicketsList head, void (*Func)(Tickets *))
 {
     TicketsList p = head->next;
     while (p)
@@ -191,5 +191,3 @@ TicketsList FindTicketsByID(TicketsList head, int id)
 
     return NULL;
 }
-
-

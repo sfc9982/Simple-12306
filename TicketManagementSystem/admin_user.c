@@ -18,8 +18,7 @@ int IsAdminAccount(char *account, char *password)
     for (int i = 0; i < size; i++)
     {
         fread(user + i, sizeof(UserAccount), 1, fp);
-        if (strcmp(account, user[i].account) == 0 && strcmp(password, user[i].password) == 0
-            && user[i].permission_level == 1)
+        if (strcmp(account, user[i].account) == 0 && strcmp(password, user[i].password) == 0 && user[i].permission_level == 1)
         {
             puts("登录成功！");
             return 1;
@@ -66,7 +65,6 @@ int AddAccount(UserAccount *newInfo)
     free(user);
     fclose(fp);
     return 1;
-
 }
 
 
@@ -91,7 +89,6 @@ int DeleteAccount(char *account)
         {
             index = i;
         }
-
     }
     fclose(fp);
 
@@ -209,7 +206,6 @@ void StockManagement()
         DeleteTicketsList(head);
         AdminInitMenu();
     }
-
 }
 
 
@@ -454,7 +450,7 @@ int createPassword(char *passwd, int size)
             {
                 if (n <= 0)
                     continue;
-                printf("\b \b"); // 退格功能，两个\b负责删除当前和前一个字符
+                printf("\b \b");// 退格功能，两个\b负责删除当前和前一个字符
                 n--;
                 if (n == 0)
                     bFirst = 1;
@@ -472,15 +468,15 @@ int createPassword(char *passwd, int size)
                     {
                         printf("\b \b*%c", c);
                     }
-                } // 助记
+                }// 助记
                 else
                 {
-                    putchar('*'); // 遮蔽回显
+                    putchar('*');// 遮蔽回显
                 }
             }
         }
 
-    } while (c != '\n' && c != '\r' && n < (size - 1)); // 不是所有平台行尾都是CRLF， size-1为'\0'预留位置，防止内存溢出
+    } while (c != '\n' && c != '\r' && n < (size - 1));// 不是所有平台行尾都是CRLF， size-1为'\0'预留位置，防止内存溢出
     passwd[n] = '\0';
     puts("\b*");
     return n;
@@ -495,14 +491,14 @@ void AddUser()
     printf("账号\n>> ");
     scanf("%s", ua.account);
 
-    retry_passwd:
+retry_passwd:
 
     printf("密码\n>> ");
     createPassword(password, MAX_PASSWORD_LENGTH);
     printf("确认密码\n>> ");
     createPassword(confirm_password, MAX_PASSWORD_LENGTH);
 
-    if (strcmp(ua.password, confirm_password) != 0)
+    if (strcmp(password, confirm_password) != 0)
     {
         printf("两次输入的密码不一致，请重新输入\n");
         system("pause");
@@ -620,7 +616,6 @@ void SoldStatistics()
         AdminInitMenu();
         DeleteRecordsList(head);
     }
-
 }
 
 
